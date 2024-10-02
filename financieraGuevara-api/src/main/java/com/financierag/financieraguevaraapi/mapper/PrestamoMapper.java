@@ -1,4 +1,4 @@
 package com.financierag.financieraguevaraapi.mapper;
 
-public class ExampleMapper {
+public class PrestamoMapper {
 }

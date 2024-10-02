@@ -1,4 +1,4 @@
 package com.financierag.financieraguevaraapi.service;
 
-public interface ExampleService {
+public interface PrestamoService {
 }

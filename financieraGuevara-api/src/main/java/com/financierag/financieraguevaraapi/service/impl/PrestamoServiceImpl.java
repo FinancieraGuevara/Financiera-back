@@ -1,4 +1,4 @@
 package com.financierag.financieraguevaraapi.service.impl;
 
-public class ExampleServiceImpl {
+public class PrestamoServiceImpl {
 }
