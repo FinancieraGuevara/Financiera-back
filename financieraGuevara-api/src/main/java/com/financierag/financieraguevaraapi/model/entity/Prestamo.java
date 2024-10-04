@@ -26,4 +26,7 @@ public class Prestamo {
     @Column(name = "pre_int_mo")
     private double interes;
 
+    @OneToOne(mappedBy = "prestamo", cascade = CascadeType.ALL)
+    private DetallePrestamo detallePrestamo;
+
 }

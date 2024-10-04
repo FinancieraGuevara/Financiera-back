@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -33,5 +34,8 @@ public class Solicitante {
 
     @Column(name = "sol_fec_nac_da")
     private LocalDate fechaNacimiento;
+
+    @OneToMany(mappedBy = "solicitante")
+    private List<DetallePrestamo> detallePrestamos;
 
 }

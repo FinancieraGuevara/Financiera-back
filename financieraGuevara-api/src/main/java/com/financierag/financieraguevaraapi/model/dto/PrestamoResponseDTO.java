@@ -13,5 +13,4 @@ public class PrestamoResponseDTO {
     private double monto;
     private int cuotas;
     private double interes;
-
 }

@@ -19,3 +19,4 @@ public class PrestamoRequestDTO {
     @NotNull(message = "El interes no puede ser vacio")
     private double interes;
 }
+
