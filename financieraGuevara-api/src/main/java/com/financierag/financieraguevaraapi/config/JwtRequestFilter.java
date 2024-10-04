@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import io.jsonwebtoken.ExpiredJwtException;
 
-import javax.servlet.FilterChain;
+import jakarta.servlet.FilterChain;
 import java.io.IOException;
 
 @Component
@@ -27,7 +27,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
-                                    jakarta.servlet.FilterChain chain)
+                                    FilterChain chain)
             throws jakarta.servlet.ServletException, IOException {
 
         final String authorizationHeader = request.getHeader("Authorization");
