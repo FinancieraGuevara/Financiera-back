@@ -11,6 +11,8 @@ import com.financierag.financieraguevaraapi.service.DetallePrestamoService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class DetallePrestamoServiceImpl implements DetallePrestamoService {
@@ -18,11 +20,16 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
     private final DetallePrestamoRespository detallePrestamoRespository;
     private final DetallePrestamoMapper detallePrestamoMapper;
 
-    private final SolicitanteRepository solicitanteRepository;
 
     @Override
-    public DetallePrestamoResponseDTO detallePrestamoSolicitante(int solicitanteId) {
-        DetallePrestamo detallePrestamo = detallePrestamoRespository.findBySolicitanteId(solicitanteId);
-        return detallePrestamoMapper.convertToDTO(detallePrestamo);
+    public List<DetallePrestamoResponseDTO> findAllDetallesPrestamo() {
+        List<DetallePrestamo> detallePrestamos = detallePrestamoRespository.findAll();
+        return detallePrestamoMapper.convertToListDTO(detallePrestamos);
+    }
+
+    @Override
+    public List<DetallePrestamoResponseDTO>  detallePrestamoSolicitante(int solicitanteId) {
+        List<DetallePrestamo> detallePrestamo = detallePrestamoRespository.findBySolicitanteId(solicitanteId);
+        return detallePrestamoMapper.convertToListDTO(detallePrestamo);
     }
 }
