@@ -19,4 +19,6 @@ public class User {
     private String username;
     @Column(length = 25)
     private String password;
+    @Column(length = 25)
+    private String role;
 }

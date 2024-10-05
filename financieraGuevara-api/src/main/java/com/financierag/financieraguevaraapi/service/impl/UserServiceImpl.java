@@ -3,6 +3,7 @@ package com.financierag.financieraguevaraapi.service.impl;
 import com.financierag.financieraguevaraapi.mapper.UserMapper;
 import com.financierag.financieraguevaraapi.model.dto.UserRequestDTO;
 import com.financierag.financieraguevaraapi.model.dto.UserResponseDTO;
+import com.financierag.financieraguevaraapi.model.dto.UserResponsePrivateDTO;
 import com.financierag.financieraguevaraapi.model.entity.User;
 import com.financierag.financieraguevaraapi.repository.UserRepository;
 import com.financierag.financieraguevaraapi.service.UserService;
@@ -73,4 +74,8 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    @Override
+    public List<User> getPrivateUsers() {
+        return userRepository.findAll();
+    }
 }
