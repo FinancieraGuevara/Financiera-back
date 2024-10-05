@@ -28,5 +28,5 @@ public class DetallePrestamo {
     private Prestamo prestamo;
 
     @Column(name = "det_fech_pag_dt", updatable = false)
-    private LocalDate fechaInicio = LocalDate.now();
+    private LocalDate fechaInicio;
 }

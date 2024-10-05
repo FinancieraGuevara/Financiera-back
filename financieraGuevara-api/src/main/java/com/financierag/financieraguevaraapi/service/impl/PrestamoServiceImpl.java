@@ -15,6 +15,7 @@ import com.financierag.financieraguevaraapi.service.PrestamoService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -23,9 +24,6 @@ public class PrestamoServiceImpl implements PrestamoService {
 
     private final PrestamoRepository prestamoRepository;
     private final PrestamoMapper prestamoMapper;
-
-    private final DetallePrestamoRespository detallePrestamoRespository;
-    private final DetallePrestamoMapper detallePrestamoMapper;
 
     private final SolicitanteRepository solicitanteRepository;
     @Override
@@ -48,6 +46,8 @@ public class PrestamoServiceImpl implements PrestamoService {
                 .orElseThrow(() -> new ResourceNotFoundException("Solicitant no encontrado con el numero de ID"+solicitanteId));
         DetallePrestamo detallePrestamo = new DetallePrestamo();
         detallePrestamo.setSolicitante(solicitante);
+        detallePrestamo.setPrestamo(prestamo);
+        detallePrestamo.setFechaInicio(LocalDate.now());
         prestamo.setDetallePrestamo(detallePrestamo);
 
         prestamo = prestamoRepository.save(prestamo);
