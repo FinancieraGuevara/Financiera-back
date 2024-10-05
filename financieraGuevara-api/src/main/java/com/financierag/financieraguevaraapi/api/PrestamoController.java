@@ -1,4 +1,4 @@
 package com.financierag.financieraguevaraapi.api;
 
-public class ExampleController {
+public class PrestamoController {
 }
