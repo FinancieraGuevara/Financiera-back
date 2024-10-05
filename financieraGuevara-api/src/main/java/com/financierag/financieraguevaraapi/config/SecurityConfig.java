@@ -28,10 +28,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth-> auth.requestMatchers("/public/**").permitAll()
                         .requestMatchers("/private").hasAuthority("ADMIN")
                         .anyRequest().authenticated()
-                ) .formLogin(login -> login
-                        .loginPage("/login")  // Página de login personalizada
+                ) .formLogin(login -> login // Página de login personalizada
                         .loginProcessingUrl("/login")  // Ruta para procesar el login (POST)
-                        .defaultSuccessUrl("/private/users", true)  // Redirige después de un login exitoso
+                        .defaultSuccessUrl("/public/users", true)  // Redirige después de un login exitoso
                         .failureUrl("/login?error")  // Redirige después de un login fallido
                         .permitAll()
                 )
