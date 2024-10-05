@@ -1,5 +1,6 @@
 package com.financierag.financieraguevaraapi.model.dto;
 
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.financierag.financieraguevaraapi.model.entity.Cronograma;
 import jakarta.persistence.Transient;
@@ -24,7 +25,6 @@ public class DetallePrestamoResponseDTO {
     private PrestamoResponseDTO prestamo;
 
     private LocalDate fechaInicio;
-
 
     private double pagarTotal;
 

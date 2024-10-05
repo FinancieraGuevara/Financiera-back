@@ -18,4 +18,11 @@ public class SolicitanteResponseDTO {
     private String apellidoMaterno;
     //private LocalDate fechaNacimiento;
 
+   /* private String numero;
+    private String nombres;
+    private String apellido_paterno;
+    private String apellido_materno;
+    private String codigo_verificacion;
+    private LocalDate fechaNacimiento;*/
+
 }

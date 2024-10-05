@@ -43,10 +43,10 @@ public class SolicitanteServiceImpl implements SolicitanteService {
     public SolicitanteResponseDTO updateSolicitante(int id, SolicitanteRequestDTO solicitanteRequestDTO) {
         Solicitante solicitante = solicitanteRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Localizacion no encontrada con el numero de ID"+id));
-        if (solicitanteRequestDTO.getDni() != null) {solicitante.setDni(solicitanteRequestDTO.getDni());}
+        /*if (solicitanteRequestDTO.getDni() != null) {solicitante.setDni(solicitanteRequestDTO.getDni());}
         if (solicitanteRequestDTO.getNombre()!= null) {solicitante.setDni(solicitanteRequestDTO.getDni());}
         if (solicitanteRequestDTO.getApellidoPaterno()!=null){solicitante.setDni(solicitanteRequestDTO.getApellidoPaterno());}
-        if (solicitanteRequestDTO.getApellidoMaterno()!=null){solicitante.setDni(solicitanteRequestDTO.getApellidoMaterno());}
+        if (solicitanteRequestDTO.getApellidoMaterno()!=null){solicitante.setDni(solicitanteRequestDTO.getApellidoMaterno());}*/
         if (solicitanteRequestDTO.getFechaNacimiento()!=null){solicitante.setFechaNacimiento(solicitanteRequestDTO.getFechaNacimiento());}
 
         solicitante = solicitanteRepository.save(solicitante);

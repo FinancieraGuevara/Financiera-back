@@ -17,20 +17,23 @@ public class SolicitanteRequestDTO {
 
     @NotBlank(message = "El numero de DNI no puede estar vacio")
     @Pattern(regexp = "[0-9]+", message = "El numero de DNI debe contener solo digitos")
-    private String dni;
+    private String numero;
 
     @NotBlank(message = "El nombre no puede estar vacio")
     @Size(max = 35, message = "El nombre no puede exceder los 35 caracteres")
-    private String nombre;
+    private String nombres;
 
     @NotBlank(message = "El apellido paterno no puede estar vacio")
     @Size(max = 40, message = "El apellido no puede exceder los 40 caracteres")
-    private String apellidoPaterno;
+    private String apellido_paterno;
 
     @NotBlank(message = "El apellido materno no puede estar vacio")
     @Size(max = 40, message = "El apellido no puede exceder los 40 caracteres")
-    private String apellidoMaterno;
+    private String apellido_materno;
 
-    @NotBlank(message = "La fecha de nacimiento no puede estar vacia")
+    @NotBlank(message = "El codigo verificacion no puede estar vacio")
+    private String codigo_verificacion;
+
+    //@NotBlank(message = "La fecha de nacimiento no puede estar vacia")
     private LocalDate fechaNacimiento;
 }
