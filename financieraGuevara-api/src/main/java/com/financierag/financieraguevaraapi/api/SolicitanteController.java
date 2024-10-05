@@ -34,13 +34,6 @@ public class SolicitanteController {
         return new ResponseEntity<>(solicitante, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<SolicitanteResponseDTO> updateSolicitante(@PathVariable int id,
-                                                                    @RequestBody SolicitanteRequestDTO solicitanteRequestDTO) {
-        SolicitanteResponseDTO solicitante = solicitanteServiceImpl.updateSolicitante(id, solicitanteRequestDTO);
-        return new ResponseEntity<>(solicitante, HttpStatus.OK);
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteSolicitante(@PathVariable int id) {
         solicitanteServiceImpl.deleteSolicitante(id);
