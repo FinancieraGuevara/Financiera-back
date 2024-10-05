@@ -21,7 +21,8 @@ public class PrestamoMapper {
     }
 
     public PrestamoResponseDTO convertToDTO (Prestamo prestamo) {
-        return modelMapper.map(prestamo, PrestamoResponseDTO.class);
+        PrestamoResponseDTO dto = modelMapper.map(prestamo, PrestamoResponseDTO.class);
+        return dto;
     }
 
     public List<PrestamoResponseDTO> convertToListDTO(List<Prestamo> prestamos) {

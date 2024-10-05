@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -29,4 +30,23 @@ public class DetallePrestamo {
 
     @Column(name = "det_fech_pag_dt", updatable = false)
     private LocalDate fechaInicio;
+
+    @OneToMany(mappedBy = "detallePrestamo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cronograma> cronograma;
+
+    @Transient
+    private double pagarTotal;
+    @Transient
+
+    private double interesTotal;
+    public double calcularPagarTotal() {
+        // Implementa la lógica para calcular el total a pagar
+        // Por ejemplo:
+        return prestamo.getMonto() + (prestamo.getMonto() * prestamo.getInteres());
+    }
+
+    public double calcularInteresTotal() {
+        // Implementa la lógica para calcular el interés total
+        return prestamo.getMonto() * prestamo.getInteres();
+    }
 }

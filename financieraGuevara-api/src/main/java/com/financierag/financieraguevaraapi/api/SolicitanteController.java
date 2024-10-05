@@ -1,8 +1,12 @@
 package com.financierag.financieraguevaraapi.api;
 
+import com.financierag.financieraguevaraapi.model.dto.DetallePrestamoResponseDTO;
 import com.financierag.financieraguevaraapi.model.dto.SolicitanteRequestDTO;
 import com.financierag.financieraguevaraapi.model.dto.SolicitanteResponseDTO;
+import com.financierag.financieraguevaraapi.model.entity.DetallePrestamo;
 import com.financierag.financieraguevaraapi.model.entity.Solicitante;
+import com.financierag.financieraguevaraapi.repository.SolicitanteRepository;
+import com.financierag.financieraguevaraapi.service.impl.DetallePrestamoServiceImpl;
 import com.financierag.financieraguevaraapi.service.impl.SolicitanteServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,12 +32,6 @@ public class SolicitanteController {
     public ResponseEntity<SolicitanteResponseDTO> findById(@PathVariable int id) {
         SolicitanteResponseDTO solicitante = solicitanteServiceImpl.getSolicitanteById(id);
         return new ResponseEntity<>(solicitante, HttpStatus.OK);
-    }
-
-    @PostMapping
-    public ResponseEntity<SolicitanteResponseDTO> createSolicitante(@RequestBody SolicitanteRequestDTO solicitanteRequestDTO) {
-        SolicitanteResponseDTO solicitante = solicitanteServiceImpl.createSolicitante(solicitanteRequestDTO);
-        return new ResponseEntity<>(solicitante, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

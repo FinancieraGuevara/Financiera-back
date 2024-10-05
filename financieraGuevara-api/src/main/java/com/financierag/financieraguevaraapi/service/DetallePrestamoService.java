@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface DetallePrestamoService {
     List<DetallePrestamoResponseDTO> findAllDetallesPrestamo();
-    DetallePrestamoResponseDTO detallePrestamoSolicitante(int solicitanteId);
+    List<DetallePrestamoResponseDTO>  detallePrestamoSolicitante(int solicitanteId);
 }

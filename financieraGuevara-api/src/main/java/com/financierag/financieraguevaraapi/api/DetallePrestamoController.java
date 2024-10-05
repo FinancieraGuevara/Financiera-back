@@ -26,8 +26,8 @@ public class DetallePrestamoController {
     }
 
     @GetMapping("/{solicitanteId}")
-    public ResponseEntity<DetallePrestamoResponseDTO> getDetallePrestamoById(@PathVariable int solicitanteId){
-        DetallePrestamoResponseDTO detallePrestamo = detallePrestamoServiceImpl.detallePrestamoSolicitante(solicitanteId);
+    public ResponseEntity<List<DetallePrestamoResponseDTO>> getDetallePrestamoById(@PathVariable int solicitanteId){
+        List<DetallePrestamoResponseDTO> detallePrestamo = detallePrestamoServiceImpl.detallePrestamoSolicitante(solicitanteId);
         return new ResponseEntity<>(detallePrestamo, HttpStatus.OK);
     }
 }

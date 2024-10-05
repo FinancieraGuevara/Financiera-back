@@ -16,7 +16,5 @@ public class PrestamoRequestDTO {
     @NotNull(message = "Las cuotas no pueden ser vacias")
     private int cuotas;
 
-    @NotNull(message = "El interes no puede ser vacio")
-    private double interes;
 }
 

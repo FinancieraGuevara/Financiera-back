@@ -1,21 +1,24 @@
 package com.financierag.financieraguevaraapi.model.dto;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Date;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SolicitanteResponseDTO {
+public class CronogramaResponseDTO {
+
     private int id;
-    private String dni;
-    private String nombre;
-    private String apellidoPaterno;
-    private String apellidoMaterno;
-    //private LocalDate fechaNacimiento;
+
+    int nmrcuota;
+
+    double cuota;
+
+    LocalDate fechaPago;
 
 }

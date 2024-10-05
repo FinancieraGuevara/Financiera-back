@@ -28,8 +28,8 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
     }
 
     @Override
-    public DetallePrestamoResponseDTO detallePrestamoSolicitante(int solicitanteId) {
-        DetallePrestamo detallePrestamo = detallePrestamoRespository.findBySolicitanteId(solicitanteId);
-        return detallePrestamoMapper.convertToDTO(detallePrestamo);
+    public List<DetallePrestamoResponseDTO>  detallePrestamoSolicitante(int solicitanteId) {
+        List<DetallePrestamo> detallePrestamo = detallePrestamoRespository.findBySolicitanteId(solicitanteId);
+        return detallePrestamoMapper.convertToListDTO(detallePrestamo);
     }
 }
