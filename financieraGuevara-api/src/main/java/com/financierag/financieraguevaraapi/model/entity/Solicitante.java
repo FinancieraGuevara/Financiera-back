@@ -21,19 +21,22 @@ public class Solicitante {
     private int id;
 
     @Column(name = "sol_dni_vc")
-    private String dni;
+    private String numero;
 
     @Column(name = "sol_nom_vc")
-    private String nombre;
+    private String nombres;
 
     @Column(name = "sol_pat_vc")
-    private String apellidoPaterno;
+    private String apellido_paterno;
 
     @Column(name = "sol_mat_vc")
-    private String apellidoMaterno;
+    private String apellido_materno;
 
     @Column(name = "sol_fec_nac_da")
     private LocalDate fechaNacimiento;
+
+    @Column(name = "sol_cod_vec_in")
+    private String codigo_verificacion;
 
     @OneToMany(mappedBy = "solicitante")
     private List<DetallePrestamo> detallePrestamos;
