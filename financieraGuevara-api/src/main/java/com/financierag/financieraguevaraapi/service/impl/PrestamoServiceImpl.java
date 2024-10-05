@@ -73,7 +73,7 @@ public class PrestamoServiceImpl implements PrestamoService {
 
 
         detallePrestamoRespository.save(detallePrestamo);
-        
+
         return prestamoMapper.convertToDTO(prestamo);
     }
     public double colocarinteres(int cuotas)
