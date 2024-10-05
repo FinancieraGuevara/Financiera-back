@@ -31,7 +31,10 @@ public class SolicitanteServiceImpl implements SolicitanteService {
                 .orElseThrow(() -> new ResourceNotFoundException("Localizacion no encontrada con el numero de ID"+id));
         return solicitanteMapper.convertToDTO(solicitante);
     }
-
+    public Solicitante getSolicitanteEntity(int id){
+        Solicitante solicitante = solicitanteRepository.findById(id).orElseThrow(null);
+        return solicitante;
+    }
     @Override
     public SolicitanteResponseDTO createSolicitante(SolicitanteRequestDTO solicitanteRequestDTO) {
         Solicitante solicitante = solicitanteMapper.convertToEntity(solicitanteRequestDTO);
@@ -47,7 +50,7 @@ public class SolicitanteServiceImpl implements SolicitanteService {
         if (solicitanteRequestDTO.getNombre()!= null) {solicitante.setDni(solicitanteRequestDTO.getDni());}
         if (solicitanteRequestDTO.getApellidoPaterno()!=null){solicitante.setDni(solicitanteRequestDTO.getApellidoPaterno());}
         if (solicitanteRequestDTO.getApellidoMaterno()!=null){solicitante.setDni(solicitanteRequestDTO.getApellidoMaterno());}*/
-        if (solicitanteRequestDTO.getFechaNacimiento()!=null){solicitante.setFechaNacimiento(solicitanteRequestDTO.getFechaNacimiento());}
+
 
         solicitante = solicitanteRepository.save(solicitante);
         return solicitanteMapper.convertToDTO(solicitante);

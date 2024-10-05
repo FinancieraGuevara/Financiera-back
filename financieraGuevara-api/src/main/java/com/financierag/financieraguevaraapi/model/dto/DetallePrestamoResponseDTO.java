@@ -3,6 +3,7 @@ package com.financierag.financieraguevaraapi.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.financierag.financieraguevaraapi.model.entity.Cronograma;
+import com.financierag.financieraguevaraapi.model.entity.Solicitante;
 import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +20,7 @@ public class DetallePrestamoResponseDTO {
     private int detailId;
 
     //@JsonProperty("solicitante")
-    private SolicitanteResponseDTO solicitante;
+    private Solicitante solicitante;
 
     //@JsonProperty("prestamo")
     private PrestamoResponseDTO prestamo;
