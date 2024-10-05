@@ -32,9 +32,6 @@ public class Solicitante {
     @Column(name = "sol_mat_vc")
     private String apellido_materno;
 
-    @Column(name = "sol_fec_nac_da")
-    private LocalDate fechaNacimiento;
-
     @Column(name = "sol_cod_vec_in")
     private String codigo_verificacion;
 
