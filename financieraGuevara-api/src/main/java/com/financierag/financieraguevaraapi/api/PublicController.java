@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
 @RequestMapping("/public")
-@CrossOrigin(origins = "https://fguevara-guevara.web.app")
+@CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
 public class PublicController {
     @Autowired
     private UserService userService;
     @Autowired
     private UserMapper userMapper;
+    @CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
     @GetMapping("/users")
     public ResponseEntity<List<UserResponseDTO>> getPublicUsers() {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);

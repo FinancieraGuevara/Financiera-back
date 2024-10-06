@@ -30,7 +30,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
+@CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
 public class SecurityConfig {
 
     @Autowired
@@ -58,27 +58,15 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/public/users")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
-                )
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 );
         return http.build();
     }
-    @Bean
-    public ServletWebServerFactory servletContainer() {
-        return new TomcatServletWebServerFactory() {
-            @Override
-            protected void postProcessContext(Context context) {
-                context.addParameter("org.apache.catalina.SESSION_COOKIE_HTTPONLY", "false"); // Desactivar HttpOnly
-                context.addParameter("org.apache.catalina.SESSION_COOKIE_SECURE", "false"); // Cambiar a true en producción
-            }
-        };
-    }
+
     // Configuración global de CORS
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200")); // Permite tu frontend
+        configuration.setAllowedOrigins(Arrays.asList("https://fguevara-guevara.web.app")); // Permite tu frontend
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
         configuration.setAllowCredentials(true);

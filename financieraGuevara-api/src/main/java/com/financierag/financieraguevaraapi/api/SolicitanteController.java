@@ -41,7 +41,7 @@ public class SolicitanteController {
         solicitanteServiceImpl.deleteSolicitante(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
+    @CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
     @GetMapping("/searchByDni/{numero}")
     public ResponseEntity<Integer> findSolicitanteIdByNumero(@PathVariable String numero) {
         Optional<Integer> solicitanteId = solicitanteServiceImpl.findSolicitanteIdByNumero(numero);
