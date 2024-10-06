@@ -35,7 +35,4 @@ public class Solicitante {
     @Column(name = "sol_cod_vec_in")
     private String codigo_verificacion;
 
-    @OneToMany(mappedBy = "solicitante")
-    private List<DetallePrestamo> detallePrestamos;
-
 }
