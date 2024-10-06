@@ -26,10 +26,10 @@ public class PdfService {
             document.add(new Paragraph("Reporte de Préstamo"));
 
             document.add(new Paragraph("\nSolicitante:"));
-            document.add(new Paragraph("\t\tNúmero: " + detallePrestamoResponseDTO.getSolicitante().getDni()));
-            document.add(new Paragraph("\t\tNombres: " + detallePrestamoResponseDTO.getSolicitante().getNombre()));
-            document.add(new Paragraph("\t\tApellido Paterno: " + detallePrestamoResponseDTO.getSolicitante().getApellidoPaterno()));
-            document.add(new Paragraph("\t\tApellido Materno: " + detallePrestamoResponseDTO.getSolicitante().getApellidoMaterno()));
+            document.add(new Paragraph("\t\tNúmero: " + detallePrestamoResponseDTO.getSolicitante().getNumero()));
+            document.add(new Paragraph("\t\tNombres: " + detallePrestamoResponseDTO.getSolicitante().getNombres()));
+            document.add(new Paragraph("\t\tApellido Paterno: " + detallePrestamoResponseDTO.getSolicitante().getApellido_paterno()));
+            document.add(new Paragraph("\t\tApellido Materno: " + detallePrestamoResponseDTO.getSolicitante().getApellido_materno()));
 
             document.add(new Paragraph("\nPréstamo:"));
             document.add(new Paragraph("\t\tMonto: " + detallePrestamoResponseDTO.getPrestamo().getMonto()));
