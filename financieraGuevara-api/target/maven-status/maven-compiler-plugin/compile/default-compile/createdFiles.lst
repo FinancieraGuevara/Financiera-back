@@ -8,6 +8,7 @@ com\financierag\financieraguevaraapi\execption\BadRequestException.class
 com\financierag\financieraguevaraapi\model\dto\UserRequestDTO.class
 com\financierag\financieraguevaraapi\model\dto\SolicitanteRequestDTO.class
 com\financierag\financieraguevaraapi\service\ApiService.class
+com\financierag\financieraguevaraapi\config\SecurityConfig$1.class
 com\financierag\financieraguevaraapi\model\dto\RucDataRequestDTO.class
 com\financierag\financieraguevaraapi\repository\UserRepository.class
 com\financierag\financieraguevaraapi\execption\ResourceNotFoundException.class
