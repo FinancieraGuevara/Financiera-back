@@ -39,6 +39,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/public/**").permitAll()  // Permitir todas las solicitudes a /public/**
                         .requestMatchers("/login").permitAll()  // Permitir acceso sin autenticación a /login
+                        .requestMatchers("/private/users").authenticated() // Asegúrate de proteger todas las rutas necesarias
+                        .requestMatchers("/private/consulta/**").authenticated() // Protege esta ruta también
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
@@ -49,7 +51,7 @@ public class SecurityConfig {
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login")
+                        .logoutSuccessUrl("/home")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                 );
