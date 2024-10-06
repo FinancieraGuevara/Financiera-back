@@ -31,7 +31,10 @@ public class SolicitanteServiceImpl implements SolicitanteService {
                 .orElseThrow(() -> new ResourceNotFoundException("Localizacion no encontrada con el numero de ID"+id));
         return solicitanteMapper.convertToDTO(solicitante);
     }
-
+    public Solicitante getSolicitanteEntity(int id){
+        Solicitante solicitante = solicitanteRepository.findById(id).orElseThrow(null);
+        return solicitante;
+    }
     @Override
     public void deleteSolicitante(int id) {
         solicitanteRepository.deleteById(id);

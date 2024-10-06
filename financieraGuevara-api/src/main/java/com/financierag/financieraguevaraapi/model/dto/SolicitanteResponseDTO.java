@@ -24,5 +24,4 @@ public class SolicitanteResponseDTO {
     private String apellido_materno;
     private String codigo_verificacion;
     private LocalDate fechaNacimiento;*/
-
 }
