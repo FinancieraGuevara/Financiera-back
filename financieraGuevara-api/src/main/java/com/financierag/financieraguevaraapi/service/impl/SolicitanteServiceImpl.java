@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -38,5 +39,10 @@ public class SolicitanteServiceImpl implements SolicitanteService {
     @Override
     public void deleteSolicitante(int id) {
         solicitanteRepository.deleteById(id);
+    }
+
+    public Optional<Integer> findSolicitanteIdByNumero(String numero) {
+        return solicitanteRepository.findByNumero(numero)
+                .map(Solicitante::getId);
     }
 }
