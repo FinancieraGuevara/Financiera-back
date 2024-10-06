@@ -26,7 +26,7 @@ public class ApiServiceImpl implements ApiService {
     private ApiMapper apiMapper;
     private SolicitanteRepository solicitanteRepository;
     private final String apiBaseUrl = "https://apiperu.dev/api/";
-    private final String apiToken = "31304751b641467ac93462682254c1fbde971071d4923e08225fa41d67a1ad7d";
+    private final String apiToken = "5fac3e28ef229c04c83ad82acced5980894b0949c0efff59d57d871aa09d6cfb";
 
     @Override
     public <T> ApiResponseDTO<T> getDataByType(String identifier, String type, Class<T> dtoClass) {
