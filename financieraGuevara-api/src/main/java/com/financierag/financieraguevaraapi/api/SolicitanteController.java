@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/solicitantes")
@@ -39,5 +40,15 @@ public class SolicitanteController {
     public ResponseEntity<HttpStatus> deleteSolicitante(@PathVariable int id) {
         solicitanteServiceImpl.deleteSolicitante(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/searchByDni/{numero}")
+    public ResponseEntity<Integer> findSolicitanteIdByNumero(@PathVariable String numero) {
+        Optional<Integer> solicitanteId = solicitanteServiceImpl.findSolicitanteIdByNumero(numero);
+        if (solicitanteId.isPresent()) {
+            return new ResponseEntity<>(solicitanteId.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
