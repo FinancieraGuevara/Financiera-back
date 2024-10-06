@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
 @RequestMapping("/public")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://fguevara-guevara.web.app")
 public class PublicController {
     @Autowired
     private UserService userService;

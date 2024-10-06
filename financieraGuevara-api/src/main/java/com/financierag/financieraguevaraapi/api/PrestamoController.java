@@ -13,17 +13,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/prestamos")
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://fguevara-guevara.web.app")
 public class PrestamoController {
 
     private final PrestamoServiceImpl prestamoServiceImpl;
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://fguevara-guevara.web.app")
     @GetMapping
     public ResponseEntity<List<PrestamoResponseDTO>> getAllPrestamos() {
         List<PrestamoResponseDTO> prestamos = prestamoServiceImpl.findAllPrestamos();
         return new ResponseEntity<>(prestamos, HttpStatus.OK);
     }
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://fguevara-guevara.web.app")
    @GetMapping("/{id}")
    public ResponseEntity<PrestamoResponseDTO> getPrestamoById(@PathVariable int id) {
         PrestamoResponseDTO prestamo = prestamoServiceImpl.findPrestamoById(id);
