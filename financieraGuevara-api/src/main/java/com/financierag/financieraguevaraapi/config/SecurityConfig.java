@@ -11,12 +11,22 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+import javax.servlet.http.HttpServletResponse;
+
+import java.util.Arrays;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public class SecurityConfig {
 
     @Autowired
@@ -24,24 +34,39 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth-> auth.requestMatchers("/public/**").permitAll()
-                        .requestMatchers("/private").hasAuthority("ADMIN")
+        http.csrf().disable()
+                .cors().and()
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/public/**").permitAll()  // Permitir todas las solicitudes a /public/**
+                        .requestMatchers("/login").permitAll()  // Permitir acceso sin autenticación a /login
                         .anyRequest().authenticated()
-                ) .formLogin(login -> login // Página de login personalizada
-                        .loginProcessingUrl("/login")  // Ruta para procesar el login (POST)
-                        .defaultSuccessUrl("/public/users", true)  // Redirige después de un login exitoso
-                        .failureUrl("/login?error")  // Redirige después de un login fallido
+                )
+                .formLogin(login -> login
+                        .loginProcessingUrl("/login")
+                        .defaultSuccessUrl("/public/users", true)
+                        .failureUrl("/login?error")
                         .permitAll()
                 )
                 .logout(logout -> logout
-                        .logoutUrl("/logout")  // Ruta personalizada para logout
-                        .logoutSuccessUrl("/login")  // Redirige después de logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login")
                         .invalidateHttpSession(true)
-                        .deleteCookies("JSESSIONID")  // Elimina la cookie de sesión
-                )
+                        .deleteCookies("JSESSIONID")
+                );
+        return http.build();
+    }
 
-                .build();
+    // Configuración global de CORS
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200")); // Permite tu frontend
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration); // Aplica a todas las rutas
+        return source;
     }
 
     @Bean
@@ -52,5 +77,6 @@ public class SecurityConfig {
         authenticationManagerBuilder.userDetailsService(userDetailsService); // Asegúrate de configurar el UserDetailsService
         return authenticationManagerBuilder.build();
     }
+
 
 }

@@ -125,6 +125,11 @@
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-core</artifactId>
+            <version>3.4.14</version> <!-- Puedes ajustar la versión según tu caso -->
+        </dependency>
     </dependencies>
     <build>
         <plugins>

@@ -18,22 +18,23 @@ import java.util.List;
 @RestController
 @RequestMapping("/solicitantes")
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public class SolicitanteController {
 
     private final SolicitanteServiceImpl solicitanteServiceImpl;
-
+    @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
     @GetMapping
     public ResponseEntity<List<SolicitanteResponseDTO>> findAll() {
         List<SolicitanteResponseDTO> solicitante = solicitanteServiceImpl.getAllSolicitantes();
         return new ResponseEntity<>(solicitante, HttpStatus.OK);
     }
-
+    @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
     @GetMapping("/{id}")
     public ResponseEntity<SolicitanteResponseDTO> findById(@PathVariable int id) {
         SolicitanteResponseDTO solicitante = solicitanteServiceImpl.getSolicitanteById(id);
         return new ResponseEntity<>(solicitante, HttpStatus.OK);
     }
-
+    @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteSolicitante(@PathVariable int id) {
         solicitanteServiceImpl.deleteSolicitante(id);
