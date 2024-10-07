@@ -1,52 +1,60 @@
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\api\ApiController.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\api\DetallePrestamoController.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\api\PrestamoController.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\api\PublicController.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\api\SolicitanteController.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\api\UserController.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\config\ModelMapperConfig.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\config\RestExceptionHandler.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\config\SecurityConfig.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\execption\BadRequestException.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\execption\ExampleException.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\execption\ResourceNotFoundException.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\FinancieraGuevaraApiApplication.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\mapper\ApiMapper.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\mapper\DetallePrestamoMapper.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\mapper\PrestamoMapper.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\mapper\SolicitanteMapper.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\mapper\UserMapper.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\ApiResponseDTO.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\CronogramaResponseDTO.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\DetallePrestamoResponseDTO.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\DniDataRequestDTO.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\PrestamoRequestDTO.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\PrestamoResponseDTO.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\RucDataRequestDTO.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\SolicitanteRequestDTO.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\SolicitanteResponseDTO.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\UserRequestDTO.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\UserResponseDTO.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\UserResponsePrivateDTO.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\entity\Cronograma.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\entity\DetallePrestamo.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\entity\Prestamo.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\entity\Solicitante.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\entity\User.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\repository\CronogramaRepository.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\repository\DetallePrestamoRespository.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\repository\EmpresaRepository.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\repository\PrestamoRepository.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\repository\SolicitanteRepository.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\repository\UserRepository.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\ApiService.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\DetallePrestamoService.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\impl\ApiServiceImpl.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\impl\CustomUserDetailsServiceImpl.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\impl\DetallePrestamoServiceImpl.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\impl\PrestamoServiceImpl.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\impl\SolicitanteServiceImpl.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\impl\UserServiceImpl.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\PrestamoService.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\SolicitanteService.java
-D:\SEXTOCICLO\parcial_inso\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\UserService.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\api\ApiController.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\api\DetallePrestamoController.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\api\PdfController.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\api\PrestamoController.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\api\PublicController.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\api\SolicitanteController.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\api\UserController.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\config\CorsGlobalConfiguration.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\config\ModelMapperConfig.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\config\RestExceptionHandler.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\config\SecurityConfig.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\config\WebConfig.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\execption\BadRequestException.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\execption\ExampleException.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\execption\ResourceNotFoundException.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\FinancieraGuevaraApiApplication.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\mapper\ApiMapper.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\mapper\DetallePrestamoMapper.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\mapper\PrestamoMapper.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\mapper\ReportMapper.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\mapper\SolicitanteMapper.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\mapper\UserMapper.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\ApiResponseDTO.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\CronogramaResponseDTO.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\DetallePrestamoResponseDTO.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\DniDataRequestDTO.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\PrestamoRequestDTO.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\PrestamoResponseDTO.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\ReportResponseDTO.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\RucDataRequestDTO.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\SolicitanteRequestDTO.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\SolicitanteResponseDTO.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\UserRequestDTO.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\UserResponseDTO.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\dto\UserResponsePrivateDTO.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\entity\Cronograma.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\entity\DetallePrestamo.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\entity\Prestamo.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\entity\Solicitante.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\model\entity\User.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\repository\CronogramaRepository.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\repository\DetallePrestamoRespository.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\repository\EmpresaRepository.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\repository\PrestamoRepository.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\repository\SolicitanteRepository.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\repository\UserRepository.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\ApiService.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\DetallePrestamoService.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\impl\ApiServiceImpl.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\impl\CustomUserDetailsServiceImpl.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\impl\DetallePrestamoServiceImpl.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\impl\PrestamoServiceImpl.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\impl\ReportServiceImpl.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\impl\SolicitanteServiceImpl.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\impl\UserServiceImpl.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\PdfService.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\PrestamoService.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\ReportService.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\SolicitanteService.java
+D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\service\UserService.java

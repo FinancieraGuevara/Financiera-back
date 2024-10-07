@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/private")
-@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
+@CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
 public class ApiController {
 
     private ApiService apiService;
-    @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
+    @CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
     @GetMapping("/consulta/{identifier}")
     public ResponseEntity<?> getDataById(@PathVariable String identifier, @RequestParam String type) {
         try {

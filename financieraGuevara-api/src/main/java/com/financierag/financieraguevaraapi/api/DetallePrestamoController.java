@@ -12,17 +12,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/detalleprestamos")
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
+@CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
 public class DetallePrestamoController {
 
     private final DetallePrestamoServiceImpl detallePrestamoServiceImpl;
-    @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
+    @CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
     @GetMapping
     public ResponseEntity<List<DetallePrestamoResponseDTO>> getAllDetallePrestamos(){
         List<DetallePrestamoResponseDTO> detallePrestamos = detallePrestamoServiceImpl.findAllDetallesPrestamo();
         return new ResponseEntity<>(detallePrestamos, HttpStatus.OK);
     }
-    @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
+    @CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
     @GetMapping("/{solicitanteId}")
     public ResponseEntity<List<DetallePrestamoResponseDTO>> getDetallePrestamoById(@PathVariable int solicitanteId){
         List<DetallePrestamoResponseDTO> detallePrestamo = detallePrestamoServiceImpl.detallePrestamoSolicitante(solicitanteId);
