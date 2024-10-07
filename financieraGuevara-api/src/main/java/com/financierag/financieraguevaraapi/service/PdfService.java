@@ -44,14 +44,14 @@ public class PdfService {
             canvas.fill();
 
             /*Para el logo*/
-            String logoPath = "financieraGuevara-api/src/main/resources/static/logo-FG.jpg";
-            Image logo = new Image(ImageDataFactory.create(logoPath));
-            logo.scaleToFit(150, 50);
+            //String logoPath = "financieraGuevara-api/src/main/resources/static/logo-FG.jpg";
+            //Image logo = new Image(ImageDataFactory.create(logoPath));
+            //logo.scaleToFit(150, 50);
 
-            float logoX = ((pageWidth - logo.getImageWidth()) / 2)+220; // Centrar horizontalmente
-            float logoY = (pageHeight - headerHeight + (headerHeight - logo.getImageHeight()) / 2)+155; // Centrar verticalmente
-            logo.setFixedPosition(logoX, logoY);
-            document.add(logo);
+            //float logoX = ((pageWidth - logo.getImageWidth()) / 2)+220; // Centrar horizontalmente
+            //float logoY = (pageHeight - headerHeight + (headerHeight - logo.getImageHeight()) / 2)+155; // Centrar verticalmente
+            //logo.setFixedPosition(logoX, logoY);
+            //document.add(logo);
 
             document.add(new Paragraph("\n\nReporte de Préstamo").setFontSize(20).setBold().setTextAlignment(TextAlignment.CENTER));
 
