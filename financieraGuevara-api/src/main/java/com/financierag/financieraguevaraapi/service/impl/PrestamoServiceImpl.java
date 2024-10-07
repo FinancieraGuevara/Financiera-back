@@ -1,7 +1,6 @@
 package com.financierag.financieraguevaraapi.service.impl;
 
 import com.financierag.financieraguevaraapi.execption.ResourceNotFoundException;
-import com.financierag.financieraguevaraapi.mapper.DetallePrestamoMapper;
 import com.financierag.financieraguevaraapi.mapper.PrestamoMapper;
 import com.financierag.financieraguevaraapi.model.dto.PrestamoRequestDTO;
 import com.financierag.financieraguevaraapi.model.dto.PrestamoResponseDTO;
@@ -13,6 +12,7 @@ import com.financierag.financieraguevaraapi.repository.DetallePrestamoRespositor
 import com.financierag.financieraguevaraapi.repository.PrestamoRepository;
 import com.financierag.financieraguevaraapi.repository.SolicitanteRepository;
 import com.financierag.financieraguevaraapi.service.PrestamoService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -130,7 +131,12 @@ public class PrestamoServiceImpl implements PrestamoService {
     }
 
     @Override
-    public void deletePrestamo(int id) {
-        prestamoRepository.deleteById(id);
+    public void deletePrestamo(Integer prestamoId, Integer solicitanteId) {
+        Optional<Prestamo> prestamoOpt = prestamoRepository.findByIdAndDetallePrestamoSolicitanteId(prestamoId, solicitanteId);
+        if (prestamoOpt.isPresent()) {
+            prestamoRepository.delete(prestamoOpt.get());
+        } else {
+            throw new EntityNotFoundException("Préstamo no encontrado para el solicitante con ID: " + solicitanteId);
+        }
     }
 }
