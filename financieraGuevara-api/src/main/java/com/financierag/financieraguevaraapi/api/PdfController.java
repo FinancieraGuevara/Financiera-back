@@ -20,18 +20,13 @@ public class PdfController {
     private final PdfService pdfService;
     private final ReportService reportService;
     @CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
-    @GetMapping("/user/{userId}")
-    public ReportResponseDTO generateUserReport(@PathVariable Integer userId) {
-        return reportService.generateReport(userId);
-    }
-    @CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
     @GetMapping("/pdf/{userId}")
     public ResponseEntity<InputStreamResource> downloadUserReportPdf(@PathVariable Integer userId) {
         ReportResponseDTO reportResponseDTO = reportService.generateReport(userId);
         ByteArrayInputStream pdfStream = pdfService.generateUserReportPdf(reportResponseDTO);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "inline; filename=user_report_" + userId + ".pdf");
+        headers.add("Content-Disposition", "inline; filename=Financiera_Guevara_" + userId + "_cronograma.pdf");
 
         return ResponseEntity.ok()
                 .headers(headers)
