@@ -12,6 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class SolicitanteResponseDTO {
     private int id;
+    private String numero;
     private String nombres;
     private String apellido_paterno;
     private String apellido_materno;
