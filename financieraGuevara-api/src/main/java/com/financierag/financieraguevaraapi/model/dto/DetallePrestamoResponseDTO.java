@@ -20,7 +20,7 @@ public class DetallePrestamoResponseDTO {
     private int detailId;
 
     //@JsonProperty("solicitante")
-    private Solicitante solicitante;
+    private SolicitanteResponseDTO solicitante;
 
     //@JsonProperty("prestamo")
     private PrestamoResponseDTO prestamo;
