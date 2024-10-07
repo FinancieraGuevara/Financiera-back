@@ -1,4 +1,5 @@
 com\financierag\financieraguevaraapi\execption\ExampleException.class
+com\financierag\financieraguevaraapi\mapper\ReportMapper.class
 com\financierag\financieraguevaraapi\service\PrestamoService.class
 com\financierag\financieraguevaraapi\model\entity\Solicitante.class
 com\financierag\financieraguevaraapi\model\entity\Prestamo.class
@@ -10,19 +11,25 @@ com\financierag\financieraguevaraapi\service\ApiService.class
 com\financierag\financieraguevaraapi\model\dto\RucDataRequestDTO.class
 com\financierag\financieraguevaraapi\repository\UserRepository.class
 com\financierag\financieraguevaraapi\execption\ResourceNotFoundException.class
+com\financierag\financieraguevaraapi\service\PdfService.class
 com\financierag\financieraguevaraapi\config\RestExceptionHandler.class
 com\financierag\financieraguevaraapi\model\dto\DetallePrestamoResponseDTO.class
+com\financierag\financieraguevaraapi\api\PdfController.class
 com\financierag\financieraguevaraapi\model\dto\SolicitanteResponseDTO.class
+com\financierag\financieraguevaraapi\service\ReportService.class
 com\financierag\financieraguevaraapi\service\DetallePrestamoService.class
 com\financierag\financieraguevaraapi\model\dto\ApiResponseDTO.class
 com\financierag\financieraguevaraapi\repository\CronogramaRepository.class
 com\financierag\financieraguevaraapi\model\dto\DniDataRequestDTO.class
+com\financierag\financieraguevaraapi\service\impl\ReportServiceImpl.class
 com\financierag\financieraguevaraapi\config\SecurityConfig.class
 com\financierag\financieraguevaraapi\api\PublicController.class
 com\financierag\financieraguevaraapi\mapper\SolicitanteMapper.class
 com\financierag\financieraguevaraapi\service\impl\ApiServiceImpl.class
 com\financierag\financieraguevaraapi\model\dto\PrestamoResponseDTO.class
 com\financierag\financieraguevaraapi\api\DetallePrestamoController.class
+com\financierag\financieraguevaraapi\config\CorsGlobalConfiguration.class
+com\financierag\financieraguevaraapi\config\WebConfig.class
 com\financierag\financieraguevaraapi\mapper\ApiMapper.class
 com\financierag\financieraguevaraapi\api\ApiController.class
 com\financierag\financieraguevaraapi\repository\PrestamoRepository.class
@@ -50,3 +57,4 @@ com\financierag\financieraguevaraapi\service\impl\DetallePrestamoServiceImpl.cla
 com\financierag\financieraguevaraapi\repository\DetallePrestamoRespository.class
 com\financierag\financieraguevaraapi\repository\SolicitanteRepository.class
 com\financierag\financieraguevaraapi\FinancieraGuevaraApiApplication.class
+com\financierag\financieraguevaraapi\model\dto\ReportResponseDTO.class

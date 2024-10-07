@@ -8,32 +8,25 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayInputStream;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
 @RequestMapping("/reports")
 public class PdfController {
     private final PdfService pdfService;
     private final ReportService reportService;
-
-    @GetMapping("/user/{userId}")
-    public ReportResponseDTO generateUserReport(@PathVariable Integer userId) {
-        return reportService.generateReport(userId);
-    }
-
+    @CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
     @GetMapping("/pdf/{userId}")
     public ResponseEntity<InputStreamResource> downloadUserReportPdf(@PathVariable Integer userId) {
         ReportResponseDTO reportResponseDTO = reportService.generateReport(userId);
         ByteArrayInputStream pdfStream = pdfService.generateUserReportPdf(reportResponseDTO);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "inline; filename=user_report_" + userId + ".pdf");
+        headers.add("Content-Disposition", "inline; filename=Financiera_Guevara_" + userId + "_cronograma.pdf");
 
         return ResponseEntity.ok()
                 .headers(headers)
