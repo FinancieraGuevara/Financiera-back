@@ -47,13 +47,11 @@ public class PrestamoController {
         return new ResponseEntity<>(prestamo, HttpStatus.OK);
    }
     @CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
-   @DeleteMapping("/{solicitanteId}/{prestamoId}")
-   public ResponseEntity<String> deletePrestamo(@PathVariable Integer solicitanteId, @PathVariable Integer prestamoId) {
-       try {
-           prestamoServiceImpl.deletePrestamo(prestamoId, solicitanteId);
-           return ResponseEntity.ok("Préstamo eliminado exitosamente.");
-       } catch (EntityNotFoundException e) {
-           return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-       }
-   }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<PrestamoResponseDTO> deletePrestamo(@PathVariable int id) {
+        prestamoServiceImpl.deletePrestamo(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+    }
 }

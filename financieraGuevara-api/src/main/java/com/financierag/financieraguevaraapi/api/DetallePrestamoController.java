@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/detalleprestamos")
+@RequestMapping("/private/detalleprestamos")
 @AllArgsConstructor
 @CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
 public class DetallePrestamoController {

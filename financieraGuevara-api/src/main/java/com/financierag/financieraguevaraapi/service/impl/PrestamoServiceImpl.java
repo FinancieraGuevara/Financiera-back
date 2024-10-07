@@ -131,12 +131,8 @@ public class PrestamoServiceImpl implements PrestamoService {
     }
 
     @Override
-    public void deletePrestamo(Integer prestamoId, Integer solicitanteId) {
-        Optional<Prestamo> prestamoOpt = prestamoRepository.findByIdAndDetallePrestamoSolicitanteId(prestamoId, solicitanteId);
-        if (prestamoOpt.isPresent()) {
-            prestamoRepository.delete(prestamoOpt.get());
-        } else {
-            throw new EntityNotFoundException("Préstamo no encontrado para el solicitante con ID: " + solicitanteId);
-        }
+    public void deletePrestamo(int id) {
+        prestamoRepository.deleteById(id);
     }
+
 }
