@@ -22,18 +22,13 @@ public class PdfController {
     private final PdfService pdfService;
     private final ReportService reportService;
 
-    @GetMapping("/user/{userId}")
-    public ReportResponseDTO generateUserReport(@PathVariable Integer userId) {
-        return reportService.generateReport(userId);
-    }
-
     @GetMapping("/pdf/{userId}")
     public ResponseEntity<InputStreamResource> downloadUserReportPdf(@PathVariable Integer userId) {
         ReportResponseDTO reportResponseDTO = reportService.generateReport(userId);
         ByteArrayInputStream pdfStream = pdfService.generateUserReportPdf(reportResponseDTO);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "inline; filename=user_report_" + userId + ".pdf");
+        headers.add("Content-Disposition", "inline; filename=Financiera_Guevara_" + userId + "_cronograma.pdf");
 
         return ResponseEntity.ok()
                 .headers(headers)
