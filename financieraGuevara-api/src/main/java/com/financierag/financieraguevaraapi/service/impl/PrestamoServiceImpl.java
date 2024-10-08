@@ -96,7 +96,7 @@ public class PrestamoServiceImpl implements PrestamoService {
             Cronograma cronograma = new Cronograma();
             cronograma.setCuota(totalPagar);
             cronograma.setNmrcuota(1);
-            cronograma.setFechaPago(fechaInicio.plusDays(30));
+            cronograma.setFechaPago(fechaInicio.plusMonths(1));
             cronograma.setDetallePrestamo(detallePrestamo);
             cronogramas.add(cronograma);
 
