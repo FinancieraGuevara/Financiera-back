@@ -21,9 +21,10 @@ public class Cronograma {
     int nmrcuota;
 
     double cuota;
-
+    double interes;
+    double capitalamortizado;
+    double saldofinal;
     LocalDate fechaPago;
-
     @ManyToOne
     @JoinColumn(name = "det_prestamo_id")
     private DetallePrestamo detallePrestamo;

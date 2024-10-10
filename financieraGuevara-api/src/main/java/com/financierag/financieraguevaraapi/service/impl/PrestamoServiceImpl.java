@@ -12,11 +12,12 @@ import com.financierag.financieraguevaraapi.repository.DetallePrestamoRespositor
 import com.financierag.financieraguevaraapi.repository.PrestamoRepository;
 import com.financierag.financieraguevaraapi.repository.SolicitanteRepository;
 import com.financierag.financieraguevaraapi.service.PrestamoService;
-import jakarta.persistence.EntityNotFoundException;
+import java.lang.*;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,33 +91,78 @@ public class PrestamoServiceImpl implements PrestamoService {
     }
     public void generarCronograma(int cuotas, LocalDate fechaInicio, double monto, double intereses, DetallePrestamo detallePrestamo) {
         List<Cronograma> cronogramas = new ArrayList<>();
-        double totalPagar = monto + (monto * intereses);
+        fechaInicio= fechaInicio.minusDays(1);
+
+            double interesmensual=(intereses)/12;
+        double cuota = monto * ((interesmensual * Math.pow(1 + interesmensual, 6)) / (Math.pow(1 + interesmensual, 6) - 1));
+            BigDecimal cuotaredondeada= new BigDecimal(cuota).setScale(2, RoundingMode.HALF_UP);
+            cuota=cuotaredondeada.doubleValue();
+            double interesestotales=(cuota*cuotas)-monto;
+        double totalPagar = monto + interesestotales;
+        double saldoinicial= monto;
 
         if (cuotas == 1) {
+                double interesmensualcuota = saldoinicial*interesmensual;
+                double capitalamortizado=cuota-(saldoinicial*interesmensual);
+                double saldofinal=saldoinicial-capitalamortizado;
+
             Cronograma cronograma = new Cronograma();
-            cronograma.setCuota(totalPagar);
+                BigDecimal redondearcuota = new BigDecimal(cuota).setScale(2, RoundingMode.HALF_UP);
+                cuota = redondearcuota.doubleValue();
+            cronograma.setCuota(cuota);
             cronograma.setNmrcuota(1);
+                BigDecimal redondearinteresmensual = new BigDecimal(interesmensualcuota).setScale(2, RoundingMode.HALF_UP);
+                interesmensualcuota = redondearinteresmensual.doubleValue();
+            cronograma.setInteres(interesmensualcuota);
+                BigDecimal redondearcapitalmortizado = new BigDecimal(capitalamortizado).setScale(2, RoundingMode.HALF_UP);
+                capitalamortizado=redondearcapitalmortizado.doubleValue();
+            cronograma.setCapitalamortizado(capitalamortizado);
+                BigDecimal redondearsaldofinal = new BigDecimal(saldofinal).setScale(2, RoundingMode.HALF_UP);
+                saldofinal=redondearsaldofinal.doubleValue();
+            if (saldofinal <= 0.01) {
+                saldofinal = 0.0;
+            }
+            cronograma.setSaldofinal(saldofinal);
+            // no es necesario porque solo es 1 cuota --> saldoinicial=saldofinal;
             cronograma.setFechaPago(fechaInicio.plusMonths(1));
             cronograma.setDetallePrestamo(detallePrestamo);
             cronogramas.add(cronograma);
 
         } else if (cuotas == 6) {
-            double cuotaMensual = totalPagar / cuotas;
             for (int i = 1; i <= cuotas; i++) {
+                    double interesmensualcuota = saldoinicial*interesmensual;
+                    double capitalamortizado=cuota-(saldoinicial*interesmensual);
+                    double saldofinal=saldoinicial-capitalamortizado;
                 Cronograma cronograma = new Cronograma();
-                cronograma.setCuota(cuotaMensual);
+                    BigDecimal redondearcuota = new BigDecimal(cuota).setScale(2, RoundingMode.HALF_UP);
+                    cuota = redondearcuota.doubleValue();
+                cronograma.setCuota(cuota);
                 cronograma.setNmrcuota(i);
-                cronograma.setFechaPago(fechaInicio.plusDays(30));
-                fechaInicio=fechaInicio.plusDays(30);
+                    BigDecimal redondearinteresmensual = new BigDecimal(interesmensualcuota).setScale(2, RoundingMode.HALF_UP);
+                    interesmensualcuota = redondearinteresmensual.doubleValue();
+                cronograma.setInteres(interesmensualcuota);
+                    BigDecimal redondearcapitalmortizado = new BigDecimal(capitalamortizado).setScale(2, RoundingMode.HALF_UP);
+                capitalamortizado=redondearcapitalmortizado.doubleValue();
+                cronograma.setCapitalamortizado(capitalamortizado);
+                    BigDecimal redondearsaldofinal = new BigDecimal(saldofinal).setScale(2, RoundingMode.HALF_UP);
+                    saldofinal=redondearsaldofinal.doubleValue();
+                if (saldofinal <= 0.01) {
+                    saldofinal = 0.0;
+                }
+                cronograma.setSaldofinal(saldofinal);
+
+                saldoinicial=saldofinal;
+
+                cronograma.setFechaPago(fechaInicio.plusMonths(1));
+                fechaInicio=fechaInicio.plusMonths(1);
                 cronograma.setDetallePrestamo(detallePrestamo);
                 cronogramas.add(cronograma);
             }
         }
 
-
         detallePrestamo.setCronograma(cronogramas);
         detallePrestamo.setPagarTotal(totalPagar);
-        detallePrestamo.setInteresTotal(monto * intereses);
+        detallePrestamo.setInteresTotal(interesestotales);
         // Guardar el detalle del préstamo junto con el cronograma
         detallePrestamoRespository.save(detallePrestamo);
     }
