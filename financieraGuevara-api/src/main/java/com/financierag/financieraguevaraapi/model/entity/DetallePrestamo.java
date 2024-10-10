@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import  java.lang.Math;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -40,13 +42,20 @@ public class DetallePrestamo {
 
     private double interesTotal;
     public double calcularPagarTotal() {
-        // Implementa la lógica para calcular el total a pagar
-        // Por ejemplo:
-        return prestamo.getMonto() + (prestamo.getMonto() * prestamo.getInteres());
+        double interesmensual = prestamo.getInteres() / 12;
+        double cuota = prestamo.getMonto() * (interesmensual * Math.pow(1 + interesmensual, prestamo.getCuotas())) / (Math.pow(1 + interesmensual, prestamo.getCuotas()) - 1);
+        double intereses = (cuota * prestamo.getCuotas()) - prestamo.getMonto();
+        BigDecimal interesredondeado = new BigDecimal(intereses).setScale(2, RoundingMode.HALF_UP);
+        intereses = interesredondeado.doubleValue();
+        return prestamo.getMonto() + intereses;
     }
 
     public double calcularInteresTotal() {
-        // Implementa la lógica para calcular el interés total
-        return prestamo.getMonto() * prestamo.getInteres();
+        double interesmensual = prestamo.getInteres() / 12;
+        double cuota = prestamo.getMonto() * (interesmensual * Math.pow(1 + interesmensual, prestamo.getCuotas())) / (Math.pow(1 + interesmensual, prestamo.getCuotas()) - 1);
+        double totalintereses=(cuota * prestamo.getCuotas()) - prestamo.getMonto();
+        BigDecimal totalinteresesredondeado = new BigDecimal(totalintereses).setScale(2, RoundingMode.HALF_UP);
+        totalintereses = totalinteresesredondeado.doubleValue();
+        return totalintereses;
     }
 }

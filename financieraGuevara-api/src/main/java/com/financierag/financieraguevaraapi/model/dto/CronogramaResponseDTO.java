@@ -18,7 +18,9 @@ public class CronogramaResponseDTO {
     int nmrcuota;
 
     double cuota;
-
+    double interes;
+    double capitalamortizado;
+    double saldofinal;
     LocalDate fechaPago;
 
 }
