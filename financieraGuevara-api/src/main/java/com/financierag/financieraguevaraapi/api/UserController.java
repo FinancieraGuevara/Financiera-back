@@ -12,14 +12,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
+//@CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
 @RestController
 @RequestMapping("/private")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
+    //@CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
     @GetMapping("/users")
     public ResponseEntity<List<User>> getPrivateUsers() {
         return new ResponseEntity<>(userService.getPrivateUsers(), HttpStatus.OK);

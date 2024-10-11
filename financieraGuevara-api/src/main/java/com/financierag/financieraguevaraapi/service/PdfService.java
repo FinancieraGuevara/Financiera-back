@@ -39,26 +39,37 @@ public class PdfService {
 
             PdfCanvas canvas = new PdfCanvas(pdfDocument.addNewPage());
             canvas.saveState();
-            canvas.setFillColor(new DeviceRgb(17, 18, 23));
+            canvas.setFillColor(new DeviceRgb(0, 86, 163));
             canvas.rectangle(0, pageHeight - headerHeight, pageWidth, headerHeight);
             canvas.fill();
+            canvas.restoreState();
 
-            /*Para el logo*/
-            //String logoPath = "financieraGuevara-api/src/main/resources/static/logo-FG.jpg";
-            //Image logo = new Image(ImageDataFactory.create(logoPath));
-            //logo.scaleToFit(150, 50);
+                /*Para el logo*/
+                //String logoPath = "financieraGuevara-api/src/main/resources/static/logo-FG.jpg";
+                //Image logo = new Image(ImageDataFactory.create(logoPath));
+                //logo.scaleToFit(150, 50);
+                //float logoX = ((pageWidth - logo.getImageWidth()) / 2)+220; // Centrar horizontalmente
+                //float logoY = (pageHeight - headerHeight + (headerHeight - logo.getImageHeight()) / 2)+155; // Centrar verticalmente
+                //logo.setFixedPosition(logoX, logoY);
+                //document.add(logo);
 
-            //float logoX = ((pageWidth - logo.getImageWidth()) / 2)+220; // Centrar horizontalmente
-            //float logoY = (pageHeight - headerHeight + (headerHeight - logo.getImageHeight()) / 2)+155; // Centrar verticalmente
-            //logo.setFixedPosition(logoX, logoY);
-            //document.add(logo);
+            //Colores de las cabeceras y títulos
+            DeviceRgb headerColor = new DeviceRgb(0, 86, 163);
+            DeviceRgb titleColor = new DeviceRgb(238, 134, 0);
 
-            document.add(new Paragraph("\n\nReporte de Préstamo").setFontSize(20).setBold().setTextAlignment(TextAlignment.CENTER));
+            String titleInso = "INSO";
+            Paragraph titleParagraph = new Paragraph(titleInso).setFontColor(titleColor).setFontSize(20);
+            float setOnX = 270;
+            float setOnY = 795;
+            titleParagraph.setFixedPosition(setOnX, setOnY, 400);
+            document.add(titleParagraph);
+
+            document.add(new Paragraph("\n\nReporte de Préstamo\n\n").setFontSize(20).setBold().setTextAlignment(TextAlignment.CENTER));
 
             Table infoTable = new Table(new float[]{1, 1}); // Dos columnas
 
-            infoTable.addCell(new Cell().add(new Paragraph("Solicitante")).setBold().setBackgroundColor(ColorConstants.LIGHT_GRAY).setTextAlignment(TextAlignment.CENTER));
-            infoTable.addCell(new Cell().add(new Paragraph("Préstamo")).setBold().setBackgroundColor(ColorConstants.LIGHT_GRAY).setTextAlignment(TextAlignment.CENTER));
+            infoTable.addCell(new Cell().add(new Paragraph("Solicitante")).setBold().setFontColor(ColorConstants.WHITE).setBackgroundColor(headerColor).setTextAlignment(TextAlignment.CENTER));
+            infoTable.addCell(new Cell().add(new Paragraph("Préstamo")).setBold().setFontColor(ColorConstants.WHITE).setBackgroundColor(headerColor).setTextAlignment(TextAlignment.CENTER));
 
             String solicitanteInfo = "Número: " + detallePrestamoResponseDTO.getSolicitante().getNumero() +
                     "\nNombres: " + detallePrestamoResponseDTO.getSolicitante().getNombres() +
@@ -67,12 +78,13 @@ public class PdfService {
 
             infoTable.addCell(new Cell().add(new Paragraph(solicitanteInfo)));
 
-            String prestamoInfo = "Monto: " + detallePrestamoResponseDTO.getPrestamo().getMonto() +
-                    "\nCuotas: " + detallePrestamoResponseDTO.getPrestamo().getCuotas() +
+            String prestamoInfo = "Moneda: " + "Sol peruano" +
+                    "\nMonto de préstamo: " + detallePrestamoResponseDTO.getPrestamo().getMonto() +
+                    "\nPlazo (N° de cuotas): " + detallePrestamoResponseDTO.getPrestamo().getCuotas() +
                     "\nInterés: " + detallePrestamoResponseDTO.getPrestamo().getInteres() +
                     "\nFecha de Inicio: " + detallePrestamoResponseDTO.getFechaInicio() +
-                    "\nTotal a Pagar: " + detallePrestamoResponseDTO.getPagarTotal() +
-                    "\nInterés Total: " + detallePrestamoResponseDTO.getInteresTotal();
+                    "\nMonto a pagar: " + detallePrestamoResponseDTO.getPagarTotal() +
+                    "\nTotal intereses: " + detallePrestamoResponseDTO.getInteresTotal();
 
             infoTable.addCell(new Cell().add(new Paragraph(prestamoInfo)));
 
@@ -80,19 +92,29 @@ public class PdfService {
 
             document.add(infoTable);
 
-            Table table = new Table(new float[]{1, 2, 2}); // Tres columnas
+            Table table = new Table(new float[]{1, 2, 2, 1, 2, 2}); // 6 columnas
 
-            Cell headerCell1 = new Cell().add(new Paragraph("Número de Cuota")).setBold().setBackgroundColor(ColorConstants.LIGHT_GRAY).setTextAlignment(TextAlignment.CENTER);
-            Cell headerCell2 = new Cell().add(new Paragraph("Monto")).setBold().setBackgroundColor(ColorConstants.LIGHT_GRAY).setTextAlignment(TextAlignment.CENTER);
-            Cell headerCell3 = new Cell().add(new Paragraph("Fecha de Pago")).setBold().setBackgroundColor(ColorConstants.LIGHT_GRAY).setTextAlignment(TextAlignment.CENTER);
+            Cell headerCell1 = new Cell().add(new Paragraph("N° de cuota")).setBold().setFontColor(ColorConstants.WHITE).setBackgroundColor(headerColor).setTextAlignment(TextAlignment.CENTER);
+            Cell headerCell2 = new Cell().add(new Paragraph("Fecha de pago")).setBold().setFontColor(ColorConstants.WHITE).setBackgroundColor(headerColor).setTextAlignment(TextAlignment.CENTER);
+            Cell headerCell3 = new Cell().add(new Paragraph("Cuota")).setBold().setFontColor(ColorConstants.WHITE).setBackgroundColor(headerColor).setTextAlignment(TextAlignment.CENTER);
+            Cell headerCell4 = new Cell().add(new Paragraph("Interes")).setBold().setFontColor(ColorConstants.WHITE).setBackgroundColor(headerColor).setTextAlignment(TextAlignment.CENTER);
+            Cell headerCell5 = new Cell().add(new Paragraph("Capital amortizado")).setBold().setFontColor(ColorConstants.WHITE).setBackgroundColor(headerColor).setTextAlignment(TextAlignment.CENTER);
+            Cell headerCell6 = new Cell().add(new Paragraph("Saldo final")).setBold().setFontColor(ColorConstants.WHITE).setBackgroundColor(headerColor).setTextAlignment(TextAlignment.CENTER);
+
             table.addHeaderCell(headerCell1);
             table.addHeaderCell(headerCell2);
             table.addHeaderCell(headerCell3);
+            table.addHeaderCell(headerCell4);
+            table.addHeaderCell(headerCell5);
+            table.addHeaderCell(headerCell6);
 
             for (CronogramaResponseDTO cronograma : detallePrestamoResponseDTO.getCronograma()) {
-                table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getNmrcuota()))));
-                table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getCuota()))));
-                table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getFechaPago()))));
+                table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getNmrcuota())).setTextAlignment(TextAlignment.CENTER)));
+                table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getFechaPago())).setTextAlignment(TextAlignment.CENTER)));
+                table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getCuota())).setTextAlignment(TextAlignment.CENTER)));
+                table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getInteres())).setTextAlignment(TextAlignment.CENTER)));
+                table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getCapitalamortizado())).setTextAlignment(TextAlignment.CENTER)));
+                table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getSaldofinal())).setTextAlignment(TextAlignment.CENTER)));
             }
 
             table.setWidth(UnitValue.createPercentValue(100));
