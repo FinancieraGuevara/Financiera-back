@@ -1,6 +1,7 @@
 com\financierag\financieraguevaraapi\execption\ExampleException.class
 com\financierag\financieraguevaraapi\mapper\ReportMapper.class
 com\financierag\financieraguevaraapi\service\PrestamoService.class
+com\financierag\financieraguevaraapi\mapper\ApiMapper$1.class
 com\financierag\financieraguevaraapi\model\entity\Solicitante.class
 com\financierag\financieraguevaraapi\model\entity\Prestamo.class
 com\financierag\financieraguevaraapi\model\dto\PrestamoRequestDTO.class
