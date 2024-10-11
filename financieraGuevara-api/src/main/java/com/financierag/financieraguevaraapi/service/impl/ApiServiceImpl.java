@@ -43,11 +43,10 @@ public class ApiServiceImpl implements ApiService {
                 }
 
                 HttpHeaders headers = new HttpHeaders();
-                headers.set("Authorization", "Bearer " + apiToken); // Agregar el token de autorización
-                headers.set("Accept", "application/json"); // Aceptar respuesta en formato JSON
-                headers.set("Content-Type", "application/json"); // Especificar el tipo de contenido
+                headers.set("Authorization", "Bearer " + apiToken);
+                headers.set("Accept", "application/json");
+                headers.set("Content-Type", "application/json");
 
-                // Crear una entidad HTTP con los encabezados
                 HttpEntity<String> entity = new HttpEntity<>(headers);
 
                 // Realizar la llamada al API
@@ -57,14 +56,44 @@ public class ApiServiceImpl implements ApiService {
                 apiResponse.setSuccess((Boolean) responseDni.get("success"));
 
                 // Mapeo de la respuesta del API a un DTO
-                SolicitanteRequestDTO dniDataResponse = apiMapper.mapToDTO((Map<String, Object>) responseDni.get("data"), SolicitanteRequestDTO.class);
+                Map<String, Object> data = (Map<String, Object>) responseDni.get("data");
+                SolicitanteRequestDTO dniDataResponse = apiMapper.mapToSolicitanteDTO(data);
 
+                // Guardar el nuevo solicitante
                 Solicitante nuevoSolicitante = apiMapper.mapToSolicitanteEntity(dniDataResponse);
-
                 solicitanteRepository.save(nuevoSolicitante);
 
                 // Asignar el DTO a la respuesta
                 apiResponse.setData((T) dniDataResponse);
+                break;
+
+            case "ruc":
+                // Logic for RUC
+                HttpHeaders rucHeaders = new HttpHeaders();
+                rucHeaders.set("Authorization", "Bearer " + apiToken);
+                rucHeaders.set("Accept", "application/json");
+                rucHeaders.set("Content-Type", "application/json");
+
+                HttpEntity<String> rucEntity = new HttpEntity<>(rucHeaders);
+
+                // Realizar la llamada al API para RUC
+                ResponseEntity<Map> rucResponseEntity = restTemplate.exchange(apiUrl, HttpMethod.GET, rucEntity, Map.class);
+                Map<String, Object> responseRuc = rucResponseEntity.getBody();
+
+                apiResponse.setSuccess((Boolean) responseRuc.get("success"));
+
+                // Mapeo de la respuesta del API a un DTO para RUC
+                Map<String, Object> rucData = (Map<String, Object>) responseRuc.get("data");
+                SolicitanteRequestDTO rucDataResponse = new SolicitanteRequestDTO();
+                rucDataResponse.setNumero((String) rucData.get("ruc")); // Set the RUC
+                rucDataResponse.setNombre_completo((String) rucData.get("nombre_o_razon_social")); // Set the business name
+
+                // Guardar el nuevo solicitante
+                Solicitante nuevoSolicitanteRuc = apiMapper.mapToSolicitanteEntity(rucDataResponse);
+                solicitanteRepository.save(nuevoSolicitanteRuc);
+
+                // Asignar el DTO a la respuesta
+                apiResponse.setData((T) rucDataResponse);
                 break;
 
             default:

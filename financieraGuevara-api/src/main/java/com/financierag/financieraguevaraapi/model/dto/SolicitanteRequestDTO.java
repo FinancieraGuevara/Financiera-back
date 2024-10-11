@@ -20,20 +20,6 @@ public class SolicitanteRequestDTO {
     private String numero;
 
     @NotBlank(message = "El nombre no puede estar vacio")
-    @Size(max = 35, message = "El nombre no puede exceder los 35 caracteres")
-    private String nombres;
-
-    @NotBlank(message = "El apellido paterno no puede estar vacio")
-    @Size(max = 40, message = "El apellido no puede exceder los 40 caracteres")
-    private String apellido_paterno;
-
-    @NotBlank(message = "El apellido materno no puede estar vacio")
-    @Size(max = 40, message = "El apellido no puede exceder los 40 caracteres")
-    private String apellido_materno;
-
-    @NotBlank(message = "El codigo verificacion no puede estar vacio")
-    private String codigo_verificacion;
-
-    //@NotBlank(message = "La fecha de nacimiento no puede estar vacia")
-    private LocalDate fechaNacimiento;
+    @Size(max = 155, message = "El nombre no puede exceder los 35 caracteres")
+    private String nombre_completo;
 }
