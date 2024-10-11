@@ -68,6 +68,12 @@ public class ApiServiceImpl implements ApiService {
                 break;
 
             case "ruc":
+                Optional<Solicitante> solicitanteRuc = solicitanteRepository.findByNumero(identifier);
+                if (solicitanteRuc.isPresent()) {
+                    apiResponse.setSuccess(true);
+                    apiResponse.setData((T) solicitanteRuc.get());
+                    return apiResponse;
+                }
                 // Logic for RUC
                 HttpHeaders rucHeaders = new HttpHeaders();
                 rucHeaders.set("Authorization", "Bearer " + apiToken);
