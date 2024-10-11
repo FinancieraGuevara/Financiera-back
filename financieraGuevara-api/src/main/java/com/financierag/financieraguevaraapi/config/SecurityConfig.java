@@ -30,7 +30,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-@CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
+@CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
 public class SecurityConfig {
 
     @Autowired

@@ -14,12 +14,12 @@ import java.io.ByteArrayInputStream;
 
 @RestController
 @AllArgsConstructor
-//@CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
+@CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
 @RequestMapping("/reports")
 public class PdfController {
     private final PdfService pdfService;
     private final ReportService reportService;
-    //@CrossOrigin(origins = "https://fguevara-guevara.web.app", allowCredentials = "true")
+    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
     @GetMapping("/pdf/{userId}")
     public ResponseEntity<InputStreamResource> downloadUserReportPdf(@PathVariable Integer userId) {
         ReportResponseDTO reportResponseDTO = reportService.generateReport(userId);

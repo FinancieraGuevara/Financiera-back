@@ -24,15 +24,7 @@ public class Solicitante {
     private String numero;
 
     @Column(name = "sol_nom_vc")
-    private String nombres;
+    private String nombre_completo;
 
-    @Column(name = "sol_pat_vc")
-    private String apellido_paterno;
-
-    @Column(name = "sol_mat_vc")
-    private String apellido_materno;
-
-    @Column(name = "sol_cod_vec_in")
-    private String codigo_verificacion;
 
 }

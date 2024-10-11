@@ -13,17 +13,13 @@ import java.util.Date;
 public class SolicitanteResponseDTO {
     private int id;
     private String numero;
-    private String nombres;
-    private String apellido_paterno;
-    private String apellido_materno;
-    private String codigo_verificacion;
+    private String nombre_completo;
    /*
     private String dni;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;*/
     //private LocalDate fechaNacimiento;
-
    /* private String numero;
     */
 }
