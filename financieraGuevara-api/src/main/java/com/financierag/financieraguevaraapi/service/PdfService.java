@@ -80,19 +80,29 @@ public class PdfService {
 
             document.add(infoTable);
 
-            Table table = new Table(new float[]{1, 2, 2}); // Tres columnas
+            Table table = new Table(new float[]{1, 2, 2, 1, 2, 2}); // 6 columnas
 
-            Cell headerCell1 = new Cell().add(new Paragraph("Número de Cuota")).setBold().setBackgroundColor(ColorConstants.LIGHT_GRAY).setTextAlignment(TextAlignment.CENTER);
-            Cell headerCell2 = new Cell().add(new Paragraph("Monto")).setBold().setBackgroundColor(ColorConstants.LIGHT_GRAY).setTextAlignment(TextAlignment.CENTER);
-            Cell headerCell3 = new Cell().add(new Paragraph("Fecha de Pago")).setBold().setBackgroundColor(ColorConstants.LIGHT_GRAY).setTextAlignment(TextAlignment.CENTER);
+            Cell headerCell1 = new Cell().add(new Paragraph("Número de cuota")).setBold().setBackgroundColor(ColorConstants.LIGHT_GRAY).setTextAlignment(TextAlignment.CENTER);
+            Cell headerCell2 = new Cell().add(new Paragraph("Fecha de pago")).setBold().setBackgroundColor(ColorConstants.LIGHT_GRAY).setTextAlignment(TextAlignment.CENTER);
+            Cell headerCell3 = new Cell().add(new Paragraph("Cuota")).setBold().setBackgroundColor(ColorConstants.LIGHT_GRAY).setTextAlignment(TextAlignment.CENTER);
+            Cell headerCell4 = new Cell().add(new Paragraph("Interes").setBold().setBackgroundColor(ColorConstants.LIGHT_GRAY).setTextAlignment(TextAlignment.CENTER));
+            Cell headerCell5 = new Cell().add(new Paragraph("Capital amortizado")).setBold().setBackgroundColor(ColorConstants.LIGHT_GRAY).setTextAlignment(TextAlignment.CENTER);
+            Cell headerCell6 = new Cell().add(new Paragraph("Saldo final").setBold().setBackgroundColor(ColorConstants.LIGHT_GRAY).setTextAlignment(TextAlignment.CENTER));
+
             table.addHeaderCell(headerCell1);
             table.addHeaderCell(headerCell2);
             table.addHeaderCell(headerCell3);
+            table.addHeaderCell(headerCell4);
+            table.addHeaderCell(headerCell5);
+            table.addHeaderCell(headerCell6);
 
             for (CronogramaResponseDTO cronograma : detallePrestamoResponseDTO.getCronograma()) {
                 table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getNmrcuota()))));
-                table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getCuota()))));
                 table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getFechaPago()))));
+                table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getCuota()))));
+                table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getInteres()))));
+                table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getCapitalamortizado()))));
+                table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getSaldofinal()))));
             }
 
             table.setWidth(UnitValue.createPercentValue(100));
