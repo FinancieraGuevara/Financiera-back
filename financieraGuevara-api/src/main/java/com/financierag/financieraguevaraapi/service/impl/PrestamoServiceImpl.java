@@ -119,7 +119,7 @@ public class PrestamoServiceImpl implements PrestamoService {
             cronograma.setCapitalamortizado(capitalamortizado);
                 BigDecimal redondearsaldofinal = new BigDecimal(saldofinal).setScale(2, RoundingMode.HALF_UP);
                 saldofinal=redondearsaldofinal.doubleValue();
-            if (saldofinal <= 0.01) {
+            if (saldofinal <= 0.09) {
                 saldofinal = 0.0;
             }
             cronograma.setSaldofinal(saldofinal);
@@ -146,7 +146,7 @@ public class PrestamoServiceImpl implements PrestamoService {
                 cronograma.setCapitalamortizado(capitalamortizado);
                     BigDecimal redondearsaldofinal = new BigDecimal(saldofinal).setScale(2, RoundingMode.HALF_UP);
                     saldofinal=redondearsaldofinal.doubleValue();
-                if (saldofinal <= 0.01) {
+                if (saldofinal <= 0.09) {
                     saldofinal = 0.0;
                 }
                 cronograma.setSaldofinal(saldofinal);
