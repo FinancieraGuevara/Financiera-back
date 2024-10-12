@@ -36,7 +36,7 @@ public class ApiServiceImpl implements ApiService {
         switch (type) {
             case "dni":
                 Optional<Solicitante> solicitanteOpt = solicitanteRepository.findByNumero(identifier);
-                if (solicitanteOpt.isPresent()) {
+                if (solicitanteOpt.isPresent() && solicitanteOpt.get().getNumero().length()==8) {
                     apiResponse.setSuccess(true);
                     apiResponse.setData((T) solicitanteOpt.get());
                     return apiResponse;
@@ -69,7 +69,7 @@ public class ApiServiceImpl implements ApiService {
 
             case "ruc":
                 Optional<Solicitante> solicitanteRuc = solicitanteRepository.findByNumero(identifier);
-                if (solicitanteRuc.isPresent()) {
+                if (solicitanteRuc.isPresent()&& solicitanteRuc.get().getNumero().length()==11) {
                     apiResponse.setSuccess(true);
                     apiResponse.setData((T) solicitanteRuc.get());
                     return apiResponse;

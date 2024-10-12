@@ -71,7 +71,7 @@ public class PdfService {
             infoTable.addCell(new Cell().add(new Paragraph("Solicitante")).setBold().setFontColor(ColorConstants.WHITE).setBackgroundColor(headerColor).setTextAlignment(TextAlignment.CENTER));
             infoTable.addCell(new Cell().add(new Paragraph("Préstamo")).setBold().setFontColor(ColorConstants.WHITE).setBackgroundColor(headerColor).setTextAlignment(TextAlignment.CENTER));
 
-            String solicitanteInfo = "Número: " + detallePrestamoResponseDTO.getSolicitante().getNumero();
+            String solicitanteInfo = "Número: \n" + detallePrestamoResponseDTO.getSolicitante().getNumero()+"\nNombre o Razon social: \n" + detallePrestamoResponseDTO.getSolicitante().getNombre_completo();
 
             infoTable.addCell(new Cell().add(new Paragraph(solicitanteInfo)));
 
