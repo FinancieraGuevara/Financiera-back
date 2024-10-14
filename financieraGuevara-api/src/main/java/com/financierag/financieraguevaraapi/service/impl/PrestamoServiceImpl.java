@@ -92,9 +92,17 @@ public class PrestamoServiceImpl implements PrestamoService {
     public void generarCronograma(int cuotas, LocalDate fechaInicio, double monto, double intereses, DetallePrestamo detallePrestamo) {
         List<Cronograma> cronogramas = new ArrayList<>();
         fechaInicio= fechaInicio.minusDays(1);
-
+            double cuota=0;
             double interesmensual=(intereses)/12;
-        double cuota = monto * ((interesmensual * Math.pow(1 + interesmensual, 6)) / (Math.pow(1 + interesmensual, 6) - 1));
+            if(cuotas == 1)
+            {
+                cuota = monto * ((interesmensual * Math.pow(1 + interesmensual, 1)) / (Math.pow(1 + interesmensual, 1) - 1));
+            }
+            if (cuotas == 6)
+            {
+               cuota = monto * ((interesmensual * Math.pow(1 + interesmensual, 6)) / (Math.pow(1 + interesmensual, 6) - 1));
+            }
+
             BigDecimal cuotaredondeada= new BigDecimal(cuota).setScale(2, RoundingMode.HALF_UP);
             cuota=cuotaredondeada.doubleValue();
             double interesestotales=(cuota*cuotas)-monto;
@@ -103,7 +111,7 @@ public class PrestamoServiceImpl implements PrestamoService {
 
         if (cuotas == 1) {
                 double interesmensualcuota = saldoinicial*interesmensual;
-                double capitalamortizado=cuota-(saldoinicial*interesmensual);
+                double capitalamortizado=cuota-interesmensualcuota;
                 double saldofinal=saldoinicial-capitalamortizado;
 
             Cronograma cronograma = new Cronograma();

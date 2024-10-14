@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e050495-231f-4f79-8473-6ef562bb657b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/financieraGuevara-api/src/main/resources/static/logo-FG.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/financieraGuevara-api/src/main/resources/static/logo-G.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/api/PdfController.java" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/api/PdfController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/service/PdfService.java" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/service/PdfService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/api/PdfController.class" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/api/PdfController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/service/PdfService.class" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/service/PdfService.class" afterDir="false" />
-    </list>
+    <list default="true" id="3e050495-231f-4f79-8473-6ef562bb657b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -66,7 +58,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.FinancieraGuevaraApiApplication.executor": "Run",
-    "git-widget-placeholder": "bugfix/linkToDonwloadPDF",
+    "git-widget-placeholder": "develop",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -83,19 +75,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="Financiera-back" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="Financiera-back" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="FinancieraGuevaraApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="financieraGuevara-api" />
@@ -124,6 +103,7 @@
       <workItem from="1728045609453" duration="16000" />
       <workItem from="1728183175954" duration="20238000" />
       <workItem from="1728224508910" duration="21804000" />
+      <workItem from="1728882023096" duration="26000" />
     </task>
     <servers />
   </component>
