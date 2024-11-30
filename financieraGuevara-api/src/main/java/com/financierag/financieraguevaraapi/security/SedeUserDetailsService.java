@@ -15,22 +15,8 @@ import java.util.Collections;
 
 @RequiredArgsConstructor
 @Service
-public class SedeUserDetailsService implements UserDetailsService {
+public class SedeUserDetailsService {
 
-    private final UserRepository userRepository;
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
 
-        GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole().getName());
 
-        return new UserPrincipal(
-                user.getId(),
-                user.getUsername(),
-                user.getPassword(),
-                Collections.singletonList(authority),
-                user
-        );
-    }
 }

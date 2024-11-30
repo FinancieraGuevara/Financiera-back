@@ -14,13 +14,16 @@ import com.financierag.financieraguevaraapi.service.UserService;
 import io.jsonwebtoken.Claims;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.Mapping;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,62 +54,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private TokenProvider tokenProvider;
 
-    /*@Override
-    public List<UserResponseDTO> getAllUsers() {
-        if(userMapper.converToListDTO(userRepository.findAll())!=null)
-        {
-            return userMapper.converToListDTO(userRepository.findAll());
-        }
-        else
-        {
-            throw  new NullPointerException("Error no se encontraron usuarios");
-        }
-    }
-
-    @Override
-    public void addUser(UserRequestDTO user) {
-       User euser= userMapper.convertToEntity(user);
-       String usernameprovided = euser.getUsername();
-       if(userRepository.findByUsername(usernameprovided)!=null)
-       {
-           throw  new IllegalArgumentException("Error el usuario ya existe");
-       }
-        userRepository.save(euser);
-    }
-
-    @Override
-    public void deleteUser(int userId) {
-        User user= userRepository.findById(userId).orElse(null);
-        if (user != null) {
-            userRepository.delete(user);
-        }
-        else {
-            throw  new NullPointerException("Error el usuario no existe");
-        }
-    }*/
-
-    /*@Override
-    public boolean login(UserRequestDTO user) {
-        String usernameprovided = user.getUsername();
-        String passwordprovided = user.getPassword();
-
-        User user1 = userRepository.findByUsername(usernameprovided);
-
-        if (user1==null) {
-            return false;
-        }
-
-        if (user1.getPassword().equals(passwordprovided)) {
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
-    public List<User> getPrivateUsers() {
-        return userRepository.findAll();
-    }*/
 
     @Override
     public UserProfileDTO registerSede(SedeRegisterDTO sedeRegisterDTO) {
@@ -122,24 +69,26 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("El usuario no tiene permisos para registrar una sede");
         }
 
-        /*Role role = roleRepository.findById(2)
-                .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
-        return registerSedeWhitRole(sedeRegisterDTO, role);*/ //esto es para que se registre la sede como propietario luego se vuelve a comentar para que solamente el propetario cree sedes
     }
 
     @Override
     public AuthResponseDTO login(LoginDTO loginDTO) {
+        if (loginDTO.getUsername() == null || loginDTO.getUsername().isEmpty()) {
+            throw new IllegalArgumentException("Username cannot be null or empty");
+        }
+
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginDTO.getUsername(), loginDTO.getPassword())
         );
+
 
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         User user = userPrincipal.getUser();
 
         String token = tokenProvider.createAccessToken(authentication);
 
-        AuthResponseDTO authResponseDTO = userMapper.toAuthResponseDTO(user, token);
-        return authResponseDTO;
+
+        return userMapper.toAuthResponseDTO(user, token);
     }
 
     @Override
