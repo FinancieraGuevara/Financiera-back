@@ -18,13 +18,20 @@ public class Cuota {
     private int id;
 
     int nmrcuota;
-
     double cuota;
     double interes;
     double capitalamortizado;
     double saldofinal;
     LocalDate fechaPago;
+
     @ManyToOne
     @JoinColumn(name = "det_prestamo_id")
     private DetallePrestamo detallePrestamo;
+
+    LocalDate fechadeCancelamiento;
+    boolean ispayed = false;
+    boolean isdeuda= false;
+    double mora=0;
+    double totalmora=0;
+
 }

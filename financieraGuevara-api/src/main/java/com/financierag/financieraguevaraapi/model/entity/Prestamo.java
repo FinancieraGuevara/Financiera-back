@@ -29,4 +29,13 @@ public class Prestamo {
     @OneToOne(mappedBy = "prestamo", cascade = CascadeType.ALL)
     private DetallePrestamo detallePrestamo;
 
+    @Column(name = "pre_pay_stat_bol")
+    private boolean isPayed =false;
+
+    @Column(name = "pre_debt_stat_bol")
+    private boolean isDeuda =false;
+
+    @Column(name="pre_fis_debt_stat_bol")
+    private boolean isFiscalDeuda =false;
+
 }
