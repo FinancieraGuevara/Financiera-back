@@ -61,6 +61,7 @@ public class ApiServiceImpl implements ApiService {
 
                 // Guardar el nuevo solicitante
                 Solicitante nuevoSolicitante = apiMapper.mapToSolicitanteEntity(dniDataResponse);
+                nuevoSolicitante.setTipo("boleta");
                 solicitanteRepository.save(nuevoSolicitante);
 
                 // Asignar el DTO a la respuesta
@@ -96,6 +97,7 @@ public class ApiServiceImpl implements ApiService {
 
                 // Guardar el nuevo solicitante
                 Solicitante nuevoSolicitanteRuc = apiMapper.mapToSolicitanteEntity(rucDataResponse);
+                nuevoSolicitanteRuc.setTipo("factura");
                 solicitanteRepository.save(nuevoSolicitanteRuc);
 
                 // Asignar el DTO a la respuesta

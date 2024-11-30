@@ -34,13 +34,14 @@ public class DetallePrestamo {
     private LocalDate fechaInicio;
 
     @OneToMany(mappedBy = "detallePrestamo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Cronograma> cronograma;
+    private List<Cuota> cronograma; //cuota
 
     @Transient
     private double pagarTotal;
     @Transient
 
     private double interesTotal;
+
     public double calcularPagarTotal() {
         double interesmensual = prestamo.getInteres() / 12;
         double cuota = prestamo.getMonto() * (interesmensual * Math.pow(1 + interesmensual, prestamo.getCuotas())) / (Math.pow(1 + interesmensual, prestamo.getCuotas()) - 1);

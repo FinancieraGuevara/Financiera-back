@@ -25,4 +25,7 @@ public class Solicitante {
 
     @Column(name = "sol_nom_vc")
     private String nombre_completo;
+
+    @Column(name = "sol_tip_vc")
+    private String tipo;
 }

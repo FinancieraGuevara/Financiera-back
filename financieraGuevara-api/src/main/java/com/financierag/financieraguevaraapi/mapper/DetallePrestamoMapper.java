@@ -2,7 +2,7 @@ package com.financierag.financieraguevaraapi.mapper;
 
 import com.financierag.financieraguevaraapi.model.dto.CronogramaResponseDTO;
 import com.financierag.financieraguevaraapi.model.dto.DetallePrestamoResponseDTO;
-import com.financierag.financieraguevaraapi.model.entity.Cronograma;
+import com.financierag.financieraguevaraapi.model.entity.Cuota;
 import com.financierag.financieraguevaraapi.model.entity.DetallePrestamo;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -29,13 +29,17 @@ public class DetallePrestamoMapper {
                 .map(this::convertCronogramaToDTO)
                 .collect(Collectors.toList());
 
-        dto.setCronograma(cronogramasDTO);
+        dto.setCuotas(cronogramasDTO);
 
         return dto;
     }
 
-    private CronogramaResponseDTO convertCronogramaToDTO(Cronograma cronograma) {
-        return modelMapper.map(cronograma, CronogramaResponseDTO.class);
+    public CronogramaResponseDTO convertCronogramaToDTO(Cuota cuota) {
+        return modelMapper.map(cuota, CronogramaResponseDTO.class);
+    }
+    public List<CronogramaResponseDTO> convertCuotasList(List<Cuota> cuotas)
+    {
+        return cuotas.stream().map(this::convertCronogramaToDTO).toList();
     }
 
     public List<DetallePrestamoResponseDTO> convertToListDTO(List<DetallePrestamo> detallePrestamoList) {

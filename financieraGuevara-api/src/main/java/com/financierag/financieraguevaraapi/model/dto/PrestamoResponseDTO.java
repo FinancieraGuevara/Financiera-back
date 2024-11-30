@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,4 +16,7 @@ public class PrestamoResponseDTO {
     private double monto;
     private int cuotas;
     private double interes;
+    private int solicitanteId;
+    private List<CronogramaResponseDTO> detallecuotas;
+
 }
