@@ -94,7 +94,7 @@ public class PrestamoServiceImpl implements PrestamoService {
     }
     public void generarCronograma(int cuotas, LocalDate fechaInicio, double monto, double intereses, DetallePrestamo detallePrestamo) {
         List<Cuota> cronogramas = new ArrayList<>();
-
+            //fechaInicio=fechaInicio.minusDays(1); Si se paga un dia antes entonces le resto 1 dia
             double cuota=0;
             double interesmensual=(intereses)/12;
             if(cuotas == 1)
