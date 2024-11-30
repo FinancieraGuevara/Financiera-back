@@ -1,5 +1,6 @@
 package com.financierag.financieraguevaraapi.service.impl;
 
+import com.financierag.financieraguevaraapi.execption.ResourceNotFoundException;
 import com.financierag.financieraguevaraapi.mapper.UserMapper;
 import com.financierag.financieraguevaraapi.model.dto.*;
 import com.financierag.financieraguevaraapi.model.entity.Role;
@@ -164,5 +165,30 @@ public class UserServiceImpl implements UserService {
             return user != null ? user.getId() : null;
         }
         return null; // Si no hay autenticación, devuelve null
+    }
+
+    @Override
+    public String updatePassword(PasswordDTO passwordDTO) {
+        Integer userId = getAuthenticatedUserIdFromJWT();
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
+
+        if (!passwordEncoder.matches(passwordDTO.getCurrentPassword(), user.getPassword())) {
+            throw new IllegalArgumentException("Contraseña actual incorrecta");
+        }
+
+        if (passwordDTO.getNewPassword() == null || passwordDTO.getNewPassword().isEmpty()) {
+            throw new IllegalArgumentException("Nueva contraseña es requerida");
+        }
+
+        if (!passwordDTO.getNewPassword().equals(passwordDTO.getConfirmPassword())) {
+            throw new IllegalArgumentException("La nueva contraseña y la confirmación no coinciden.");
+        }
+
+        user = userMapper.updateUserPassword(user, passwordDTO);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
+
+        return "Contraseña Actualizada";
     }
 }

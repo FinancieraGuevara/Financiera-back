@@ -25,5 +25,7 @@ public interface UserService {
 
     Integer getAuthenticatedUserIdFromJWT();
 
+    String updatePassword(PasswordDTO passwordDTO);
+
 
 }
