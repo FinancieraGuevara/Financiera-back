@@ -61,4 +61,9 @@ public class UserMapper {
 
         return authResponseDTO;
     }
+
+    public User updateUserPassword(User user, PasswordDTO passwordDTO) {
+        user.setPassword(passwordDTO.getNewPassword());
+        return user;
+    }
 }
