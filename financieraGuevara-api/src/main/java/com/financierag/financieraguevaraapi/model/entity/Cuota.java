@@ -1,7 +1,5 @@
 package com.financierag.financieraguevaraapi.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,19 +12,26 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 @Table(name = "cronograma")
-public class Cronograma {
+public class Cuota {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     int nmrcuota;
-
     double cuota;
     double interes;
     double capitalamortizado;
     double saldofinal;
     LocalDate fechaPago;
+
     @ManyToOne
     @JoinColumn(name = "det_prestamo_id")
     private DetallePrestamo detallePrestamo;
+
+    LocalDate fechadeCancelamiento;
+    boolean ispayed = false;
+    boolean isdeuda= false;
+    double mora=0;
+    double totalmora=0;
+
 }

@@ -2,7 +2,7 @@ package com.financierag.financieraguevaraapi.model.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.financierag.financieraguevaraapi.model.entity.Cronograma;
+import com.financierag.financieraguevaraapi.model.entity.Cuota;
 import com.financierag.financieraguevaraapi.model.entity.Solicitante;
 import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
@@ -31,5 +31,5 @@ public class DetallePrestamoResponseDTO {
 
     private double interesTotal;
 
-    private List<CronogramaResponseDTO> cronograma;
+    private List<CronogramaResponseDTO> cuotas;
 }

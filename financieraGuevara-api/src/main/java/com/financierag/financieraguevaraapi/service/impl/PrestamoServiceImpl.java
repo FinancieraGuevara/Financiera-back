@@ -4,7 +4,7 @@ import com.financierag.financieraguevaraapi.execption.ResourceNotFoundException;
 import com.financierag.financieraguevaraapi.mapper.PrestamoMapper;
 import com.financierag.financieraguevaraapi.model.dto.PrestamoRequestDTO;
 import com.financierag.financieraguevaraapi.model.dto.PrestamoResponseDTO;
-import com.financierag.financieraguevaraapi.model.entity.Cronograma;
+import com.financierag.financieraguevaraapi.model.entity.Cuota;
 import com.financierag.financieraguevaraapi.model.entity.DetallePrestamo;
 import com.financierag.financieraguevaraapi.model.entity.Prestamo;
 import com.financierag.financieraguevaraapi.model.entity.Solicitante;
@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -68,6 +69,7 @@ public class PrestamoServiceImpl implements PrestamoService {
         DetallePrestamo detallePrestamo = new DetallePrestamo();
         detallePrestamo.setSolicitante(solicitante);
         detallePrestamo.setPrestamo(prestamo);
+
         detallePrestamo.setFechaInicio(LocalDate.now());
 
 
@@ -75,6 +77,7 @@ public class PrestamoServiceImpl implements PrestamoService {
 
 
         detallePrestamoRespository.save(detallePrestamo);
+        prestamo.setDetallePrestamo(detallePrestamo);
 
         return prestamoMapper.convertToDTO(prestamo);
     }
@@ -90,8 +93,8 @@ public class PrestamoServiceImpl implements PrestamoService {
         return 0;
     }
     public void generarCronograma(int cuotas, LocalDate fechaInicio, double monto, double intereses, DetallePrestamo detallePrestamo) {
-        List<Cronograma> cronogramas = new ArrayList<>();
-        fechaInicio= fechaInicio.minusDays(1);
+        List<Cuota> cronogramas = new ArrayList<>();
+            //fechaInicio=fechaInicio.minusDays(1); Si se paga un dia antes entonces le resto 1 dia
             double cuota=0;
             double interesmensual=(intereses)/12;
             if(cuotas == 1)
@@ -105,66 +108,110 @@ public class PrestamoServiceImpl implements PrestamoService {
 
             BigDecimal cuotaredondeada= new BigDecimal(cuota).setScale(2, RoundingMode.HALF_UP);
             cuota=cuotaredondeada.doubleValue();
+
             double interesestotales=(cuota*cuotas)-monto;
-        double totalPagar = monto + interesestotales;
-        double saldoinicial= monto;
+            double totalPagar = monto + interesestotales;
+            double saldoinicial= monto;
 
-        if (cuotas == 1) {
-                double interesmensualcuota = saldoinicial*interesmensual;
-                double capitalamortizado=cuota-interesmensualcuota;
-                double saldofinal=saldoinicial-capitalamortizado;
+            if (cuotas == 1)
+            {       double interesmensualcuota = saldoinicial*interesmensual;
+                    double capitalamortizado=cuota-interesmensualcuota;
+                    double saldofinal=saldoinicial-capitalamortizado;
 
-            Cronograma cronograma = new Cronograma();
-                BigDecimal redondearcuota = new BigDecimal(cuota).setScale(2, RoundingMode.HALF_UP);
-                cuota = redondearcuota.doubleValue();
-            cronograma.setCuota(cuota);
-            cronograma.setNmrcuota(1);
-                BigDecimal redondearinteresmensual = new BigDecimal(interesmensualcuota).setScale(2, RoundingMode.HALF_UP);
-                interesmensualcuota = redondearinteresmensual.doubleValue();
-            cronograma.setInteres(interesmensualcuota);
-                BigDecimal redondearcapitalmortizado = new BigDecimal(capitalamortizado).setScale(2, RoundingMode.HALF_UP);
-                capitalamortizado=redondearcapitalmortizado.doubleValue();
-            cronograma.setCapitalamortizado(capitalamortizado);
-                BigDecimal redondearsaldofinal = new BigDecimal(saldofinal).setScale(2, RoundingMode.HALF_UP);
-                saldofinal=redondearsaldofinal.doubleValue();
-            if (saldofinal <= 0.09) {
-                saldofinal = 0.0;
-            }
-            cronograma.setSaldofinal(saldofinal);
-            // no es necesario porque solo es 1 cuota --> saldoinicial=saldofinal;
-            cronograma.setFechaPago(fechaInicio.plusMonths(1));
-            cronograma.setDetallePrestamo(detallePrestamo);
-            cronogramas.add(cronograma);
+                    Cuota cronograma = new Cuota();
+                        BigDecimal redondearcuota = new BigDecimal(cuota).setScale(2, RoundingMode.HALF_UP);
+                        cuota = redondearcuota.doubleValue();
+                        cronograma.setCuota(cuota);
+                        cronograma.setNmrcuota(1);
+
+                        BigDecimal redondearinteresmensual = new BigDecimal(interesmensualcuota).setScale(2, RoundingMode.HALF_UP);
+                        interesmensualcuota = redondearinteresmensual.doubleValue();
+                        cronograma.setInteres(interesmensualcuota);
+
+                        BigDecimal redondearcapitalmortizado = new BigDecimal(capitalamortizado).setScale(2, RoundingMode.HALF_UP);
+                        capitalamortizado=redondearcapitalmortizado.doubleValue();
+                        cronograma.setCapitalamortizado(capitalamortizado);
+
+                        BigDecimal redondearsaldofinal = new BigDecimal(saldofinal).setScale(2, RoundingMode.HALF_UP);
+                        saldofinal=redondearsaldofinal.doubleValue();
+
+                        if (saldofinal <= 0.09) {
+                                saldofinal = 0.0;
+                        }
+
+                        cronograma.setSaldofinal(saldofinal);
+
+                        LocalDate fechaPago = fechaInicio.plusMonths(1);
+
+
+
+
+                        if (fechaPago.getDayOfMonth() > fechaPago.lengthOfMonth()) {
+                            fechaPago = fechaPago.with(TemporalAdjusters.lastDayOfMonth());
+                        }
+
+                        cronograma.setFechaPago(fechaPago);
+                        System.out.println(fechaPago);
+                        cronograma.setDetallePrestamo(detallePrestamo);
+                        cronogramas.add(cronograma);
 
         } else if (cuotas == 6) {
+                int dayofmont=fechaInicio.getDayOfMonth();
             for (int i = 1; i <= cuotas; i++) {
+
                     double interesmensualcuota = saldoinicial*interesmensual;
                     double capitalamortizado=cuota-(saldoinicial*interesmensual);
                     double saldofinal=saldoinicial-capitalamortizado;
-                Cronograma cronograma = new Cronograma();
+
+                    Cuota cronograma = new Cuota();
+
                     BigDecimal redondearcuota = new BigDecimal(cuota).setScale(2, RoundingMode.HALF_UP);
-                    cuota = redondearcuota.doubleValue();
-                cronograma.setCuota(cuota);
-                cronograma.setNmrcuota(i);
+                    cronograma.setCuota(redondearcuota.doubleValue());
+
+                    cronograma.setNmrcuota(i);
+
                     BigDecimal redondearinteresmensual = new BigDecimal(interesmensualcuota).setScale(2, RoundingMode.HALF_UP);
-                    interesmensualcuota = redondearinteresmensual.doubleValue();
-                cronograma.setInteres(interesmensualcuota);
+                    cronograma.setInteres(redondearinteresmensual.doubleValue());
+
                     BigDecimal redondearcapitalmortizado = new BigDecimal(capitalamortizado).setScale(2, RoundingMode.HALF_UP);
-                capitalamortizado=redondearcapitalmortizado.doubleValue();
-                cronograma.setCapitalamortizado(capitalamortizado);
+                    cronograma.setCapitalamortizado(redondearcapitalmortizado.doubleValue());
+
                     BigDecimal redondearsaldofinal = new BigDecimal(saldofinal).setScale(2, RoundingMode.HALF_UP);
                     saldofinal=redondearsaldofinal.doubleValue();
-                if (saldofinal <= 0.09) {
-                    saldofinal = 0.0;
-                }
-                cronograma.setSaldofinal(saldofinal);
+                    if (saldofinal <= 0.09) {
+                        saldofinal = 0.0;
+                    }
+                    cronograma.setSaldofinal(saldofinal);
 
-                saldoinicial=saldofinal;
+                    saldoinicial=saldofinal;
 
-                cronograma.setFechaPago(fechaInicio.plusMonths(1));
-                fechaInicio=fechaInicio.plusMonths(1);
-                cronograma.setDetallePrestamo(detallePrestamo);
-                cronogramas.add(cronograma);
+                    fechaInicio = fechaInicio.plusMonths(1);
+                    System.out.println(fechaInicio);
+
+                    cronograma.setFechaPago(fechaInicio);
+                    cronograma.setDetallePrestamo(detallePrestamo);
+                    cronogramas.add(cronograma);
+
+                    if (fechaInicio.getDayOfMonth() != dayofmont) {
+
+                        if (fechaInicio.getMonthValue() != 2) {
+                            if (fechaInicio.getDayOfMonth() < dayofmont) {
+                                if (dayofmont > fechaInicio.lengthOfMonth()) {
+                                    fechaInicio = fechaInicio.with(TemporalAdjusters.lastDayOfMonth());
+                                }
+                                else {
+                                    fechaInicio = fechaInicio.withDayOfMonth(dayofmont); // Restablecer al día original
+                                }
+
+                            }
+                        }
+                        else
+                        {
+                            fechaInicio = fechaInicio.plusMonths(1).withDayOfMonth(dayofmont);
+
+                        }
+                    }
+
             }
         }
 

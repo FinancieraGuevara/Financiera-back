@@ -105,7 +105,7 @@ public class PdfService {
             table.addHeaderCell(headerCell5);
             table.addHeaderCell(headerCell6);
 
-            for (CronogramaResponseDTO cronograma : detallePrestamoResponseDTO.getCronograma()) {
+            for (CronogramaResponseDTO cronograma : detallePrestamoResponseDTO.getCuotas()) {
                 table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getNmrcuota())).setTextAlignment(TextAlignment.CENTER)));
                 table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getFechaPago())).setTextAlignment(TextAlignment.CENTER)));
                 table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getCuota())).setTextAlignment(TextAlignment.CENTER)));
