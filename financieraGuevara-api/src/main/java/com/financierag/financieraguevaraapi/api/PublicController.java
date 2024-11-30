@@ -17,9 +17,9 @@ public class PublicController {
     private UserService userService;
     @Autowired
     private UserMapper userMapper;
-    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+    /*@CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
     @GetMapping("/users")
     public ResponseEntity<List<UserResponseDTO>> getPublicUsers() {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
-    }
+    }*/
 }

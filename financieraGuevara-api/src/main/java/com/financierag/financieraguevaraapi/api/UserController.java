@@ -12,15 +12,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
 @RestController
-@RequestMapping("/private")
+@RequestMapping("/user")
 public class UserController {
+
     @Autowired
     private UserService userService;
 
-    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
-    @GetMapping("/users")
+    /*@GetMapping("/users")
     public ResponseEntity<List<User>> getPrivateUsers() {
         return new ResponseEntity<>(userService.getPrivateUsers(), HttpStatus.OK);
     }
@@ -54,6 +53,6 @@ public class UserController {
         }
         userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
-    }
+    }*/
 
 }
