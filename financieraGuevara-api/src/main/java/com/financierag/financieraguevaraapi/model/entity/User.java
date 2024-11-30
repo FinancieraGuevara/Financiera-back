@@ -4,21 +4,30 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "user_financiera")
+@Entity
+@Table(name = "user_financiera")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(length = 25)
+    @Column(name="user_id")
+    private Integer id;
+
+    @Column(name = "username", nullable = false, unique = true)
     private String username;
-    @Column(length = 25)
+
+    @Column(name = "password", nullable = false)
     private String password;
-    @Column(length = 25)
-    private String role;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Sede sede;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id", referencedColumnName = "rol_id")
+    private Role role;
+
 }
