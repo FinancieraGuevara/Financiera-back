@@ -45,6 +45,14 @@ public class PrestamoController {
         return new ResponseEntity<>(prestamos, HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+    @GetMapping("/judiciales")
+    public ResponseEntity<List<PrestamoResponseDTO>> getJudicialPrestamos()
+    {
+        List<PrestamoResponseDTO> prestamos = prestamoService.getPrestamosJudiciales();
+        return new ResponseEntity<>(prestamos, HttpStatus.OK);
+    }
+
 
     @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
    @GetMapping("/{id}")
