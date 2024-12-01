@@ -84,7 +84,7 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
                         cuota.setMora(0.01*cuota.getCuota());
 
                         long diasDeDeuda = ChronoUnit.DAYS.between(cuota.getFechaPago(), today);
-
+                        cuota.setTotaldiasmora(diasDeDeuda);
                         if (diasDeDeuda > 0) {
                             cuota.setTotalmora(cuota.getMora() * diasDeDeuda);
 
@@ -129,7 +129,7 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
                         cuota.setMora(0.01*cuota.getCuota());
 
                         long diasDeDeuda = ChronoUnit.DAYS.between(cuota.getFechaPago(), today);
-
+                        cuota.setTotaldiasmora(diasDeDeuda);
                         if (diasDeDeuda > 0) {
                             cuota.setTotalmora(cuota.getMora() * diasDeDeuda);
 
@@ -173,6 +173,51 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
                         cuota.setMora(0.01*cuota.getCuota());
 
                         long diasDeDeuda = ChronoUnit.DAYS.between(cuota.getFechaPago(), today);
+
+                        cuota.setTotaldiasmora(diasDeDeuda);
+
+                        if (diasDeDeuda > 0) {
+                            cuota.setTotalmora(cuota.getMora() * diasDeDeuda);
+
+                        } else {
+                            cuota.setTotalmora(0);
+
+                        }
+                        prestamo.setDeuda(true);
+
+                        if (today.isAfter(cuota.getFechaPago().plusYears(1))) {
+                            prestamo.setJudicialDeuda(true);
+                            cuota.setJudicial(true);
+                            prestamo.setCuotasJudiciales(TotalofcuotasJudiciales(prestamo.getDetallePrestamo().getCronograma()));
+
+                        }
+
+                    }
+                }
+            }
+            prestamoRepository.save(prestamo);
+        }
+    }
+
+    public void customMonths(int i)
+    {
+        LocalDate today = LocalDate.now().plusMonths(i);
+        System.out.println(today);
+        List<Prestamo> prestamos = prestamoMapper.convertToListEntity(prestamoService.findAllPrestamos());
+        for (Prestamo prestamo : prestamos) {
+           if(!prestamo.isPayed())
+            {
+                List<Cuota> cuotas = prestamo.getDetallePrestamo().getCronograma();
+                for (Cuota cuota : cuotas) {
+                    if (cuota.getFechaPago().isBefore(today) && !cuota.getIspayed()) // || cuota.getFechaPago().isEqual(today) "vencer hoy"
+                    {
+                        cuota.setIsdeuda(true);
+
+                        cuota.setMora(0.01*cuota.getCuota());
+
+                        long diasDeDeuda = ChronoUnit.DAYS.between(cuota.getFechaPago(), today);
+
+                        cuota.setTotaldiasmora(diasDeDeuda);
 
                         if (diasDeDeuda > 0) {
                             cuota.setTotalmora(cuota.getMora() * diasDeDeuda);
