@@ -8,114 +8,129 @@ import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
+import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.UnitValue;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.time.LocalDate;
 
 @Service
 public class BoletaService {
+    @Autowired
+    private SerieNumeracionService serieNumeracionService;
+
     public ByteArrayInputStream generateUserReportPdf(ReportResponseDTO reportResponseDTO) {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         DetallePrestamoResponseDTO detallePrestamoResponseDTO = reportResponseDTO.getDetallePrestamo();
+        CronogramaResponseDTO cronogramaResponseDTO = reportResponseDTO.getCronogramaResponseDTO();
+        String solicitanteNumero = detallePrestamoResponseDTO.getSolicitante().getNumero();
+        String solicitanteNombre = detallePrestamoResponseDTO.getSolicitante().getNombre_completo();
+        double cuota = cronogramaResponseDTO.getCuota();
+        double mora = cronogramaResponseDTO.getMora();
+        double totalmora=cronogramaResponseDTO.getTotalmora();
+        double interes = cronogramaResponseDTO.getInteres();
+        int nmrcuota = cronogramaResponseDTO.getNmrcuota();
         try {
 
             PdfWriter writer = new PdfWriter(out);
             PdfDocument pdfDocument = new PdfDocument(writer);
             Document document = new Document(pdfDocument);
 
-            /*Para el header*/
-            float headerHeight = 60;
-            float pageWidth = pdfDocument.getDefaultPageSize().getWidth();
-            float pageHeight = pdfDocument.getDefaultPageSize().getHeight();
+            String numeroFactura = serieNumeracionService.generarNumeroDocumento("BOLETA");
 
-            PdfCanvas canvas = new PdfCanvas(pdfDocument.addNewPage());
-            canvas.saveState();
-            canvas.setFillColor(new DeviceRgb(0, 86, 163));
-            canvas.rectangle(0, pageHeight - headerHeight, pageWidth, headerHeight);
-            canvas.fill();
-            canvas.restoreState();
-
-                /*Para el logo*/
-                //String logoPath = "financieraGuevara-api/src/main/resources/static/logo-FG.jpg";
-                //Image logo = new Image(ImageDataFactory.create(logoPath));
-                //logo.scaleToFit(150, 50);
-                //float logoX = ((pageWidth - logo.getImageWidth()) / 2)+220; // Centrar horizontalmente
-                //float logoY = (pageHeight - headerHeight + (headerHeight - logo.getImageHeight()) / 2)+155; // Centrar verticalmente
-                //logo.setFixedPosition(logoX, logoY);
-                //document.add(logo);
-
-            //Colores de las cabeceras y títulos
+            // Estilos para encabezados
             DeviceRgb headerColor = new DeviceRgb(0, 86, 163);
-            DeviceRgb titleColor = new DeviceRgb(238, 134, 0);
 
-            String titleInso = "INSO";
-            Paragraph titleParagraph = new Paragraph(titleInso).setFontColor(titleColor).setFontSize(20);
-            float setOnX = 270;
-            float setOnY = 795;
-            titleParagraph.setFixedPosition(setOnX, setOnY, 400);
-            document.add(titleParagraph);
+            Table headerTable = new Table(new float[]{2, 2});
+            headerTable.setWidth(UnitValue.createPercentValue(100));
 
-            document.add(new Paragraph("\n\nBOLETA ELECTRÓNICA\n\n").setFontSize(20).setBold().setTextAlignment(TextAlignment.CENTER));
+            // Columna izquierda
+            headerTable.addCell(new Cell().add(new Paragraph("Easy Fast Solution").setBold().setFontSize(16)).setBorder(Border.NO_BORDER));
+            headerTable.addCell(new Cell().add(new Paragraph("RUC. 20480880740").setBold()).setTextAlignment(TextAlignment.CENTER).setBorder(Border.NO_BORDER));
 
-            Table infoTable = new Table(new float[]{1, 1}); // Dos columnas
+            headerTable.addCell(new Cell().add(new Paragraph("Av. America 365").setFontSize(12)).setBorder(Border.NO_BORDER));
+            headerTable.addCell(new Cell().add(new Paragraph("Boleta Electrónica").setBold()).setTextAlignment(TextAlignment.CENTER).setBorder(Border.NO_BORDER));
 
-            infoTable.addCell(new Cell().add(new Paragraph("Solicitante")).setBold().setFontColor(ColorConstants.WHITE).setBackgroundColor(headerColor).setTextAlignment(TextAlignment.CENTER));
-            infoTable.addCell(new Cell().add(new Paragraph("Préstamo")).setBold().setFontColor(ColorConstants.WHITE).setBackgroundColor(headerColor).setTextAlignment(TextAlignment.CENTER));
+            headerTable.addCell(new Cell().add(new Paragraph("Teléfono: 990009909").setFontSize(10)).setBorder(Border.NO_BORDER));
+            headerTable.addCell(new Cell().add(new Paragraph(numeroFactura).setFontSize(12).setBold()).setTextAlignment(TextAlignment.CENTER).setBorder(Border.NO_BORDER));
 
-            String solicitanteInfo = "Número: \n" + detallePrestamoResponseDTO.getSolicitante().getNumero()+"\nNombre o Razon social: \n" + detallePrestamoResponseDTO.getSolicitante().getNombre_completo();
+            document.add(headerTable);
 
-            infoTable.addCell(new Cell().add(new Paragraph(solicitanteInfo)));
 
-            String prestamoInfo = "Moneda: " + "Sol peruano" +
-                    "\nMonto de préstamo: " + detallePrestamoResponseDTO.getPrestamo().getMonto() +
-                    "\nPlazo (N° de cuotas): " + detallePrestamoResponseDTO.getPrestamo().getCuotas() +
-                    "\nInterés: " + detallePrestamoResponseDTO.getPrestamo().getInteres() +
-                    "\nFecha de Inicio: " + detallePrestamoResponseDTO.getFechaInicio() +
-                    "\nMonto a pagar: " + detallePrestamoResponseDTO.getPagarTotal() +
-                    "\nTotal intereses: " + detallePrestamoResponseDTO.getInteresTotal();
+            document.add(new Paragraph("\nDatos del Cliente").setBold());
+            Table clienteTable = new Table(new float[]{1, 2});
+            clienteTable.setWidth(UnitValue.createPercentValue(100));
+            clienteTable.addCell(new Cell().add(new Paragraph("Nombre: "+solicitanteNombre)).setBold().setBorder(Border.NO_BORDER));
+            clienteTable.addCell(new Cell().add(new Paragraph("Fecha de Emisión: "+ LocalDate.now())).setBorder(Border.NO_BORDER));
+            clienteTable.addCell(new Cell().add(new Paragraph("DNI. "+solicitanteNumero)).setBold().setBorder(Border.NO_BORDER));
+            clienteTable.addCell(new Cell().add(new Paragraph("Tipo de moneda: PEN")).setBorder(Border.NO_BORDER));
 
-            infoTable.addCell(new Cell().add(new Paragraph(prestamoInfo)));
+            document.add(clienteTable);
 
-            infoTable.setWidth(UnitValue.createPercentValue(100));
+            // Detalles del Pago
+            document.add(new Paragraph("\nDetalles del Pago").setBold());
+            Table pagoTable = new Table(new float[]{1, 2});
+            pagoTable.setWidth(UnitValue.createPercentValue(40));
 
-            document.add(infoTable);
+            pagoTable.addCell(new Cell().add(new Paragraph("Concepto"))
+                    .setBackgroundColor(headerColor)
+                    .setFontColor(ColorConstants.WHITE)
+                    .setBold()
+                    .setTextAlignment(TextAlignment.CENTER)
+                    .setBorder(Border.NO_BORDER));
+            pagoTable.addCell(new Cell().add(new Paragraph("Monto"))
+                    .setBackgroundColor(headerColor)
+                    .setFontColor(ColorConstants.WHITE)
+                    .setBold()
+                    .setTextAlignment(TextAlignment.CENTER)
+                    .setBorder(Border.NO_BORDER));
 
-            Table table = new Table(new float[]{1, 2, 2, 1, 2, 2}); // 6 columnas
+            pagoTable.addCell(new Cell().add(new Paragraph("Interés"))
+                    .setTextAlignment(TextAlignment.LEFT).setBorder(Border.NO_BORDER));
+            pagoTable.addCell(new Cell().add(new Paragraph("S/ " + interes))
+                    .setTextAlignment(TextAlignment.RIGHT).setBorder(Border.NO_BORDER));
 
-            Cell headerCell1 = new Cell().add(new Paragraph("N° de cuota")).setBold().setFontColor(ColorConstants.WHITE).setBackgroundColor(headerColor).setTextAlignment(TextAlignment.CENTER);
-            Cell headerCell2 = new Cell().add(new Paragraph("Fecha de pago")).setBold().setFontColor(ColorConstants.WHITE).setBackgroundColor(headerColor).setTextAlignment(TextAlignment.CENTER);
-            Cell headerCell3 = new Cell().add(new Paragraph("Cuota")).setBold().setFontColor(ColorConstants.WHITE).setBackgroundColor(headerColor).setTextAlignment(TextAlignment.CENTER);
-            Cell headerCell4 = new Cell().add(new Paragraph("Interes")).setBold().setFontColor(ColorConstants.WHITE).setBackgroundColor(headerColor).setTextAlignment(TextAlignment.CENTER);
-            Cell headerCell5 = new Cell().add(new Paragraph("Capital amortizado")).setBold().setFontColor(ColorConstants.WHITE).setBackgroundColor(headerColor).setTextAlignment(TextAlignment.CENTER);
-            Cell headerCell6 = new Cell().add(new Paragraph("Saldo final")).setBold().setFontColor(ColorConstants.WHITE).setBackgroundColor(headerColor).setTextAlignment(TextAlignment.CENTER);
+            pagoTable.addCell(new Cell().add(new Paragraph("Mora"))
+                    .setTextAlignment(TextAlignment.LEFT).setBorder(Border.NO_BORDER));
+            pagoTable.addCell(new Cell().add(new Paragraph(String.format("S/ %.2f" , mora)))
+                    .setTextAlignment(TextAlignment.RIGHT).setBorder(Border.NO_BORDER));
 
-            table.addHeaderCell(headerCell1);
-            table.addHeaderCell(headerCell2);
-            table.addHeaderCell(headerCell3);
-            table.addHeaderCell(headerCell4);
-            table.addHeaderCell(headerCell5);
-            table.addHeaderCell(headerCell6);
+            pagoTable.addCell(new Cell().add(new Paragraph("Total Mora"))
+                    .setTextAlignment(TextAlignment.LEFT).setBorder(Border.NO_BORDER));
+            pagoTable.addCell(new Cell().add(new Paragraph(String.format("S/ %.2f" ,totalmora)))
+                    .setTextAlignment(TextAlignment.RIGHT).setBorder(Border.NO_BORDER));
 
-            for (CronogramaResponseDTO cronograma : detallePrestamoResponseDTO.getCuotas()) {
-                table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getNmrcuota())).setTextAlignment(TextAlignment.CENTER)));
-                table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getFechaPago())).setTextAlignment(TextAlignment.CENTER)));
-                table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getCuota())).setTextAlignment(TextAlignment.CENTER)));
-                table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getInteres())).setTextAlignment(TextAlignment.CENTER)));
-                table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getCapitalamortizado())).setTextAlignment(TextAlignment.CENTER)));
-                table.addCell(new Cell().add(new Paragraph(String.valueOf(cronograma.getSaldofinal())).setTextAlignment(TextAlignment.CENTER)));
-            }
+            pagoTable.addCell(new Cell().add(new Paragraph("Monto cuota"))
+                    .setTextAlignment(TextAlignment.LEFT).setBorder(Border.NO_BORDER));
+            pagoTable.addCell(new Cell().add(new Paragraph("S/ " + cuota))
+                    .setTextAlignment(TextAlignment.RIGHT).setBorder(Border.NO_BORDER));
 
-            table.setWidth(UnitValue.createPercentValue(100));
+            document.add(pagoTable);
 
-            document.add(new Paragraph("\nCronograma:").setBold());
-            document.add(table);
+            document.add(new Paragraph("\n"));
+
+            Table itemsTable = new Table(new float[]{1, 1, 2, 1, 2});
+            itemsTable.setWidth(UnitValue.createPercentValue(100));
+            itemsTable.addCell(new Cell().add(new Paragraph(" ")).setBackgroundColor(headerColor).setFontColor(ColorConstants.WHITE).setBold());
+            itemsTable.addCell(new Cell().add(new Paragraph("Cantidad")).setBackgroundColor(headerColor).setFontColor(ColorConstants.WHITE).setBold());
+            itemsTable.addCell(new Cell().add(new Paragraph("Descripción")).setBackgroundColor(headerColor).setFontColor(ColorConstants.WHITE).setBold());
+            itemsTable.addCell(new Cell().add(new Paragraph("Subtotal")).setBackgroundColor(headerColor).setFontColor(ColorConstants.WHITE).setBold());
+            itemsTable.addCell(new Cell().add(new Paragraph("Total")).setBackgroundColor(headerColor).setFontColor(ColorConstants.WHITE).setBold());
+
+            itemsTable.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
+            itemsTable.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
+            itemsTable.addCell(new Cell().add(new Paragraph("Pago de cuota N°" + nmrcuota + " relacionada al préstamo N°" + detallePrestamoResponseDTO.getPrestamo().getId())));
+            itemsTable.addCell(new Cell().add(new Paragraph(String.format("S/ %.2f", cuota))).setTextAlignment(TextAlignment.RIGHT));
+            itemsTable.addCell(new Cell().add(new Paragraph(String.format("S/ %.2f", cuota + totalmora))).setTextAlignment(TextAlignment.RIGHT));
+            document.add(itemsTable);
 
             document.close();
         } catch (Exception e) {

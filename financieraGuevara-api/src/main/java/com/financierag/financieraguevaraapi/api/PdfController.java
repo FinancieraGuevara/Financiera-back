@@ -2,14 +2,14 @@ package com.financierag.financieraguevaraapi.api;
 
 import com.financierag.financieraguevaraapi.mapper.DetallePrestamoMapper;
 import com.financierag.financieraguevaraapi.mapper.PrestamoMapper;
+import com.financierag.financieraguevaraapi.model.dto.PrestamoResponseDTO;
 import com.financierag.financieraguevaraapi.model.dto.ReportResponseDTO;
+import com.financierag.financieraguevaraapi.model.entity.Cuota;
 import com.financierag.financieraguevaraapi.model.entity.Prestamo;
 import com.financierag.financieraguevaraapi.repository.PrestamoRepository;
-import com.financierag.financieraguevaraapi.service.BoletaService;
-import com.financierag.financieraguevaraapi.service.FacturaService;
-import com.financierag.financieraguevaraapi.service.PdfService;
-import com.financierag.financieraguevaraapi.service.ReportService;
+import com.financierag.financieraguevaraapi.service.*;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -17,6 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayInputStream;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
@@ -28,6 +30,7 @@ public class PdfController {
     private final ReportService reportService;
     private final PrestamoRepository prestamoRepository;
     private final PdfService pdfService;
+    private final PrestamoService prestamoService;
 
     @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
     @GetMapping("/pdf/{userId}")
@@ -44,7 +47,7 @@ public class PdfController {
                 .body(new InputStreamResource(pdfStream));
     }
 
-    @GetMapping("/cuota/{prestamoId}/{nroCuota}")
+    @GetMapping("/prestamo/{prestamoId}/cuota/{nroCuota}")
     public ResponseEntity<InputStreamResource> downloadPagoCuotaPdf(@PathVariable Integer prestamoId, @PathVariable Integer nroCuota) {
         ReportResponseDTO reportResponseDTO = reportService.generateComprobante(prestamoId, nroCuota);
         String userName = reportResponseDTO.getDetallePrestamo().getSolicitante().getNombre_completo();
@@ -52,6 +55,20 @@ public class PdfController {
         Prestamo prestamo = prestamoRepository.findById(prestamoId).orElse(null);
         if (prestamo == null) {
             return ResponseEntity.notFound().build();
+        }
+
+        List<Cuota> cuotas = prestamo.getDetallePrestamo().getCronograma();
+
+        Optional<Cuota> cuotaOptional = cuotas.stream()
+                .filter(c -> c.getNmrcuota() == nroCuota)
+                .findFirst();
+        if(cuotaOptional.isPresent())
+        {
+            Cuota cuota = cuotaOptional.get();
+            if(!cuota.getIspayed())
+            {
+                throw new IllegalArgumentException("No puedes generar comprobante de una cuota que no esta pagada");
+            }
         }
 
         ByteArrayInputStream pdfStream;
