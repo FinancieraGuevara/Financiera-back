@@ -41,4 +41,10 @@ public class Prestamo {
     @Column(name="pre_num_cuo_pay_in",nullable=true)
     int cuotasPagadas=0;
 
+    @Column(name="pre_num_cuo_ju_in",nullable=true)
+    int cuotasJudiciales=0;
+
+    @Column(name="pre_num_cuo_ju_pay_in",nullable=true)
+    int cuotasJudicialesPagadas=0;
+
 }

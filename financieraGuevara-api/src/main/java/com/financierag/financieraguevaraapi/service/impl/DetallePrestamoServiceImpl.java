@@ -27,6 +27,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Optional;
 
 
 @AllArgsConstructor
@@ -93,9 +94,11 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
                         }
                         prestamo.setDeuda(true);
 
-                        if (today.isAfter(cuota.getFechaPago().plusDays(365))) {
-
+                        if (today.isAfter(cuota.getFechaPago().plusYears(1))) {
                             prestamo.setJudicialDeuda(true);
+                            cuota.setJudicial(true);
+                            prestamo.setCuotasJudiciales(TotalofcuotasJudiciales(prestamo.getDetallePrestamo().getCronograma()));
+
                         }
 
                     }
@@ -105,9 +108,9 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
         }
     }
 
-    public void sixmonths()
+    public void sixteenmonths()
     {
-        LocalDate today = LocalDate.now().plusMonths(6);
+        LocalDate today = LocalDate.now().plusMonths(16);
         System.out.println(today);
         List<Prestamo> prestamos = prestamoMapper.convertToListEntity(prestamoService.findAllPrestamos());
         for (Prestamo prestamo : prestamos) {
@@ -136,9 +139,11 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
                         }
                         prestamo.setDeuda(true);
 
-                        if(cuota.getFechaPago().isBefore(cuota.getFechaPago().plusYears(1)))
-                        {
+                        if (today.isAfter(cuota.getFechaPago().plusYears(1))) {
                             prestamo.setJudicialDeuda(true);
+                            cuota.setJudicial(true);
+                            prestamo.setCuotasJudiciales(TotalofcuotasJudiciales(prestamo.getDetallePrestamo().getCronograma()));
+
                         }
 
                     }
@@ -147,9 +152,9 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
             prestamoRepository.save(prestamo);
         }
     }
-    public void oneyear()
+    public void twoyear()
     {
-        LocalDate today = LocalDate.now().plusYears(1);
+        LocalDate today = LocalDate.now().plusYears(2);
         System.out.println(today);
         List<Prestamo> prestamos = prestamoMapper.convertToListEntity(prestamoService.findAllPrestamos());
         for (Prestamo prestamo : prestamos) {
@@ -178,9 +183,11 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
                         }
                         prestamo.setDeuda(true);
 
-                        if(cuota.getFechaPago().isBefore(cuota.getFechaPago().plusYears(1)))
-                        {
+                        if (today.isAfter(cuota.getFechaPago().plusYears(1))) {
                             prestamo.setJudicialDeuda(true);
+                            cuota.setJudicial(true);
+                            prestamo.setCuotasJudiciales(TotalofcuotasJudiciales(prestamo.getDetallePrestamo().getCronograma()));
+
                         }
 
                     }
@@ -188,5 +195,19 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
             }
             prestamoRepository.save(prestamo);
         }
+    }
+
+    public int TotalofcuotasJudiciales(List<Cuota> cuotas )
+    {   int total_judiciales=0;
+
+
+        for(Cuota cuota : cuotas)
+        {
+           if(cuota.getIsJudicial())
+           {
+               total_judiciales++;
+           }
+        }
+        return total_judiciales;
     }
 }

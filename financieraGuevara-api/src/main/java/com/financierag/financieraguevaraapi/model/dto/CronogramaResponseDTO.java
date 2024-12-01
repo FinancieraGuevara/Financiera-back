@@ -25,6 +25,7 @@ public class CronogramaResponseDTO {
     LocalDate fechadeCancelamiento;
     boolean ispayed;
     boolean isdeuda;
+    boolean isjudicial;
     double mora=0;
     double totalmora;
 
