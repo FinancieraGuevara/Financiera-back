@@ -36,6 +36,9 @@ public class Prestamo {
     private boolean isDeuda =false;
 
     @Column(name="pre_fis_debt_stat_bol")
-    private boolean isFiscalDeuda =false;
+    private boolean isJudicialDeuda =false;
+
+    @Column(name="pre_num_cuo_pay_in",nullable=true)
+    int cuotasPagadas=0;
 
 }

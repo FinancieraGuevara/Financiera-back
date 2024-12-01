@@ -17,6 +17,9 @@ public class PrestamoResponseDTO {
     private int cuotas;
     private double interes;
     private int solicitanteId;
+    boolean isPayed;
+    boolean isDeuda;
+    boolean isJudicialDeuda;
     private List<CronogramaResponseDTO> detallecuotas;
 
 }
