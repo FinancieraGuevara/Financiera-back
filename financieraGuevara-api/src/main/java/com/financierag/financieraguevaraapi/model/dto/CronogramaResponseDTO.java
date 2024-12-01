@@ -22,8 +22,10 @@ public class CronogramaResponseDTO {
     double capitalamortizado;
     double saldofinal;
     LocalDate fechaPago;
+    LocalDate fechadeCancelamiento;
     boolean ispayed;
     boolean isdeuda;
+    double mora=0;
     double totalmora;
 
 }
