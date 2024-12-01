@@ -58,7 +58,7 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
     @PostConstruct
     public void scheduledCuotas() {
         System.out.println("Ejecutando la tarea programada para calcular deudas");
-        sixmonths();
+        test();
     }
 
     public void test()
