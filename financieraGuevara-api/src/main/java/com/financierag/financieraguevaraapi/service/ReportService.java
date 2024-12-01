@@ -6,4 +6,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface ReportService {
     ReportResponseDTO generateReport(Integer userId);
+    ReportResponseDTO generateComprobante(Integer prestamoId, Integer nroCuota);
 }

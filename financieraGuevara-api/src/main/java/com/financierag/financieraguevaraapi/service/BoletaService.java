@@ -8,9 +8,9 @@ import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
-import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.UnitValue;
@@ -20,7 +20,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
 @Service
-public class PdfService {
+public class BoletaService {
     public ByteArrayInputStream generateUserReportPdf(ReportResponseDTO reportResponseDTO) {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         DetallePrestamoResponseDTO detallePrestamoResponseDTO = reportResponseDTO.getDetallePrestamo();
@@ -42,14 +42,14 @@ public class PdfService {
             canvas.fill();
             canvas.restoreState();
 
-            /*Para el logo*/
-            //String logoPath = "financieraGuevara-api/src/main/resources/static/logo-FG.jpg";
-            //Image logo = new Image(ImageDataFactory.create(logoPath));
-            //logo.scaleToFit(150, 50);
-            //float logoX = ((pageWidth - logo.getImageWidth()) / 2)+220; // Centrar horizontalmente
-            //float logoY = (pageHeight - headerHeight + (headerHeight - logo.getImageHeight()) / 2)+155; // Centrar verticalmente
-            //logo.setFixedPosition(logoX, logoY);
-            //document.add(logo);
+                /*Para el logo*/
+                //String logoPath = "financieraGuevara-api/src/main/resources/static/logo-FG.jpg";
+                //Image logo = new Image(ImageDataFactory.create(logoPath));
+                //logo.scaleToFit(150, 50);
+                //float logoX = ((pageWidth - logo.getImageWidth()) / 2)+220; // Centrar horizontalmente
+                //float logoY = (pageHeight - headerHeight + (headerHeight - logo.getImageHeight()) / 2)+155; // Centrar verticalmente
+                //logo.setFixedPosition(logoX, logoY);
+                //document.add(logo);
 
             //Colores de las cabeceras y títulos
             DeviceRgb headerColor = new DeviceRgb(0, 86, 163);
@@ -62,7 +62,7 @@ public class PdfService {
             titleParagraph.setFixedPosition(setOnX, setOnY, 400);
             document.add(titleParagraph);
 
-            document.add(new Paragraph("\n\nCronograma de Pagos\n\n").setFontSize(20).setBold().setTextAlignment(TextAlignment.CENTER));
+            document.add(new Paragraph("\n\nBOLETA ELECTRÓNICA\n\n").setFontSize(20).setBold().setTextAlignment(TextAlignment.CENTER));
 
             Table infoTable = new Table(new float[]{1, 1}); // Dos columnas
 
