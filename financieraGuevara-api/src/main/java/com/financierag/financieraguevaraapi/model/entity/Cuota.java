@@ -36,10 +36,19 @@ public class Cuota {
 
     LocalDate fechadeCancelamiento;
     boolean ispayed = false;
+
     boolean isdeuda= false;
+
+    @Column(nullable = true)
+    boolean isJudicial= false;
+
     double mora=0;
+
     double totalmora=0;
 
     public boolean getIspayed()
     { return this.ispayed;}
+
+    public boolean getIsJudicial()
+    { return this.isJudicial;}
 }

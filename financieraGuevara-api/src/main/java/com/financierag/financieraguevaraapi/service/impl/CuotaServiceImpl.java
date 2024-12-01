@@ -10,6 +10,7 @@ import com.financierag.financieraguevaraapi.service.CuotaService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -49,6 +50,14 @@ public class CuotaServiceImpl implements CuotaService {
             prestamo.setCuotasPagadas(prestamo.getCuotasPagadas()+1);
             cuota.setIspayed(true);
             cuota.setIsdeuda(false);
+
+            cuota.setFechadeCancelamiento(LocalDate.now());
+
+            if(cuota.getIsJudicial())
+            {
+                prestamo.setCuotasJudicialesPagadas(prestamo.getCuotasJudicialesPagadas()+1);
+            }
+            cuota.setJudicial(false);
             if(prestamo.getCuotas()==1)
             {
                 prestamo.setPayed(true);
@@ -63,6 +72,10 @@ public class CuotaServiceImpl implements CuotaService {
                 {
                     prestamo.setPayed(true);
                     prestamo.setDeuda(false);
+
+                }
+                if(prestamo.getCuotasJudicialesPagadas()==prestamo.getCuotasJudiciales())
+                {
                     prestamo.setJudicialDeuda(false);
                 }
             }
