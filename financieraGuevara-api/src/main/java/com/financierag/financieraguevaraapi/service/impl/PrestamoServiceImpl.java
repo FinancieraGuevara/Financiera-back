@@ -53,7 +53,7 @@ public class PrestamoServiceImpl implements PrestamoService {
     @Transactional
     @Override
     public List<PrestamoResponseDTO> getPrestamosPendientes() {
-        return prestamoMapper.convertToListDTO(prestamoRepository.findByIsPayedFalse());
+        return prestamoMapper.convertToListDTO(prestamoRepository.findByIsPayedFalseAndIsDeudaFalse());
     }
 
     @Transactional
