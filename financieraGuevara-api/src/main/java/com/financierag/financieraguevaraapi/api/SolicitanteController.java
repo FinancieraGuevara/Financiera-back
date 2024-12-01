@@ -51,4 +51,11 @@ public class SolicitanteController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+    @GetMapping("/deudores")
+    public ResponseEntity<List<SolicitanteResponseDTO>> findDeudores() {
+        List<SolicitanteResponseDTO> solicitantes = solicitanteServiceImpl.obtenerDeudores();
+        return new ResponseEntity<>(solicitantes, HttpStatus.OK);
+    }
 }
