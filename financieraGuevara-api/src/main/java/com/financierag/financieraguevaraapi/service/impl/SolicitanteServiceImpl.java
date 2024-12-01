@@ -45,4 +45,11 @@ public class SolicitanteServiceImpl implements SolicitanteService {
         return solicitanteRepository.findByNumero(numero)
                 .map(Solicitante::getId);
     }
+
+    @Override
+    public List<SolicitanteResponseDTO> obtenerDeudores() {
+        List<Solicitante> solicitantes = solicitanteRepository.findDeudores();
+        return solicitanteMapper.convertToListDTO(solicitantes);
+    }
+
 }
