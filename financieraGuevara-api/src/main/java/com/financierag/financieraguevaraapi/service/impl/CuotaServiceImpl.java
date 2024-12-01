@@ -47,7 +47,7 @@ public class CuotaServiceImpl implements CuotaService {
             }
             prestamo.setCuotasPagadas(prestamo.getCuotasPagadas()+1);
             cuota.setIspayed(true);
-
+            cuota.setIsdeuda(false);
             if(prestamo.getCuotas()==1)
             {
                 prestamo.setPayed(true);

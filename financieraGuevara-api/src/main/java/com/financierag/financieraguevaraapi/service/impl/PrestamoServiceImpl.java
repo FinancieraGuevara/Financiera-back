@@ -2,19 +2,26 @@ package com.financierag.financieraguevaraapi.service.impl;
 
 import com.financierag.financieraguevaraapi.execption.ResourceNotFoundException;
 import com.financierag.financieraguevaraapi.mapper.PrestamoMapper;
+import com.financierag.financieraguevaraapi.model.dto.CronogramaResponseDTO;
 import com.financierag.financieraguevaraapi.model.dto.PrestamoRequestDTO;
 import com.financierag.financieraguevaraapi.model.dto.PrestamoResponseDTO;
 import com.financierag.financieraguevaraapi.model.entity.Cuota;
 import com.financierag.financieraguevaraapi.model.entity.DetallePrestamo;
 import com.financierag.financieraguevaraapi.model.entity.Prestamo;
 import com.financierag.financieraguevaraapi.model.entity.Solicitante;
+import com.financierag.financieraguevaraapi.repository.CronogramaRepository;
 import com.financierag.financieraguevaraapi.repository.DetallePrestamoRespository;
 import com.financierag.financieraguevaraapi.repository.PrestamoRepository;
 import com.financierag.financieraguevaraapi.repository.SolicitanteRepository;
 import com.financierag.financieraguevaraapi.service.PrestamoService;
 import java.lang.*;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -27,13 +34,17 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class PrestamoServiceImpl implements PrestamoService {
-    @Autowired
+
     private final PrestamoRepository prestamoRepository;
-    @Autowired
+
     private final PrestamoMapper prestamoMapper;
-    @Autowired
+
     private final DetallePrestamoRespository detallePrestamoRespository;
+
     private final SolicitanteRepository solicitanteRepository;
+
+
+    @Transactional
     @Override
     public List<PrestamoResponseDTO> findAllPrestamos() {
         List<Prestamo> prestamos = prestamoRepository.findAll();
@@ -237,3 +248,4 @@ public class PrestamoServiceImpl implements PrestamoService {
     }
 
 }
+

@@ -2,6 +2,7 @@ package com.financierag.financieraguevaraapi.api;
 
 import com.financierag.financieraguevaraapi.model.dto.PrestamoRequestDTO;
 import com.financierag.financieraguevaraapi.model.dto.PrestamoResponseDTO;
+import com.financierag.financieraguevaraapi.service.PrestamoService;
 import com.financierag.financieraguevaraapi.service.impl.PrestamoServiceImpl;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
@@ -17,40 +18,41 @@ import java.util.List;
 @AllArgsConstructor
 @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
 public class PrestamoController {
+
     @Autowired
-    private final PrestamoServiceImpl prestamoServiceImpl;
+    private final PrestamoService prestamoService;
 
     @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
     @GetMapping
     public ResponseEntity<List<PrestamoResponseDTO>> getAllPrestamos() {
-        List<PrestamoResponseDTO> prestamos = prestamoServiceImpl.findAllPrestamos();
+        List<PrestamoResponseDTO> prestamos = prestamoService.findAllPrestamos();
         return new ResponseEntity<>(prestamos, HttpStatus.OK);
     }
 
     @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
    @GetMapping("/{id}")
    public ResponseEntity<PrestamoResponseDTO> getPrestamoById(@PathVariable int id) {
-        PrestamoResponseDTO prestamo = prestamoServiceImpl.findPrestamoById(id);
+        PrestamoResponseDTO prestamo = prestamoService.findPrestamoById(id);
         return new ResponseEntity<>(prestamo, HttpStatus.OK);
    }
    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
    @PostMapping("/crear/{solicitanteId}")
    public ResponseEntity<PrestamoResponseDTO> createPrestamo(@PathVariable int solicitanteId, @RequestBody PrestamoRequestDTO prestamoRequestDTO) {
-        PrestamoResponseDTO prestamo = prestamoServiceImpl.createPrestamo(solicitanteId,prestamoRequestDTO);
+        PrestamoResponseDTO prestamo = prestamoService.createPrestamo(solicitanteId,prestamoRequestDTO);
         return new ResponseEntity<>(prestamo, HttpStatus.CREATED);
    }
     @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
    @PutMapping("/{id}")
    public ResponseEntity<PrestamoResponseDTO> updatePrestamo(@PathVariable int id,
                                                              @RequestBody PrestamoRequestDTO prestamoRequestDTO) {
-        PrestamoResponseDTO prestamo = prestamoServiceImpl.updatePrestamo(id,prestamoRequestDTO);
+        PrestamoResponseDTO prestamo = prestamoService.updatePrestamo(id,prestamoRequestDTO);
         return new ResponseEntity<>(prestamo, HttpStatus.OK);
    }
     @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
 
     @DeleteMapping("/{id}")
     public ResponseEntity<PrestamoResponseDTO> deletePrestamo(@PathVariable int id) {
-        prestamoServiceImpl.deletePrestamo(id);
+        prestamoService.deletePrestamo(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }

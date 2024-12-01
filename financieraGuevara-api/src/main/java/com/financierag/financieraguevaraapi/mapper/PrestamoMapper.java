@@ -4,6 +4,7 @@ import com.financierag.financieraguevaraapi.model.dto.CronogramaResponseDTO;
 import com.financierag.financieraguevaraapi.model.dto.PrestamoRequestDTO;
 import com.financierag.financieraguevaraapi.model.dto.PrestamoResponseDTO;
 import com.financierag.financieraguevaraapi.model.entity.Prestamo;
+import com.financierag.financieraguevaraapi.repository.DetallePrestamoRespository;
 import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -18,10 +19,15 @@ public class PrestamoMapper {
 
     private ModelMapper modelMapper;
     private DetallePrestamoMapper detallePrestamoMapper;
+    private DetallePrestamoRespository detallePrestamoRepository;
     public Prestamo convertToEntity (PrestamoRequestDTO prestamoRequestDTO) {
         return modelMapper.map(prestamoRequestDTO, Prestamo.class);
     }
-
+    public Prestamo convToEntity(PrestamoResponseDTO prestamoResponseDTO)
+    {  Prestamo entity =modelMapper.map(prestamoResponseDTO, Prestamo.class);
+        entity.setDetallePrestamo(detallePrestamoRepository.findByPrestamo_Id(prestamoResponseDTO.getId()));
+        return entity;
+    }
     public PrestamoResponseDTO convertToDTO (Prestamo prestamo) {
         PrestamoResponseDTO dto = modelMapper.map(prestamo, PrestamoResponseDTO.class);
 
@@ -35,6 +41,9 @@ public class PrestamoMapper {
         return prestamos.stream()
                 .map(this::convertToDTO)
                 .toList();
+    }
+    public List<Prestamo> convertToListEntity(List<PrestamoResponseDTO> prestamos) {
+        return prestamos.stream().map(this::convToEntity).toList();
     }
 
 }

@@ -11,7 +11,8 @@ import java.util.List;
 @Repository
 public interface DetallePrestamoRespository extends JpaRepository<DetallePrestamo, Integer> {
     List<DetallePrestamo> findBySolicitanteId(int solicitanteId);
-
+    @Query("SELECT dp FROM DetallePrestamo dp JOIN FETCH dp.cronograma WHERE dp.prestamo.id = :prestamoId")
+    DetallePrestamo findByPrestamo_Id(int prestamoId);
     @Query("SELECT dp FROM DetallePrestamo dp WHERE dp.solicitante.id = :solicitanteId ORDER BY dp.fechaInicio DESC, dp.detailId DESC")
     List<DetallePrestamo> findLatestBySolicitanteId(@Param("solicitanteId") int solicitanteId);
 }
