@@ -1,5 +1,6 @@
 package com.financierag.financieraguevaraapi.model.entity;
 
+import com.financierag.financieraguevaraapi.service.FacturaService;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +28,11 @@ public class Cuota {
     @ManyToOne
     @JoinColumn(name = "det_prestamo_id")
     private DetallePrestamo detallePrestamo;
+
+    @OneToOne
+    @JoinColumn(name = "factura_id") // La columna en la tabla de Cuota que referencia a Factura
+    private SerieNumeracion serieNumeracion;
+
 
     LocalDate fechadeCancelamiento;
     boolean ispayed = false;

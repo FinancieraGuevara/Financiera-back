@@ -44,10 +44,9 @@ public class PdfController {
                 .body(new InputStreamResource(pdfStream));
     }
 
-    @GetMapping("/cuota/{userId}")
-    public ResponseEntity<InputStreamResource> downloadPagoCuotaPdf(@PathVariable Integer userId) {
-        ReportResponseDTO reportResponseDTO = reportService.generateReport(userId);
-        Integer prestamoId = reportResponseDTO.getDetallePrestamo().getPrestamo().getId();
+    @GetMapping("/cuota/{prestamoId}/{nroCuota}")
+    public ResponseEntity<InputStreamResource> downloadPagoCuotaPdf(@PathVariable Integer prestamoId, @PathVariable Integer nroCuota) {
+        ReportResponseDTO reportResponseDTO = reportService.generateComprobante(prestamoId, nroCuota);
         String userName = reportResponseDTO.getDetallePrestamo().getSolicitante().getNombre_completo();
 
         Prestamo prestamo = prestamoRepository.findById(prestamoId).orElse(null);
@@ -66,7 +65,7 @@ public class PdfController {
         }
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "inline; filename=FG_" + userId + "_cronograma.pdf");
+        headers.add("Content-Disposition", "inline; filename=FG_cronograma.pdf");
 
         return ResponseEntity.ok()
                 .headers(headers)
