@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.financierag</groupId>
-    <artifactId>financieraGuevara-api</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>financieraGuevara-api</name>
+    <artifactId>fingeapi</artifactId>
+    <version>0.0.1</version>
+    <name>fingeapi</name>
     <description>financieraGuevara-api</description>
     <url/>
     <licenses>

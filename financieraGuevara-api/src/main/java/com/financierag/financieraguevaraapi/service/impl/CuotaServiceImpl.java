@@ -35,6 +35,7 @@ public class CuotaServiceImpl implements CuotaService {
         }
 
         List<Cuota> cuotas = prestamo.getDetallePrestamo().getCronograma();
+
         Optional<Cuota> cuotaOptional = cuotas.stream()
                 .filter(c -> c.getNmrcuota() == cuotanumber)
                 .findFirst();
