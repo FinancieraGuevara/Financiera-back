@@ -54,29 +54,16 @@ public class CuotaServiceImpl implements CuotaService {
                 prestamo.setPayed(true);
                 prestamo.setDeuda(false);
                 prestamo.setJudicialDeuda(false);
-                     /*Agregar la logica para generar el comprobante
-                             if(prestamo.getDetallePrestamo().getSolicitante().getTipo()=="boleta")
-                             {
 
-                             }
-                             if (prestamo.getDetallePrestamo().getSolicitante().getTipo()=="factura")
-                      */
             }
             else
             {
 
-                if(prestamo.getCuotasPagadas()==5)
+                if(prestamo.getCuotasPagadas()==6)
                 {
                     prestamo.setPayed(true);
                     prestamo.setDeuda(false);
                     prestamo.setJudicialDeuda(false);
-                        /*Agregar la logica para generar el comprobante
-                         if(prestamo.getDetallePrestamo().getSolicitante().getTipo()=="boleta")
-                        {
-
-                         }
-                        if (prestamo.getDetallePrestamo().getSolicitante().getTipo()=="factura")
-                        */
                 }
             }
 

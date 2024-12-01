@@ -37,6 +37,7 @@ public class FacturaService {
         String solicitanteNombre = detallePrestamoResponseDTO.getSolicitante().getNombre_completo();
         double cuota = cronogramaResponseDTO.getCuota();
         double mora = cronogramaResponseDTO.getMora();
+        double totalmora=cronogramaResponseDTO.getTotalmora();
         double interes = cronogramaResponseDTO.getInteres();
         int nmrcuota = cronogramaResponseDTO.getNmrcuota();
 
@@ -105,6 +106,11 @@ public class FacturaService {
             pagoTable.addCell(new Cell().add(new Paragraph("S/ " + mora))
                     .setTextAlignment(TextAlignment.RIGHT).setBorder(Border.NO_BORDER));
 
+            pagoTable.addCell(new Cell().add(new Paragraph("Total Mora"))
+                    .setTextAlignment(TextAlignment.LEFT).setBorder(Border.NO_BORDER));
+            pagoTable.addCell(new Cell().add(new Paragraph(String.format("S/ %.2f" ,totalmora)))
+                    .setTextAlignment(TextAlignment.RIGHT).setBorder(Border.NO_BORDER));
+
             pagoTable.addCell(new Cell().add(new Paragraph("Monto cuota"))
                     .setTextAlignment(TextAlignment.LEFT).setBorder(Border.NO_BORDER));
             pagoTable.addCell(new Cell().add(new Paragraph("S/ " + cuota))
@@ -126,7 +132,7 @@ public class FacturaService {
             itemsTable.addCell(new Cell().add(new Paragraph("1")).setTextAlignment(TextAlignment.CENTER));
             itemsTable.addCell(new Cell().add(new Paragraph("Pago de cuota N°" + nmrcuota + " relacionada al préstamo N°" + detallePrestamoResponseDTO.getPrestamo().getId())));
             itemsTable.addCell(new Cell().add(new Paragraph(String.format("S/ %.2f", cuota))).setTextAlignment(TextAlignment.RIGHT));
-            itemsTable.addCell(new Cell().add(new Paragraph(String.format("S/ %.2f", cuota + mora))).setTextAlignment(TextAlignment.RIGHT));
+            itemsTable.addCell(new Cell().add(new Paragraph(String.format("S/ %.2f", cuota + totalmora))).setTextAlignment(TextAlignment.RIGHT));
             document.add(itemsTable);
 
             document.close();
