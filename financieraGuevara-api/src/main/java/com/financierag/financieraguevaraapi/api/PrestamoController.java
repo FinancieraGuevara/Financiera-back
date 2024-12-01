@@ -81,4 +81,11 @@ public class PrestamoController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }
+
+    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+    @GetMapping("/cuotas-en-deuda")
+    public ResponseEntity<List<PrestamoResponseDTO>> getPrestamosConCuotasEnDeuda() {
+        List<PrestamoResponseDTO> prestamos = prestamoService.getPrestamosConCuotasEnDeuda();
+        return new ResponseEntity<>(prestamos, HttpStatus.OK);
+    }
 }

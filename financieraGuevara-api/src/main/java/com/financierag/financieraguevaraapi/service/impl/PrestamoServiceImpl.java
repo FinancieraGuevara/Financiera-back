@@ -265,5 +265,11 @@ public class PrestamoServiceImpl implements PrestamoService {
         prestamoRepository.deleteById(id);
     }
 
+    @Override
+    public List<PrestamoResponseDTO> getPrestamosConCuotasEnDeuda() {
+        List<Prestamo> prestamosConCuotasEnDeuda = prestamoRepository.findByDetallePrestamo_Cronograma_IsdeudaTrue();
+        return prestamoMapper.convertToListDTO(prestamosConCuotasEnDeuda);
+    }
+
 }
 

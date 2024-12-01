@@ -14,4 +14,5 @@ public interface PrestamoRepository extends JpaRepository<Prestamo, Integer> {
     List<Prestamo> findByIsPayedFalseAndIsDeudaFalse();
     List<Prestamo> findByIsPayedTrue();
     List<Prestamo> findByIsJudicialDeudaTrue();
+    List<Prestamo> findByDetallePrestamo_Cronograma_IsdeudaTrue();
 }
