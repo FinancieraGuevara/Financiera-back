@@ -27,6 +27,7 @@ public class CronogramaResponseDTO {
     boolean isdeuda;
     boolean isjudicial;
     double mora=0;
+    long totaldiasmora;
     double totalmora;
 
 }

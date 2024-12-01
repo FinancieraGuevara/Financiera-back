@@ -46,6 +46,9 @@ public class Cuota {
 
     double totalmora=0;
 
+    @Column(nullable = true)
+    long totaldiasmora=0;
+
     public boolean getIspayed()
     { return this.ispayed;}
 
