@@ -12,5 +12,8 @@ public interface PrestamoService {
     public PrestamoResponseDTO findPrestamoById(int id);
     public PrestamoResponseDTO createPrestamo(int solicitanteId, PrestamoRequestDTO prestamoRequestDTO);
     public PrestamoResponseDTO updatePrestamo(int id, PrestamoRequestDTO prestamoRequestDTO);
+    public List<PrestamoResponseDTO> getPrestamosPendientes();
+    public List<PrestamoResponseDTO> getPrestamosPagados();
+    public List<PrestamoResponseDTO> getPrestamosJudiciales();
     void deletePrestamo(int prestamoId);
 }

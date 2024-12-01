@@ -50,6 +50,24 @@ public class PrestamoServiceImpl implements PrestamoService {
         List<Prestamo> prestamos = prestamoRepository.findAll();
         return prestamoMapper.convertToListDTO(prestamos);
     }
+    @Transactional
+    @Override
+    public List<PrestamoResponseDTO> getPrestamosPendientes() {
+        return prestamoMapper.convertToListDTO(prestamoRepository.findByIsPayedFalseAndIsDeudaFalse());
+    }
+
+    @Transactional
+    @Override
+    public List<PrestamoResponseDTO> getPrestamosPagados() {
+        return prestamoMapper.convertToListDTO(prestamoRepository.findByIsPayedTrue());
+    }
+    @Transactional
+    @Override
+    public List<PrestamoResponseDTO> getPrestamosJudiciales() {
+        return prestamoMapper.convertToListDTO(prestamoRepository.findByIsJudicialDeudaTrue());
+    }
+
+    @Transactional
 
     @Override
     public PrestamoResponseDTO findPrestamoById(int id) {
