@@ -34,4 +34,6 @@ public class Cuota {
     double mora=0;
     double totalmora=0;
 
+    public boolean getIspayed()
+    { return this.ispayed;}
 }
