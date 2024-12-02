@@ -68,7 +68,18 @@ public class PrestamoServiceImpl implements PrestamoService {
     }
 
     @Transactional
+    @Override
+    public List<PrestamoResponseDTO> getPrestamosCompleted() {
+        return prestamoMapper.convertToListDTO(prestamoRepository.findByIsCompletedTrue());
+    }
 
+    @Transactional
+    @Override
+    public List<PrestamoResponseDTO> getPrestamosBySolicitanteId(int solicitanteId) {
+        return prestamoMapper.convertToListDTO(prestamoRepository.findByDetallePrestamoSolicitanteId(solicitanteId));
+    }
+
+    @Transactional
     @Override
     public PrestamoResponseDTO findPrestamoById(int id) {
         Prestamo prestamo = prestamoRepository.findById(id)
@@ -91,7 +102,11 @@ public class PrestamoServiceImpl implements PrestamoService {
         Solicitante solicitante = solicitanteRepository.findById(solicitanteId)
                 .orElseThrow(() -> new ResourceNotFoundException("Solicitante no encontrado con el número de ID " + solicitanteId));
 
-
+        List<Solicitante> deudores = solicitanteRepository.findDeudores();
+        if(deudores.contains(solicitante))
+        {
+            throw new IllegalArgumentException("No puedes sacar un prestamo para este solicitante ya que es un deudor.");
+        }
         prestamo = prestamoRepository.save(prestamo);
 
 
@@ -170,8 +185,8 @@ public class PrestamoServiceImpl implements PrestamoService {
 
                         cronograma.setSaldofinal(saldofinal);
 
-                        LocalDate fechaPago = fechaInicio.plusMonths(1);
-
+                        LocalDate fechaPago = fechaInicio.plusDays(30);
+                        //LocalDate fechaPago = fechaInicio.plusMonths(1);
 
 
 
@@ -214,14 +229,15 @@ public class PrestamoServiceImpl implements PrestamoService {
 
                     saldoinicial=saldofinal;
 
-                    fechaInicio = fechaInicio.plusMonths(1);
+                    fechaInicio = fechaInicio.plusDays(30);
+                    //fechaInicio = fechaInicio.plusMonths(1);
                     System.out.println(fechaInicio);
 
                     cronograma.setFechaPago(fechaInicio);
                     cronograma.setDetallePrestamo(detallePrestamo);
                     cronogramas.add(cronograma);
 
-                    if (fechaInicio.getDayOfMonth() != dayofmont) {
+                  /*  if (fechaInicio.getDayOfMonth() != dayofmont) {
 
                         if (fechaInicio.getMonthValue() != 2) {
                             if (fechaInicio.getDayOfMonth() < dayofmont) {
@@ -239,7 +255,7 @@ public class PrestamoServiceImpl implements PrestamoService {
                             fechaInicio = fechaInicio.plusMonths(1).withDayOfMonth(dayofmont);
 
                         }
-                    }
+                    }*/
 
             }
         }

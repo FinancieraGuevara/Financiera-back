@@ -10,9 +10,10 @@ import java.util.Optional;
 
 @Repository
 public interface PrestamoRepository extends JpaRepository<Prestamo, Integer> {
-    Optional<Prestamo> findByIdAndDetallePrestamoSolicitanteId(Integer prestamoId, Integer solicitanteId);
+    List<Prestamo> findByDetallePrestamoSolicitanteId(Integer solicitanteId);
     List<Prestamo> findByIsPayedFalseAndIsDeudaFalse();
     List<Prestamo> findByIsPayedTrue();
     List<Prestamo> findByIsJudicialDeudaTrue();
+    List<Prestamo> findByIsCompletedTrue();
     List<Prestamo> findByDetallePrestamo_Cronograma_IsdeudaTrue();
 }

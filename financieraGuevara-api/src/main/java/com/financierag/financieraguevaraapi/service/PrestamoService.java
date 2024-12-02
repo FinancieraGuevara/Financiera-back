@@ -15,6 +15,8 @@ public interface PrestamoService {
     public List<PrestamoResponseDTO> getPrestamosPendientes();
     public List<PrestamoResponseDTO> getPrestamosPagados();
     public List<PrestamoResponseDTO> getPrestamosJudiciales();
+    public List<PrestamoResponseDTO> getPrestamosCompleted();
+    public List<PrestamoResponseDTO> getPrestamosBySolicitanteId(int solicitanteId);
     void deletePrestamo(int prestamoId);
     public List<PrestamoResponseDTO> getPrestamosConCuotasEnDeuda();
 }

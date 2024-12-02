@@ -52,6 +52,10 @@ public class CuotaServiceImpl implements CuotaService {
             {
                 throw new IllegalArgumentException("No puedes pagar una cuota que esta pagada");
             }
+            if(prestamo.isDeuda()&& !cuota.getIsDeuda())
+            {
+                throw new IllegalArgumentException("Paga primero la(s) cuota(s) que tienen deuda");
+            }
             prestamo.setCuotasPagadas(prestamo.getCuotasPagadas()+1);
             cuota.setIspayed(true);
             cuota.setIsdeuda(false);
@@ -73,15 +77,20 @@ public class CuotaServiceImpl implements CuotaService {
             else
             {
 
-                if(prestamo.getCuotasPagadas()==6)
+                if(prestamo.getCuotasPagadas()>=prestamo.getCuotasporpagar()&&prestamo.getCuotasJudicialesPagadas()>=prestamo.getCuotasJudicialesporpagar())
                 {
                     prestamo.setPayed(true);
                     prestamo.setDeuda(false);
 
                 }
-                if(prestamo.getCuotasJudicialesPagadas()==prestamo.getCuotasJudiciales())
+                if(prestamo.getCuotasJudicialesPagadas()==prestamo.getCuotasJudicialesporpagar())
                 {
                     prestamo.setJudicialDeuda(false);
+
+                }
+                if(prestamo.getCuotasPagadas()==prestamo.getCuotas())
+                {
+                    prestamo.setCompleted(true);
                 }
             }
 

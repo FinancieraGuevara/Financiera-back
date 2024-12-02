@@ -25,17 +25,21 @@ public class CORSConfig implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
 
-        response.setHeader("Access-Control-Allow-Origin", "*");
+        // Cambia "*" por el origen específico (esto es importante cuando usas withCredentials)
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200"); // Origen de tu frontend
         response.setHeader("Access-Control-Allow-Methods", "DELETE, GET, OPTIONS, PATCH, POST, PUT");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN");
 
+        // Permitir credenciales
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+
+        // Manejar la solicitud OPTIONS (preflight)
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
         } else {
             chain.doFilter(req, res);
         }
-        // chain.doFilter(req, res);
     }
 
     @Override

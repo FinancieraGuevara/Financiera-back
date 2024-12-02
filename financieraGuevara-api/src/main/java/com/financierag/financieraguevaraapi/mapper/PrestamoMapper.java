@@ -34,6 +34,7 @@ public class PrestamoMapper {
 
         dto.setDetallecuotas(detallePrestamoMapper.convertCuotasList(prestamo.getDetallePrestamo().getCronograma()));
         dto.setSolicitanteId(prestamo.getDetallePrestamo().getSolicitante().getId());
+        dto.setUsername(prestamo.getDetallePrestamo().getSolicitante().getNombre_completo());
         return dto;
     }
 

@@ -8,4 +8,5 @@ import java.util.List;
 public interface DetallePrestamoService {
     List<DetallePrestamoResponseDTO> findAllDetallesPrestamo();
     List<DetallePrestamoResponseDTO>  detallePrestamoSolicitante(int solicitanteId);
+    DetallePrestamoResponseDTO findDetallePrestamoById(int id);
 }

@@ -44,9 +44,17 @@ public class Cuota {
 
     double totalmora=0;
 
+    @Column(nullable = true)
+    long totaldiasmora=0;
+
     public boolean getIspayed()
     { return this.ispayed;}
 
     public boolean getIsJudicial()
     { return this.isJudicial;}
+
+    public boolean getIsDeuda()
+    {
+        return this.isdeuda;
+    }
 }
