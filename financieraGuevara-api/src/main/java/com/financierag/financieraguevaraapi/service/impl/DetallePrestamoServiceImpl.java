@@ -69,7 +69,7 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
         System.out.println(today);
         List<Prestamo> prestamos = prestamoMapper.convertToListEntity(prestamoService.findAllPrestamos());
         for (Prestamo prestamo : prestamos) {
-            if(prestamo.isPayed())
+            if(prestamo.isCompleted())
             {
 
             }
@@ -80,6 +80,7 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
                     if (cuota.getFechaPago().isBefore(today) && !cuota.getIspayed()) // || cuota.getFechaPago().isEqual(today) "vencer hoy"
                     {
                         cuota.setIsdeuda(true);
+
 
                         cuota.setMora(0.01*cuota.getCuota());
 
@@ -93,11 +94,13 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
 
                         }
                         prestamo.setDeuda(true);
+                        prestamo.setPayed(false);
+                        prestamo.setCuotasporpagar(Totalofcuotas(prestamo.getDetallePrestamo().getCronograma()));
 
                         if (today.isAfter(cuota.getFechaPago().plusYears(1))) {
                             prestamo.setJudicialDeuda(true);
                             cuota.setJudicial(true);
-                            prestamo.setCuotasJudiciales(TotalofcuotasJudiciales(prestamo.getDetallePrestamo().getCronograma()));
+                            prestamo.setCuotasJudicialesporpagar(TotalofcuotasJudiciales(prestamo.getDetallePrestamo().getCronograma()));
 
                         }
 
@@ -114,7 +117,7 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
         System.out.println(today);
         List<Prestamo> prestamos = prestamoMapper.convertToListEntity(prestamoService.findAllPrestamos());
         for (Prestamo prestamo : prestamos) {
-            if(prestamo.isPayed())
+            if(prestamo.isCompleted())
             {
 
             }
@@ -138,11 +141,13 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
 
                         }
                         prestamo.setDeuda(true);
+                        prestamo.setPayed(false);
+                        prestamo.setCuotasporpagar(Totalofcuotas(prestamo.getDetallePrestamo().getCronograma()));
 
                         if (today.isAfter(cuota.getFechaPago().plusYears(1))) {
                             prestamo.setJudicialDeuda(true);
                             cuota.setJudicial(true);
-                            prestamo.setCuotasJudiciales(TotalofcuotasJudiciales(prestamo.getDetallePrestamo().getCronograma()));
+                            prestamo.setCuotasJudicialesporpagar(TotalofcuotasJudiciales(prestamo.getDetallePrestamo().getCronograma()));
 
                         }
 
@@ -158,7 +163,7 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
         System.out.println(today);
         List<Prestamo> prestamos = prestamoMapper.convertToListEntity(prestamoService.findAllPrestamos());
         for (Prestamo prestamo : prestamos) {
-            if(prestamo.isPayed())
+            if(prestamo.isCompleted())
             {
 
             }
@@ -184,11 +189,13 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
 
                         }
                         prestamo.setDeuda(true);
+                        prestamo.setPayed(false);
+                        prestamo.setCuotasporpagar(Totalofcuotas(prestamo.getDetallePrestamo().getCronograma()));
 
                         if (today.isAfter(cuota.getFechaPago().plusYears(1))) {
                             prestamo.setJudicialDeuda(true);
                             cuota.setJudicial(true);
-                            prestamo.setCuotasJudiciales(TotalofcuotasJudiciales(prestamo.getDetallePrestamo().getCronograma()));
+                            prestamo.setCuotasJudicialesporpagar(TotalofcuotasJudiciales(prestamo.getDetallePrestamo().getCronograma()));
 
                         }
 
@@ -205,7 +212,7 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
         System.out.println(today);
         List<Prestamo> prestamos = prestamoMapper.convertToListEntity(prestamoService.findAllPrestamos());
         for (Prestamo prestamo : prestamos) {
-           if(!prestamo.isPayed())
+           if(!prestamo.isCompleted())
             {
                 List<Cuota> cuotas = prestamo.getDetallePrestamo().getCronograma();
                 for (Cuota cuota : cuotas) {
@@ -227,11 +234,13 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
 
                         }
                         prestamo.setDeuda(true);
+                        prestamo.setPayed(false);
+                        prestamo.setCuotasporpagar(Totalofcuotas(prestamo.getDetallePrestamo().getCronograma()));
 
                         if (today.isAfter(cuota.getFechaPago().plusYears(1))) {
                             prestamo.setJudicialDeuda(true);
                             cuota.setJudicial(true);
-                            prestamo.setCuotasJudiciales(TotalofcuotasJudiciales(prestamo.getDetallePrestamo().getCronograma()));
+                            prestamo.setCuotasJudicialesporpagar(TotalofcuotasJudiciales(prestamo.getDetallePrestamo().getCronograma()));
 
                         }
 
@@ -254,5 +263,20 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
            }
         }
         return total_judiciales;
+    }
+
+    public int Totalofcuotas(List<Cuota> cuotas)
+    {
+        int total_cuotas_por_pagar=0;
+
+
+        for(Cuota cuota : cuotas)
+        {
+            if(cuota.getIsDeuda())
+            {
+                total_cuotas_por_pagar++;
+            }
+        }
+        return total_cuotas_por_pagar;
     }
 }

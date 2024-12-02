@@ -54,4 +54,9 @@ public class Cuota {
 
     public boolean getIsJudicial()
     { return this.isJudicial;}
+
+    public boolean getIsDeuda()
+    {
+        return this.isdeuda;
+    }
 }
