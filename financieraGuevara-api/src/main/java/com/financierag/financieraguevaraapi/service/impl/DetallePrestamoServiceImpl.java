@@ -84,7 +84,7 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
             {
                 List<Cuota> cuotas = prestamo.getDetallePrestamo().getCronograma();
                 for (Cuota cuota : cuotas) {
-                    if (cuota.getFechaPago().isBefore(today) && !cuota.getIspayed()) // || cuota.getFechaPago().isEqual(today) "vencer hoy"
+                    if (cuota.getFechaPago().isBefore(today) && !cuota.getIspayed()&&!cuota.getIsJudicial()) // || cuota.getFechaPago().isEqual(today) "vencer hoy"
                     {
                         cuota.setIsdeuda(true);
 
@@ -132,7 +132,7 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
             {
                 List<Cuota> cuotas = prestamo.getDetallePrestamo().getCronograma();
                 for (Cuota cuota : cuotas) {
-                    if (cuota.getFechaPago().isBefore(today) && !cuota.getIspayed()) // || cuota.getFechaPago().isEqual(today) "vencer hoy"
+                    if (cuota.getFechaPago().isBefore(today) && !cuota.getIspayed()&&!cuota.getIsJudicial()) // || cuota.getFechaPago().isEqual(today) "vencer hoy"
                     {
                         cuota.setIsdeuda(true);
 
@@ -178,7 +178,7 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
             {
                 List<Cuota> cuotas = prestamo.getDetallePrestamo().getCronograma();
                 for (Cuota cuota : cuotas) {
-                    if (cuota.getFechaPago().isBefore(today) && !cuota.getIspayed()) // || cuota.getFechaPago().isEqual(today) "vencer hoy"
+                    if (cuota.getFechaPago().isBefore(today) && !cuota.getIspayed()&&!cuota.getIsJudicial()) // || cuota.getFechaPago().isEqual(today) "vencer hoy"
                     {
                         cuota.setIsdeuda(true);
 
@@ -223,7 +223,7 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
             {
                 List<Cuota> cuotas = prestamo.getDetallePrestamo().getCronograma();
                 for (Cuota cuota : cuotas) {
-                    if (cuota.getFechaPago().isBefore(today) && !cuota.getIspayed()) // || cuota.getFechaPago().isEqual(today) "vencer hoy"
+                    if (cuota.getFechaPago().isBefore(today) && !cuota.getIspayed()&&!cuota.getIsJudicial()) // || cuota.getFechaPago().isEqual(today) "vencer hoy"
                     {
                         cuota.setIsdeuda(true);
 
