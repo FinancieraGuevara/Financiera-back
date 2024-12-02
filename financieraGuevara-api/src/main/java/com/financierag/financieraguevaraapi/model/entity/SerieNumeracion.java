@@ -15,12 +15,13 @@ public class SerieNumeracion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "ser_tip_doc_var", nullable = false)
-    private String tipoDocumento;
+    @Column(name = "ser_num_boleta")
+    private Integer boleta;
 
-    @Column(name = "ser_ser_var", nullable = false)
-    private String serie;
+    @Column(name = "ser_num_factura")
+    private Integer factura;
 
-    @Column(name = "ser_num_int", nullable = false)
-    private int numeroCorrelativo;
+    @ManyToOne
+    @JoinColumn(name = "serieNumeracion")
+    private Cuota cuota;
 }

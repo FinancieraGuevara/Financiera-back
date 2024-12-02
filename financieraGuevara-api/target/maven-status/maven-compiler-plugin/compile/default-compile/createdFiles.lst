@@ -47,7 +47,6 @@ com\financierag\financieraguevaraapi\service\impl\SerieNumeracionServiceImpl.cla
 com\financierag\financieraguevaraapi\service\impl\CuotaServiceImpl.class
 com\financierag\financieraguevaraapi\config\CorsGlobalConfiguration.class
 com\financierag\financieraguevaraapi\repository\SerieNumeracionRepository.class
-com\financierag\financieraguevaraapi\config\WebConfig.class
 com\financierag\financieraguevaraapi\mapper\ApiMapper.class
 com\financierag\financieraguevaraapi\model\entity\Sede.class
 com\financierag\financieraguevaraapi\api\ApiController.class
