@@ -5,7 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e050495-231f-4f79-8473-6ef562bb657b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/api/PdfController.java" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/api/PdfController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/model/dto/CronogramaResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/model/dto/CronogramaResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/model/entity/Cuota.java" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/model/entity/Cuota.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/model/entity/SerieNumeracion.java" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/model/entity/SerieNumeracion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/repository/SerieNumeracionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/repository/SerieNumeracionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/service/BoletaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/service/BoletaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/service/FacturaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/service/FacturaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/service/SerieNumeracionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/service/SerieNumeracionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/service/impl/CuotaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/service/impl/CuotaServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/service/impl/SerieNumeracionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/src/main/java/com/financierag/financieraguevaraapi/service/impl/SerieNumeracionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/api/PdfController.class" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/api/PdfController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/model/dto/CronogramaResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/model/dto/CronogramaResponseDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/model/entity/Cuota.class" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/model/entity/Cuota.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/model/entity/SerieNumeracion.class" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/model/entity/SerieNumeracion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/repository/SerieNumeracionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/repository/SerieNumeracionRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/service/BoletaService.class" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/service/BoletaService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/service/FacturaService.class" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/service/FacturaService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/service/SerieNumeracionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/service/SerieNumeracionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/service/impl/CuotaServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/service/impl/CuotaServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/service/impl/SerieNumeracionServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/financieraGuevara-api/target/classes/com/financierag/financieraguevaraapi/service/impl/SerieNumeracionServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +44,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/Factura-Boleta" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -51,26 +79,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.FinancieraGuevaraApiApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.FinancieraGuevaraApiApplication.executor": "Run",
+    "git-widget-placeholder": "bugfix/boleta-factura",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Usuario\Documents\proyect-financieraGuevara-back\financieraGuevara-api\src\main\resources\static" />

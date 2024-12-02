@@ -3,6 +3,7 @@ package com.financierag.financieraguevaraapi.service;
 import com.financierag.financieraguevaraapi.model.dto.CronogramaResponseDTO;
 import com.financierag.financieraguevaraapi.model.dto.DetallePrestamoResponseDTO;
 import com.financierag.financieraguevaraapi.model.dto.ReportResponseDTO;
+import com.financierag.financieraguevaraapi.model.entity.SerieNumeracion;
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -15,7 +16,6 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.UnitValue;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
@@ -24,8 +24,6 @@ import java.time.LocalDate;
 
 @Service
 public class BoletaService {
-    @Autowired
-    private SerieNumeracionService serieNumeracionService;
 
     public ByteArrayInputStream generateUserReportPdf(ReportResponseDTO reportResponseDTO) {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -38,13 +36,14 @@ public class BoletaService {
         double totalmora=cronogramaResponseDTO.getTotalmora();
         double interes = cronogramaResponseDTO.getInteres();
         int nmrcuota = cronogramaResponseDTO.getNmrcuota();
+        SerieNumeracion serieNumeracion = cronogramaResponseDTO.getSerieNumeracion();
+        String correlativo = "B001 - " + String.format("%08d", serieNumeracion.getBoleta());
+
         try {
 
             PdfWriter writer = new PdfWriter(out);
             PdfDocument pdfDocument = new PdfDocument(writer);
             Document document = new Document(pdfDocument);
-
-            String numeroFactura = serieNumeracionService.generarNumeroDocumento("BOLETA");
 
             // Estilos para encabezados
             DeviceRgb headerColor = new DeviceRgb(0, 86, 163);
@@ -60,7 +59,7 @@ public class BoletaService {
             headerTable.addCell(new Cell().add(new Paragraph("Boleta Electrónica").setBold()).setTextAlignment(TextAlignment.CENTER).setBorder(Border.NO_BORDER));
 
             headerTable.addCell(new Cell().add(new Paragraph("Teléfono: 990009909").setFontSize(10)).setBorder(Border.NO_BORDER));
-            headerTable.addCell(new Cell().add(new Paragraph(numeroFactura).setFontSize(12).setBold()).setTextAlignment(TextAlignment.CENTER).setBorder(Border.NO_BORDER));
+            headerTable.addCell(new Cell().add(new Paragraph(correlativo).setFontSize(12).setBold()).setTextAlignment(TextAlignment.CENTER).setBorder(Border.NO_BORDER));
 
             document.add(headerTable);
 

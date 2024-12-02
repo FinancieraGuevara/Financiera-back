@@ -1,5 +1,6 @@
 package com.financierag.financieraguevaraapi.model.dto;
 
+import com.financierag.financieraguevaraapi.model.entity.SerieNumeracion;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,5 +29,5 @@ public class CronogramaResponseDTO {
     boolean isjudicial;
     double mora=0;
     double totalmora;
-
+    SerieNumeracion serieNumeracion;
 }
