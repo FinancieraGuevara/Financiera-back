@@ -2,6 +2,7 @@ package com.financierag.financieraguevaraapi.service.impl;
 
 import com.financierag.financieraguevaraapi.execption.ResourceNotFoundException;
 import com.financierag.financieraguevaraapi.mapper.SolicitanteMapper;
+import com.financierag.financieraguevaraapi.model.dto.DeudoresDTO;
 import com.financierag.financieraguevaraapi.model.dto.SolicitanteRequestDTO;
 import com.financierag.financieraguevaraapi.model.dto.SolicitanteResponseDTO;
 import com.financierag.financieraguevaraapi.model.entity.Solicitante;
@@ -50,6 +51,11 @@ public class SolicitanteServiceImpl implements SolicitanteService {
     public List<SolicitanteResponseDTO> obtenerDeudores() {
         List<Solicitante> solicitantes = solicitanteRepository.findDeudores();
         return solicitanteMapper.convertToListDTO(solicitantes);
+    }
+
+    @Override
+    public List<DeudoresDTO> obtenerDeudoresYDinero() {
+        return solicitanteRepository.findDeudoresAndMoney();
     }
 
 }
