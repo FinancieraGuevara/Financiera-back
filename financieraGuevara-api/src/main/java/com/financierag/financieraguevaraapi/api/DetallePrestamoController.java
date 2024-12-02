@@ -13,19 +13,25 @@ import java.util.List;
 @RestController
 @RequestMapping("/private/detalleprestamos")
 @AllArgsConstructor
-@CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+
 public class DetallePrestamoController {
 
     private final DetallePrestamoServiceImpl detallePrestamoServiceImpl;
-    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+
     @GetMapping
     public ResponseEntity<List<DetallePrestamoResponseDTO>> getAllDetallePrestamos(){
         List<DetallePrestamoResponseDTO> detallePrestamos = detallePrestamoServiceImpl.findAllDetallesPrestamo();
         return new ResponseEntity<>(detallePrestamos, HttpStatus.OK);
     }
-    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+
+    @GetMapping("/prestamoId/{id}")
+    public  ResponseEntity<DetallePrestamoResponseDTO> getDetallePrestamoById(@PathVariable int id){
+        DetallePrestamoResponseDTO detallePrestamos = detallePrestamoServiceImpl.findDetallePrestamoById(id);
+        return new ResponseEntity<>(detallePrestamos, HttpStatus.OK);
+    }
+
     @GetMapping("/{solicitanteId}")
-    public ResponseEntity<List<DetallePrestamoResponseDTO>> getDetallePrestamoById(@PathVariable int solicitanteId){
+    public ResponseEntity<List<DetallePrestamoResponseDTO>> getDetalleSolicitanteById(@PathVariable int solicitanteId){
         List<DetallePrestamoResponseDTO> detallePrestamo = detallePrestamoServiceImpl.detallePrestamoSolicitante(solicitanteId);
         return new ResponseEntity<>(detallePrestamo, HttpStatus.OK);
     }

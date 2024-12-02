@@ -16,20 +16,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/prestamos")
 @AllArgsConstructor
-@CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+
 public class PrestamoController {
 
     @Autowired
     private final PrestamoService prestamoService;
 
-    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
     @GetMapping
     public ResponseEntity<List<PrestamoResponseDTO>> getAllPrestamos() {
         List<PrestamoResponseDTO> prestamos = prestamoService.findAllPrestamos();
         return new ResponseEntity<>(prestamos, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
     @GetMapping("/pendientes")
     public ResponseEntity<List<PrestamoResponseDTO>> getPendientPayment()
     {
@@ -37,7 +35,6 @@ public class PrestamoController {
         return new ResponseEntity<>(prestamos, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
     @GetMapping("/pagados")
     public ResponseEntity<List<PrestamoResponseDTO>> getCompletedPayment()
     {
@@ -45,7 +42,7 @@ public class PrestamoController {
         return new ResponseEntity<>(prestamos, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+
     @GetMapping("/judiciales")
     public ResponseEntity<List<PrestamoResponseDTO>> getJudicialPrestamos()
     {
@@ -53,7 +50,7 @@ public class PrestamoController {
         return new ResponseEntity<>(prestamos, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+
     @GetMapping("/completados")
     public ResponseEntity<List<PrestamoResponseDTO>> getPrestamosCompleted()
     {
@@ -61,7 +58,7 @@ public class PrestamoController {
         return new ResponseEntity<>(prestamos, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+
     @GetMapping("/solicitante/{id_solicitante}")
     public ResponseEntity<List<PrestamoResponseDTO>> getPrestamosBySolicitante(@PathVariable int id_solicitante)
     {
@@ -69,26 +66,26 @@ public class PrestamoController {
         return new ResponseEntity<>(prestamos, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+
    @GetMapping("/{id}")
    public ResponseEntity<PrestamoResponseDTO> getPrestamoById(@PathVariable int id) {
         PrestamoResponseDTO prestamo = prestamoService.findPrestamoById(id);
         return new ResponseEntity<>(prestamo, HttpStatus.OK);
    }
-   @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+
    @PostMapping("/crear/{solicitanteId}")
    public ResponseEntity<PrestamoResponseDTO> createPrestamo(@PathVariable int solicitanteId, @RequestBody PrestamoRequestDTO prestamoRequestDTO) {
         PrestamoResponseDTO prestamo = prestamoService.createPrestamo(solicitanteId,prestamoRequestDTO);
         return new ResponseEntity<>(prestamo, HttpStatus.CREATED);
    }
-    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+
    @PutMapping("/{id}")
    public ResponseEntity<PrestamoResponseDTO> updatePrestamo(@PathVariable int id,
                                                              @RequestBody PrestamoRequestDTO prestamoRequestDTO) {
         PrestamoResponseDTO prestamo = prestamoService.updatePrestamo(id,prestamoRequestDTO);
         return new ResponseEntity<>(prestamo, HttpStatus.OK);
    }
-    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<PrestamoResponseDTO> deletePrestamo(@PathVariable int id) {
@@ -97,7 +94,7 @@ public class PrestamoController {
 
     }
 
-    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+
     @GetMapping("/cuotas-en-deuda")
     public ResponseEntity<List<PrestamoResponseDTO>> getPrestamosConCuotasEnDeuda() {
         List<PrestamoResponseDTO> prestamos = prestamoService.getPrestamosConCuotasEnDeuda();
