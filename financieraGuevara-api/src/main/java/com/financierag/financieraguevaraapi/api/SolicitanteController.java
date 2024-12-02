@@ -1,6 +1,7 @@
 package com.financierag.financieraguevaraapi.api;
 
 import com.financierag.financieraguevaraapi.model.dto.DetallePrestamoResponseDTO;
+import com.financierag.financieraguevaraapi.model.dto.DeudoresDTO;
 import com.financierag.financieraguevaraapi.model.dto.SolicitanteRequestDTO;
 import com.financierag.financieraguevaraapi.model.dto.SolicitanteResponseDTO;
 import com.financierag.financieraguevaraapi.model.entity.DetallePrestamo;
@@ -57,5 +58,10 @@ public class SolicitanteController {
     public ResponseEntity<List<SolicitanteResponseDTO>> findDeudores() {
         List<SolicitanteResponseDTO> solicitantes = solicitanteServiceImpl.obtenerDeudores();
         return new ResponseEntity<>(solicitantes, HttpStatus.OK);
+    }
+
+    @GetMapping("/deudoresYDinero")
+    public List<DeudoresDTO> findDeudoresAndMoney() {
+        return solicitanteServiceImpl.obtenerDeudoresYDinero();
     }
 }
