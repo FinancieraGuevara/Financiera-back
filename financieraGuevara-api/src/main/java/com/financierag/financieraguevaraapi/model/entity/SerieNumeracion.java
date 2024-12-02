@@ -9,16 +9,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "serie_numeracion")
+@Table(name = "serieNumeracion")
 public class SerieNumeracion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "ser_num_boleta")
     private Integer boleta;
 
-    @Column(name = "ser_num_factura")
+
     private Integer factura;
 
     @ManyToOne

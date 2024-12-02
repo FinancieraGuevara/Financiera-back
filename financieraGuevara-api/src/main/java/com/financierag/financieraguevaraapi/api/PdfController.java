@@ -47,7 +47,7 @@ public class PdfController {
                 .body(new InputStreamResource(pdfStream));
     }
 
-    @GetMapping("/prestamo/{prestamoId}/prestamo/{nroCuota}")
+    @GetMapping("/prestamo/{prestamoId}/cuota/{nroCuota}")
     public ResponseEntity<InputStreamResource> downloadPagoCuotaPdf(@PathVariable Integer prestamoId, @PathVariable Integer nroCuota) {
         ReportResponseDTO reportResponseDTO = reportService.generateComprobante(prestamoId, nroCuota);
         String userName = reportResponseDTO.getDetallePrestamo().getSolicitante().getNombre_completo();
