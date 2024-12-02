@@ -11,7 +11,6 @@ D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-a
 D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\config\ModelMapperConfig.java
 D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\config\RestExceptionHandler.java
 D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\config\SecurityConfig.java
-D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\config\WebConfig.java
 D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\execption\BadRequestException.java
 D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\execption\CustomErrorResponse.java
 D:\Descargas\Documents\6 ciclo\Parcial inso2\Financiera-back\financieraGuevara-api\src\main\java\com\financierag\financieraguevaraapi\execption\ExampleException.java

@@ -3,6 +3,7 @@ package com.financierag.financieraguevaraapi.service;
 import com.financierag.financieraguevaraapi.model.dto.CronogramaResponseDTO;
 import com.financierag.financieraguevaraapi.model.dto.DetallePrestamoResponseDTO;
 import com.financierag.financieraguevaraapi.model.dto.ReportResponseDTO;
+import com.financierag.financieraguevaraapi.model.entity.SerieNumeracion;
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -14,18 +15,14 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.UnitValue;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 @Service
 public class FacturaService {
-    @Autowired
-    private SerieNumeracionService serieNumeracionService;
 
     public ByteArrayInputStream generateUserReportPdf(ReportResponseDTO reportResponseDTO) {
 
@@ -40,14 +37,14 @@ public class FacturaService {
         double totalmora=cronogramaResponseDTO.getTotalmora();
         double interes = cronogramaResponseDTO.getInteres();
         int nmrcuota = cronogramaResponseDTO.getNmrcuota();
+        SerieNumeracion serieNumeracion = cronogramaResponseDTO.getSerieNumeracion();
+        String correlativo = "F001 - " + String.format("%08d", serieNumeracion.getFactura());
 
         try {
 
             PdfWriter writer = new PdfWriter(out);
             PdfDocument pdfDocument = new PdfDocument(writer);
             Document document = new Document(pdfDocument);
-
-            String numeroFactura = serieNumeracionService.generarNumeroDocumento("FACTURA");
 
             // Estilos para encabezados
             DeviceRgb headerColor = new DeviceRgb(0, 86, 163);
@@ -63,7 +60,7 @@ public class FacturaService {
             headerTable.addCell(new Cell().add(new Paragraph("Factura Electrónica").setBold()).setTextAlignment(TextAlignment.CENTER).setBorder(Border.NO_BORDER));
 
             headerTable.addCell(new Cell().add(new Paragraph("Teléfono: 990009909").setFontSize(10)).setBorder(Border.NO_BORDER));
-            headerTable.addCell(new Cell().add(new Paragraph(numeroFactura).setFontSize(12).setBold()).setTextAlignment(TextAlignment.CENTER).setBorder(Border.NO_BORDER));
+            headerTable.addCell(new Cell().add(new Paragraph(correlativo).setFontSize(12).setBold()).setTextAlignment(TextAlignment.CENTER).setBorder(Border.NO_BORDER));
 
             document.add(headerTable);
 

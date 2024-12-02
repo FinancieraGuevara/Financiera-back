@@ -5,8 +5,12 @@ import com.financierag.financieraguevaraapi.mapper.PrestamoMapper;
 import com.financierag.financieraguevaraapi.model.dto.PrestamoResponseDTO;
 import com.financierag.financieraguevaraapi.model.entity.Cuota;
 import com.financierag.financieraguevaraapi.model.entity.Prestamo;
+import com.financierag.financieraguevaraapi.model.entity.SerieNumeracion;
+import com.financierag.financieraguevaraapi.repository.CronogramaRepository;
 import com.financierag.financieraguevaraapi.repository.PrestamoRepository;
+import com.financierag.financieraguevaraapi.repository.SerieNumeracionRepository;
 import com.financierag.financieraguevaraapi.service.CuotaService;
+import com.financierag.financieraguevaraapi.service.SerieNumeracionService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +24,8 @@ import java.util.Optional;
 public class CuotaServiceImpl implements CuotaService {
     private final PrestamoRepository prestamoRepository;
     private final PrestamoMapper prestamoMapper;
-    private final DetallePrestamoMapper detallePrestamoMapper;
+    private SerieNumeracionService serieNumeracionService;
+    private CronogramaRepository cronogramaRepository;
 
     @Override
     public PrestamoResponseDTO SetCoutaPayed(int prestamoId, int cuotanumber) {
@@ -87,6 +92,14 @@ public class CuotaServiceImpl implements CuotaService {
                 {
                     prestamo.setCompleted(true);
                 }
+            }
+
+            if (cuota.getSerieNumeracion() == null) {
+                String tipoDocumento = prestamo.getDetallePrestamo().getSolicitante().getTipo();
+                SerieNumeracion serieNumeracion = serieNumeracionService.generarCorrelativo(tipoDocumento, cuota);
+                cuota.setSerieNumeracion(serieNumeracion);  // Asignar la SerieNumeracion a la cuota
+                cronogramaRepository.save(cuota); // Guardar la cuota con su SerieNumeracion
+
             }
 
             prestamoRepository.save(prestamo);
