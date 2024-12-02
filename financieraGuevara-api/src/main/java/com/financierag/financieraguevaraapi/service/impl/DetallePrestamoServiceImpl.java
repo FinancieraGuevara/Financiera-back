@@ -247,8 +247,18 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
                         if (today.isAfter(cuota.getFechaPago().plusYears(1))) {
                             prestamo.setJudicialDeuda(true);
                             cuota.setJudicial(true);
+                            //borra esto si quieres que siga acumulando intereses
+                            diasDeDeuda = ChronoUnit.DAYS.between(cuota.getFechaPago(), cuota.getFechaPago().plusYears(1));
+                            cuota.setTotaldiasmora(diasDeDeuda);
                             prestamo.setCuotasJudicialesporpagar(TotalofcuotasJudiciales(prestamo.getDetallePrestamo().getCronograma()));
+                            if (diasDeDeuda > 0) {
+                                cuota.setTotalmora(cuota.getMora() * diasDeDeuda);
 
+                            } else {
+                                cuota.setTotalmora(0);
+
+                            }
+                            //
                         }
 
                     }
