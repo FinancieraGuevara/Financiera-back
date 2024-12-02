@@ -22,7 +22,7 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
-@CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+
 @RequestMapping("/reports")
 public class PdfController {
     private final BoletaService boletaService;
@@ -32,7 +32,7 @@ public class PdfController {
     private final PdfService pdfService;
     private final PrestamoService prestamoService;
 
-    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+
     @GetMapping("/pdf/{userId}")
     public ResponseEntity<InputStreamResource> downloadUserReportPdf(@PathVariable Integer userId) {
         ReportResponseDTO reportResponseDTO = reportService.generateReport(userId);

@@ -44,6 +44,13 @@ public class DetallePrestamoServiceImpl implements DetallePrestamoService {
     private final PrestamoRepository prestamoRepository;
     @Autowired
     private final PrestamoMapper prestamoMapper;
+
+    @Override
+    public DetallePrestamoResponseDTO findDetallePrestamoById(int id) {
+        DetallePrestamo detallePrestamo = detallePrestamoRespository.findByPrestamo_Id(id);
+        return detallePrestamoMapper.convertToDTO(detallePrestamo);
+    }
+
     @Override
     public List<DetallePrestamoResponseDTO> findAllDetallesPrestamo() {
         List<DetallePrestamo> detallePrestamos = detallePrestamoRespository.findAll();

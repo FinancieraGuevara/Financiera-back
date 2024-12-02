@@ -24,6 +24,7 @@ com\financierag\financieraguevaraapi\api\PdfController.class
 com\financierag\financieraguevaraapi\model\entity\Cuota.class
 com\financierag\financieraguevaraapi\model\dto\UserProfileDTO.class
 com\financierag\financieraguevaraapi\repository\SedeRepository.class
+com\financierag\financieraguevaraapi\service\SerieNumeracionService.class
 com\financierag\financieraguevaraapi\model\dto\LoginDTO.class
 com\financierag\financieraguevaraapi\model\dto\SolicitanteResponseDTO.class
 com\financierag\financieraguevaraapi\service\ReportService.class
@@ -42,8 +43,10 @@ com\financierag\financieraguevaraapi\service\impl\ApiServiceImpl.class
 com\financierag\financieraguevaraapi\model\dto\AuthResponseDTO.class
 com\financierag\financieraguevaraapi\model\dto\PrestamoResponseDTO.class
 com\financierag\financieraguevaraapi\api\DetallePrestamoController.class
+com\financierag\financieraguevaraapi\service\impl\SerieNumeracionServiceImpl.class
 com\financierag\financieraguevaraapi\service\impl\CuotaServiceImpl.class
 com\financierag\financieraguevaraapi\config\CorsGlobalConfiguration.class
+com\financierag\financieraguevaraapi\repository\SerieNumeracionRepository.class
 com\financierag\financieraguevaraapi\config\WebConfig.class
 com\financierag\financieraguevaraapi\mapper\ApiMapper.class
 com\financierag\financieraguevaraapi\model\entity\Sede.class
@@ -52,8 +55,10 @@ com\financierag\financieraguevaraapi\repository\PrestamoRepository.class
 com\financierag\financieraguevaraapi\security\CustomUserDetailService.class
 com\financierag\financieraguevaraapi\service\impl\UserServiceImpl.class
 com\financierag\financieraguevaraapi\mapper\PrestamoMapper.class
+com\financierag\financieraguevaraapi\model\entity\SerieNumeracion.class
 com\financierag\financieraguevaraapi\mapper\UserMapper.class
 com\financierag\financieraguevaraapi\service\UserService.class
+com\financierag\financieraguevaraapi\service\BoletaService.class
 com\financierag\financieraguevaraapi\repository\EmpresaRepository.class
 com\financierag\financieraguevaraapi\service\impl\PrestamoServiceImpl.class
 com\financierag\financieraguevaraapi\model\dto\UserResponseDTO.class
@@ -66,6 +71,7 @@ com\financierag\financieraguevaraapi\security\SedeUserDetailsService.class
 com\financierag\financieraguevaraapi\api\SolicitanteController.class
 com\financierag\financieraguevaraapi\model\entity\DetallePrestamo.class
 com\financierag\financieraguevaraapi\service\SolicitanteService.class
+com\financierag\financieraguevaraapi\service\FacturaService.class
 com\financierag\financieraguevaraapi\security\JWTConfigurer.class
 com\financierag\financieraguevaraapi\api\PrestamoController.class
 com\financierag\financieraguevaraapi\mapper\DetallePrestamoMapper.class

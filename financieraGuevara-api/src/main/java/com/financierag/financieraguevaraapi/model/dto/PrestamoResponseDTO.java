@@ -17,6 +17,7 @@ public class PrestamoResponseDTO {
     private int cuotas;
     private double interes;
     private int solicitanteId;
+    private String username;
     boolean isPayed;
     boolean isCompleted;
     boolean isDeuda;

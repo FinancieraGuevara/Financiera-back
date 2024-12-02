@@ -26,7 +26,7 @@ public class UserController {
         return new ResponseEntity<>(userService.getPrivateUsers(), HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+
     @PostMapping("/registrar")
     public ResponseEntity<?> registrar(@RequestBody UserRequestDTO userRequestDTO, Authentication authentication) {
         // Obtiene los roles del usuario autenticado
@@ -42,7 +42,7 @@ public class UserController {
         userService.addUser(userRequestDTO);
         return new ResponseEntity<>(userRequestDTO, HttpStatus.CREATED);
     }
-    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable int id, Authentication authentication) {
         boolean isAdmin = authentication.getAuthorities()
