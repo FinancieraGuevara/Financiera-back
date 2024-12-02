@@ -14,6 +14,7 @@ public class PrestamoResponseDTO {
 
     private int id;
     private double monto;
+    private double totalpagar;
     private int cuotas;
     private double interes;
     private int solicitanteId;
