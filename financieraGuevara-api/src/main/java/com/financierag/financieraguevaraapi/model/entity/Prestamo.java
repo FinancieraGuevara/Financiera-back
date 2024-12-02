@@ -38,11 +38,15 @@ public class Prestamo {
     @Column(name="pre_fis_debt_stat_bol")
     private boolean isJudicialDeuda =false;
 
+    @Column(name="pre_finalizado_bol")
+    private boolean isCompleted =false;
+
     @Column(name="pre_num_cuo_pay_in",nullable=true)
     int cuotasPagadas=0;
-
+    @Column(name="pre_num_cuo_in",nullable=true)
+    int cuotasporpagar=0;
     @Column(name="pre_num_cuo_ju_in",nullable=true)
-    int cuotasJudiciales=0;
+    int cuotasJudicialesporpagar=0;
 
     @Column(name="pre_num_cuo_ju_pay_in",nullable=true)
     int cuotasJudicialesPagadas=0;

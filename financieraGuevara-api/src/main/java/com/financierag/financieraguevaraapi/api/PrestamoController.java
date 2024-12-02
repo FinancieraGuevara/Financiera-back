@@ -53,6 +53,21 @@ public class PrestamoController {
         return new ResponseEntity<>(prestamos, HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+    @GetMapping("/completados")
+    public ResponseEntity<List<PrestamoResponseDTO>> getPrestamosCompleted()
+    {
+        List<PrestamoResponseDTO> prestamos = prestamoService.getPrestamosCompleted();
+        return new ResponseEntity<>(prestamos, HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
+    @GetMapping("/solicitante/{id_solicitante}")
+    public ResponseEntity<List<PrestamoResponseDTO>> getPrestamosBySolicitante(@PathVariable int id_solicitante)
+    {
+        List<PrestamoResponseDTO> prestamos = prestamoService.getPrestamosBySolicitanteId(id_solicitante);
+        return new ResponseEntity<>(prestamos, HttpStatus.OK);
+    }
 
     @CrossOrigin(origins = {"https://fguevara-guevara.web.app","http://localhost:4200"}, allowCredentials = "true")
    @GetMapping("/{id}")

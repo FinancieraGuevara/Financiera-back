@@ -68,7 +68,18 @@ public class PrestamoServiceImpl implements PrestamoService {
     }
 
     @Transactional
+    @Override
+    public List<PrestamoResponseDTO> getPrestamosCompleted() {
+        return prestamoMapper.convertToListDTO(prestamoRepository.findByIsCompletedTrue());
+    }
 
+    @Transactional
+    @Override
+    public List<PrestamoResponseDTO> getPrestamosBySolicitanteId(int solicitanteId) {
+        return prestamoMapper.convertToListDTO(prestamoRepository.findByDetallePrestamoSolicitanteId(solicitanteId));
+    }
+
+    @Transactional
     @Override
     public PrestamoResponseDTO findPrestamoById(int id) {
         Prestamo prestamo = prestamoRepository.findById(id)
@@ -91,7 +102,11 @@ public class PrestamoServiceImpl implements PrestamoService {
         Solicitante solicitante = solicitanteRepository.findById(solicitanteId)
                 .orElseThrow(() -> new ResourceNotFoundException("Solicitante no encontrado con el número de ID " + solicitanteId));
 
-
+        List<Solicitante> deudores = solicitanteRepository.findDeudores();
+        if(deudores.contains(solicitante))
+        {
+            throw new IllegalArgumentException("No puedes sacar un prestamo para este solicitante ya que es un deudor.");
+        }
         prestamo = prestamoRepository.save(prestamo);
 
 
